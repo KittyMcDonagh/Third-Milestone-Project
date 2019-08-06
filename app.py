@@ -13,6 +13,7 @@ app.config["MONGO_URI"] = 'mongodb+srv://KittyOwner:Stephbar2@kittysfirstcluster
 
 mongo = PyMongo(app)
 
+# Display all recipes
 @app.route('/')
 @app.route('/get_recipes')
 def get_recipes():
