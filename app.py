@@ -19,7 +19,7 @@ mongo = PyMongo(app)
 def get_recipes():
     
     # Redirect to recipes template, return all recipes
-    return render_template("recipes.html", recipes=mongo.db.recipes.find())
+    return render_template("recipes-home.html", recipes=mongo.db.recipes.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
