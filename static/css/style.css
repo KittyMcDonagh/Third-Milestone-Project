@@ -1,3 +1,7 @@
+/*  IMPORT FONTS - copied from google fonts         */
+
+@import url('https://fonts.googleapis.com/css?family=Courgette:100,400,700|Crimson:100,400,700|Nunito:100,400,700');
+
 /* The following css was copied from materializecss.com to create a sticky footer */
 body {
     display: flex;
@@ -10,7 +14,62 @@ main {
 }
 
 .logo {
-    height: 80px;
-    width: 160px;
-    
+    margin-left:50px;
+    background: url("../images/logo_gic.jpg");
+    min-height: 64px;
+    min-width: 200px;
+    border-style: double;
+    border-radius: 50%;
+    border-width: 5px;
+    border-color: #dcefde;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #fff;
+    -moz-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
+
+.navbar-style {
+    background-color: #fafaff;
+}
+
+.font-style {
+    color: #3b3b3b!important;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+}
+
+.dropdown-content a {
+    color: #8c8c8c!important;
+}
+
+/* Set hover behaviour for nav links in Top and Bottom navigation menus */
+.nav-links a:hover {
+    background-color: #76c180; 
+    color: #fff!important;
+}
+
+.icon-style {
+    color: #76c180;
+}
+
+.icon-style:hover {
+    color: #fff;
+}
+
+.footer-style {
+    background-color:  #8c8c8c;
+}
+
+/* Set color and padding for footer links*/
+footer a {
+    color: #fff!important;
+    padding: 10px 15px;
+}
+
+
+
+
