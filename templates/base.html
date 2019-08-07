@@ -30,10 +30,10 @@
             <li class="divider"></li>
             <li><a href="#!">NEW ZEALAND</a></li>
         </ul>
-        
+
         <!-- Dropdown Structure for mobiles. dropdown1 & dropdown2 are the same, but if I use only one,
              the dropdown will work on mobile devices, but not on larger screens -->
-             
+
         <ul id="dropdown2" class="dropdown-content">
             <li><a href="#!">IRELAND</a></li>
             <li class="divider"></li>
@@ -45,25 +45,25 @@
             <li class="divider"></li>
             <li><a href="#!">NEW ZEALAND</a></li>
         </ul>
-        
+
         <nav>
             <div class="nav-wrapper navbar-style nav-links">
 
                 <a href="#!" class="logo navbar-brand"></a>
-                
+
                 <!-- This is for the mobile side menu -->
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons menu-icon-style">menu</i></a>
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a class="font-style" href="#"><i class="material-icons icon-style">home</i></a></li>
-                    <li><a class=" font-style" href="#">BREAKFAST</a></li>
-                    <li><a class=" font-style" href="#">STARTER</a></li>
-                    <li><a class=" font-style" href="#">LUNCH/DINNER</a></li>
-                    <li><a class=" font-style" href="#">DESSERT</a></li>
+                    <li><a href="#"><i class="material-icons icon-style">home</i></a></li>
+                    <li><a href="#">BREAKFAST</a></li>
+                    <li><a href="#">STARTER</a></li>
+                    <li><a href="#">LUNCH/DINNER</a></li>
+                    <li><a href="#">DESSERT</a></li>
                     <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-button font-style" href="#!" data-activates="dropdown1">ORIGIN<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button dropdown-button-lg font-style" href="#!" data-activates="dropdown1">ORIGIN<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
-                
+
                 <ul id="mobile-demo" class="side-nav">
                     <li><a class="font-style" href="#"><i class="material-icons icon-style">home</i></a></li>
                     <li><a class=" font-style" href="#">BREAKFAST</a></li>
@@ -73,7 +73,7 @@
                     <!-- Dropdown Trigger -->
                     <li><a class="dropdown-button font-style" href="#!" data-activates="dropdown2">ORIGIN<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
-                
+
             </div>
         </nav>
 
@@ -127,14 +127,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <script type="text/javascript">
-    
         $(document).ready(function() {
             $(".dropdown-button").dropdown();
             $('.collapsible').collapsible();
             $('select').material_select();
             $(".button-collapse").sideNav();
         });
-        
+
         
         
     </script>

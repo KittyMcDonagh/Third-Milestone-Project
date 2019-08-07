@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette:100,400,700|Crimson:100,400,700|Nunito:100,400,700');
 
 /* The following css was copied from materializecss.com to create a sticky footer */
+
 body {
     display: flex;
     min-height: 100vh;
@@ -13,8 +14,9 @@ main {
     flex: 1 0 auto;
 }
 
+/* Keep a wide margin to left of logo so that side menu on smaller devices doesnt hide the logo   */
 .logo {
-    margin-left:50px;
+    margin-left: 300px;
     background: url("../images/logo_gic.jpg");
     min-height: 64px;
     min-width: 200px;
@@ -32,8 +34,26 @@ main {
     transition: all .5s ease-in-out;
 }
 
+@media(min-width:1024px) {
+
+    .logo {
+        margin-left: 150px;
+        
+    }
+
+}
+
+
+
+
 .navbar-style {
     background-color: #fafaff;
+}
+
+ul a {
+    color: #3b3b3b!important;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
 }
 
 .font-style {
@@ -44,11 +64,19 @@ main {
 
 .dropdown-content a {
     color: #8c8c8c!important;
+
 }
 
+.menu-icon-style {
+    color: #3b3b3b;
+}
+
+
+
 /* Set hover behaviour for nav links in Top and Bottom navigation menus */
+
 .nav-links a:hover {
-    background-color: #76c180; 
+    background-color: #76c180;
     color: #fff!important;
 }
 
@@ -61,15 +89,12 @@ main {
 }
 
 .footer-style {
-    background-color:  #8c8c8c;
+    background-color: #8c8c8c;
 }
 
 /* Set color and padding for footer links*/
+
 footer a {
     color: #fff!important;
     padding: 10px 15px;
 }
-
-
-
-
