@@ -1,26 +1,53 @@
-{% extends 'base.html' %} {% block content %} 
+{% extends 'base.html' %} {% block content %}
 
-<ul>
-    {% for recipe in recipes %}
+<!-- Insert Starts here -->
+
+
+<!-- Cards start here -->
+<div class="row">
+
+    {% for recipe in recipes %} 
     
-    <li>
-         
-        <div>
-            
-            <p><span>Ingredients: </span> {{ recipe.ingredients }}</p>
-             <p><span>Method: </span> {{ recipe.method }}</p>
-           
+    {% if loop.index % 2 != 0 %}
+
+    <div class="col-12 col-md-6">
+        <div class="card" style="width: 18rem;">
+
+            <div class="card-body">
+                <h5 class="card-title">{{"Origin: " + recipe.origin}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{recipe.title}}</h6>
+                <p class="card-text">{{recipe.intro}}</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+
+            </div>
         </div>
-        
-        
-        
-    </li>
-    {% endfor %}
-     
-    
+    </div>
 
-</ul>
+    {% else %}
 
+    <div class="col-12 col-md-6">
+        <div class="card" style="width: 18rem;">
+
+            <div class="card-body">
+                <h5 class="card-title">{{"Origin: " + recipe.origin}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{recipe.title}}</h6>
+                <p class="card-text">{{recipe.intro}}</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+</div>
+
+
+{% endfor %}
+
+
+<!--  Insert ends here -->
 
 
 {% endblock %}

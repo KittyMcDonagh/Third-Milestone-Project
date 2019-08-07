@@ -20,15 +20,15 @@
 
         <!-- Dropdown Structure on larger devices-->
         <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">IRELAND</a></li>
+            <li><a id="ireland" href="#!">IRELAND</a></li>
             <li class="divider"></li>
-            <li><a href="#!">BRITAIN</a></li>
+            <li><a id="britain" href="#!">BRITAIN</a></li>
             <li class="divider"></li>
-            <li><a href="#!">AMERICA</a></li>
+            <li><a id="america" href="#!">AMERICA</a></li>
             <li class="divider"></li>
-            <li><a href="#!">AUSTRALIA</a></li>
+            <li><a id="australia" href="#!">AUSTRALIA</a></li>
             <li class="divider"></li>
-            <li><a href="#!">NEW ZEALAND</a></li>
+            <li><a id="new_zealand" href="#!">NEW ZEALAND</a></li>
         </ul>
 
         <!-- Dropdown Structure for mobiles. dropdown1 & dropdown2 are the same, but if I use only one,
@@ -46,36 +46,38 @@
             <li><a href="#!">NEW ZEALAND</a></li>
         </ul>
 
-        <nav>
-            <div class="nav-wrapper navbar-style nav-links">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper navbar-style nav-links">
 
-                <a href="#!" class="logo navbar-brand"></a>
+                    <a href="#!" class="logo navbar-brand"></a>
 
-                <!-- This is for the mobile side menu -->
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons menu-icon-style">menu</i></a>
+                    <!-- This is for the mobile side menu -->
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons menu-icon-style">menu</i></a>
 
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#"><i class="material-icons icon-style">home</i></a></li>
-                    <li><a href="#">BREAKFAST</a></li>
-                    <li><a href="#">STARTER</a></li>
-                    <li><a href="#">LUNCH/DINNER</a></li>
-                    <li><a href="#">DESSERT</a></li>
-                    <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-button dropdown-button-lg font-style" href="#!" data-activates="dropdown1">ORIGIN<i class="material-icons right">arrow_drop_down</i></a></li>
-                </ul>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#"><i class="material-icons icon-style">home</i></a></li>
+                        <li><a href="#">BREAKFAST</a></li>
+                        <li><a href="#">STARTER</a></li>
+                        <li><a href="#">LUNCH/DINNER</a></li>
+                        <li><a href="#">DESSERT</a></li>
+                        <!-- Dropdown Trigger -->
+                        <li><a class="dropdown-button dropdown-button-lg font-style" href="#!" data-activates="dropdown1">ORIGIN<i class="material-icons right">arrow_drop_down</i></a></li>
+                    </ul>
 
-                <ul id="mobile-demo" class="side-nav">
-                    <li><a class="font-style" href="#"><i class="material-icons icon-style">home</i></a></li>
-                    <li><a class=" font-style" href="#">BREAKFAST</a></li>
-                    <li><a class=" font-style" href="#">STARTER</a></li>
-                    <li><a class=" font-style" href="#">LUNCH/DINNER</a></li>
-                    <li><a class=" font-style" href="#">DESSERT</a></li>
-                    <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-button font-style" href="#!" data-activates="dropdown2">ORIGIN<i class="material-icons right">arrow_drop_down</i></a></li>
-                </ul>
+                    <ul id="mobile-demo" class="side-nav">
+                        <li><a class="font-style" href="#"><i class="material-icons icon-style">home</i></a></li>
+                        <li><a class=" font-style" href="#">BREAKFAST</a></li>
+                        <li><a class=" font-style" href="#">STARTER</a></li>
+                        <li><a class=" font-style" href="#">LUNCH/DINNER</a></li>
+                        <li><a class=" font-style" href="#">DESSERT</a></li>
+                        <!-- Dropdown Trigger -->
+                        <li><a class="dropdown-button font-style" href="#!" data-activates="dropdown2">ORIGIN<i class="material-icons right">arrow_drop_down</i></a></li>
+                    </ul>
 
-            </div>
-        </nav>
+                </div>
+            </nav>
+        </div>
 
 
         <h1>RECIPES</h1>
@@ -83,8 +85,9 @@
 
     <div class="container">
 
-
-        {% block content %} {% endblock %}
+        <main>
+            {% block content %} {% endblock %}
+        </main>
 
     </div>
 
@@ -133,9 +136,6 @@
             $('select').material_select();
             $(".button-collapse").sideNav();
         });
-
-        
-        
     </script>
 
 
