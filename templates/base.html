@@ -4,8 +4,13 @@
 <head>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css' )}}" type="text/css" />
     <link rel="shortcut icon" href="static/images/gic.ico" />
 
@@ -16,114 +21,95 @@
 
     <header>
 
-        <!-- The code for the navbar was initally copied from materializecs.com -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-style nav-links">
+            <a class="navbar-brand logo" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-        <!-- Dropdown Structure on larger devices-->
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a id="ireland" href="#!">IRELAND</a></li>
-            <li class="divider"></li>
-            <li><a id="britain" href="#!">BRITAIN</a></li>
-            <li class="divider"></li>
-            <li><a id="america" href="#!">AMERICA</a></li>
-            <li class="divider"></li>
-            <li><a id="australia" href="#!">AUSTRALIA</a></li>
-            <li class="divider"></li>
-            <li><a id="new_zealand" href="#!">NEW ZEALAND</a></li>
-        </ul>
+            <div class="collapse navbar-collapse nvbr-padding" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto ">
+                    <li class="nav-item mr-2 "><a class="nav-link" href="#"><i class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
 
-        <!-- Dropdown Structure for mobiles. dropdown1 & dropdown2 are the same, but if I use only one,
-             the dropdown will work on mobile devices, but not on larger screens -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">BAKING</a>
+                    </li>
 
-        <ul id="dropdown2" class="dropdown-content">
-            <li><a href="#!">IRELAND</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">BRITAIN</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">AMERICA</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">AUSTRALIA</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">NEW ZEALAND</a></li>
-        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">BREAKFAST</a>
+                    </li>
 
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper navbar-style nav-links">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">STARTER</a>
+                    </li>
 
-                    <a href="#!" class="logo navbar-brand"></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">LUNCH/DINNER</a>
+                    </li>
 
-                    <!-- This is for the mobile side menu -->
-                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons menu-icon-style">menu</i></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">STARTER</a>
+                    </li>
 
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#"><i class="material-icons icon-style">home</i></a></li>
-                        <li><a href="#">BREAKFAST</a></li>
-                        <li><a href="#">STARTER</a></li>
-                        <li><a href="#">LUNCH/DINNER</a></li>
-                        <li><a href="#">DESSERT</a></li>
-                        <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-button dropdown-button-lg font-style" href="#!" data-activates="dropdown1">ORIGIN<i class="material-icons right">arrow_drop_down</i></a></li>
-                    </ul>
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    ORIGIN
+  </a>
 
-                    <ul id="mobile-demo" class="side-nav">
-                        <li><a class="font-style" href="#"><i class="material-icons icon-style">home</i></a></li>
-                        <li><a class=" font-style" href="#">BREAKFAST</a></li>
-                        <li><a class=" font-style" href="#">STARTER</a></li>
-                        <li><a class=" font-style" href="#">LUNCH/DINNER</a></li>
-                        <li><a class=" font-style" href="#">DESSERT</a></li>
-                        <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-button font-style" href="#!" data-activates="dropdown2">ORIGIN<i class="material-icons right">arrow_drop_down</i></a></li>
-                    </ul>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">IRELAND</a>
+                            <a class="dropdown-item" href="#">BRITAIN</a>
+                            <a class="dropdown-item" href="#">AMERICA</a>
+                            <a class="dropdown-item" href="#">AUSTRALIA</a>
+                            <a class="dropdown-item" href="#">NEW ZEALAND</a>
+                        </div>
+                    </div>
 
-                </div>
-            </nav>
-        </div>
+                </ul>
 
+            </div>
+        </nav>
 
-        <h1>RECIPES</h1>
     </header>
 
-    <div class="container">
+    <section class="container">
 
         <main>
             {% block content %} {% endblock %}
         </main>
 
-    </div>
+    </section>
 
     <!-- The code for the footer was initially copied from materializecss.com -->
-    <footer class="page-footer footer-style nav-links">
-        <div class="container">
-            <div class="row">
-                <div class="col l3 s12 ">
-                    <p class="white-text "><a href="#">Home</a></p>
-                    <p class="white-text "><a href="#">Baking</a></p>
-                    <p class="white-text "><a href="#">Breakfast</a></p>
-                </div>
-                <div class="col l3 s12">
-                    <p class="white-text "><a href="#">Starter</a></p>
-                    <p class="white-text "><a href="#">Lunch/Dinner</a></p>
-                    <p class="white-text "><a href="#">Dessert</a></p>
-                </div>
-                <div class="col l3 s12">
-                    <p class="white-text "><a href="#">Ireland</a></p>
-                    <p class="white-text "><a href="#">Britain</a></p>
-                    <p class="white-text "><a href="#">America</a></p>
-                </div>
-                <div class="col l3 s12">
-                    <p class="white-text footer-link-style"><a href="#">Australia</a></p>
-                    <p class="white-text footer-link-style"><a href="#">New Zealand</a></p>
-                </div>
+    <footer class="footer-style scrn-pos footer-links">
+        <div class="row">
+            <div class="col-sm-4 footer-pb">
+                <ul>
+                    <li class="mb-1"><a href="#">Home</a></li>
+                    <li class="mb-1"><a href="#">Baking</a></li>
+                    <li class="mb-1"><a href="#">Breakfast</a></li>
+                </ul>
+            </div>
+
+            <div class="col-sm-4 footer-pb">
+                <ul>
+                    <li class="mb-1"><a href="#">Starter</a></li>
+                    <li class="mb-1"><a href="#">Lunch/Dinner</a></li>
+                    <li class="mb-1"><a href="#">Dessert</a></li>
+                </ul>
+            </div>
+
+            <div class="col-sm-4 footer-pb">
+                <p class="mb-1">Origin Selected:</p>
+                <p class="mb-1" id="origin"></p>
 
             </div>
-        </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                <p>© 2019 Kitty McDonagh</p>
-            </div>
-        </div>
+
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM " crossorigin="anonymous "></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

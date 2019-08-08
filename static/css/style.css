@@ -8,10 +8,17 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+     font-family: "Nunito", sans-serif;
 }
 
 main {
     flex: 1 0 auto;
+}
+
+.scrn-pos {
+    position: relative;
+    top: 80px;
+
 }
 
 /* Keep a wide margin to left of logo so that side menu on smaller devices doesnt hide the logo   */
@@ -37,40 +44,29 @@ main {
 @media(min-width:1024px) {
 
     .logo {
-        margin-left: 150px;
+        margin-left: 100px;
         
     }
 
 }
 
-
-
-
 .navbar-style {
     background-color: #fafaff;
 }
 
+.nvbr-padding {
+    padding-left:150px;
+}
+
 ul a {
     color: #3b3b3b!important;
-    font-family: "Nunito", sans-serif;
     font-size: 18px;
 }
 
-.font-style {
-    color: #3b3b3b!important;
-    font-family: "Nunito", sans-serif;
-    font-size: 18px;
-}
-
-.dropdown-content a {
+.dropdown-menu a {
     color: #8c8c8c!important;
 
 }
-
-.menu-icon-style {
-    color: #3b3b3b;
-}
-
 
 
 /* Set hover behaviour for nav links in Top and Bottom navigation menus */
@@ -78,6 +74,13 @@ ul a {
 .nav-links a:hover {
     background-color: #76c180;
     color: #fff!important;
+    text-decoration: none;
+}
+
+/* Override color of dropdown button */
+
+.btn-secondary {
+    background-color: fafaff!important;
 }
 
 .icon-style {
@@ -94,10 +97,7 @@ ul a {
 
 /* Set color and padding for footer links*/
 
-footer a {
-    color: #fff!important;
-    padding: 10px 15px;
-}
+
 
 
 /* css for recipes   */
@@ -106,7 +106,45 @@ footer a {
     margin-top:5px;
 }
 
-.card-img {
-    background-size: cover;
+.card-intro {
+     font-family: "Courgette", sans-serif;
 }
+
+.img-size {
+    height: 200px;
+}
+
+.card-image-size {
+    height: 100%;
+}
+
+.bg-img {
+    background-image: url("../images/irish_kitchen.jpg");
+    background-position: center;
+}
+
+/* Footer Details */
+
+.footer-style {
+    background-color: #3b3b3b;
+    color: #fff;
+    margin-bottom: 0px;
+    padding: 30px 30px 10px 30px;
+    text-align: center;
+}
+.footer-pb {
+    padding-bottom: 20px;
+}
+
+footer a {
+    color: #fff!important;
+    padding: 10px 15px;
+}
+
+.footer-links a:hover {
+    background-color: #76c180;
+    text-decoration: none;
+}
+
+
 
