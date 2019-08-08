@@ -1,53 +1,53 @@
 {% extends 'base.html' %} {% block content %}
 
-<!-- Insert Starts here -->
-
 
 <!-- Cards start here -->
+
+
+
+{% for recipe in recipes %} {% if loop.index % 3 != 0 %} {% if loop.index % 3 == 1 %}
+
 <div class="row">
-
-    {% for recipe in recipes %} 
-    
-    {% if loop.index % 2 != 0 %}
-
-    <div class="col-12 col-md-6">
-        <div class="card" style="width: 18rem;">
-
-            <div class="card-body">
-                <h5 class="card-title">{{"Origin: " + recipe.origin}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{recipe.title}}</h6>
-                <p class="card-text">{{recipe.intro}}</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-
+    <div class="col-12 col-lg-4">
+        <div class="card-group">
+            <div class="card">
+                <img src="static/images/irish_boxty.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                    <p class="card-text">{{ recipe.intro }}</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
             </div>
         </div>
     </div>
 
     {% else %}
 
-    <div class="col-12 col-md-6">
-        <div class="card" style="width: 18rem;">
-
+    <div class="col-12 col-lg-4">
+        <div class="card">
+            <img src="static/images/irish_boxty.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{"Origin: " + recipe.origin}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{recipe.title}}</h6>
-                <p class="card-text">{{recipe.intro}}</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-
+                <h5 class="card-title">{{ recipe.title }}</h5>
+                <p class="card-text">{{ recipe.intro }}</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
     </div>
 
-    {% endif %}
+    {% endif %} {% else %}
+
+    <div class="col-12 col-lg-4">
+        <div class="card">
+            <img src="static/images/irish_boxty.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.title }}</h5>
+                <p class="card-text">{{ recipe.intro }}</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-{% endfor %}
 
-
-<!--  Insert ends here -->
-
-
-{% endblock %}
+{% endif %} {% endfor %} {% endblock %}

@@ -8,8 +8,10 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 # Mongo Database for The Global Irish Cafe
+MONGODB_URI = os.getenv("MONGO_URI")
+
 app.config["MONGO_DBNAME"] = "global_irish_cafe"
-app.config["MONGO_URI"] = 'mongodb+srv://KittyOwner:Stephbar2@kittysfirstcluster-f9urv.mongodb.net/global_irish_cafe?retryWrites=true&w=majority'
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
