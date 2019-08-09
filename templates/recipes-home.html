@@ -18,6 +18,7 @@
 
 <div class="row card-group card-padding">
     <div class="col-12 col-md-4 card">
+
         <div class="gic-size">
             <img src="static/images/global-irish-cafe.jpg" class="card-img-top gic-image-size" alt="...">
         </div>
@@ -26,21 +27,28 @@
             <p class="card-text intro-par-style">Select one of the featured recipes, or use the navigation menu to select recipes by category and country.</p>
         </div>
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted"><a href="#" class="card-link-style">See all recipes</a></small>
         </div>
     </div>
 
     <!-- Recipe 1 -->
-    <div class="col-12 col-md-4 card">
+    <div class="col-12 col-md-4 card ">
+
+        <div class="card">
+            <div class="card-header font-italic">
+                <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
+            </div>
+        </div>
+
         <div class="img-size">
-            <img src="static/images/irish_boxty.jpg" class="card-img-top card-image-size" alt="...">
+            <img src="static/images/{{recipe.image}}" class="card-img-top card-img-size" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title card-title-style">{{recipe.title}}</h5>
             <p class="card-text">{{recipe.intro}}</p>
         </div>
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
         </div>
     </div>
 
@@ -52,78 +60,105 @@
     <!-- Recipe 2 -->
 
     <div class="col-12 col-md-4 card">
+
+        <div class="card">
+            <div class="card-header font-italic">
+               <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
+            </div>
+        </div>
+
         <div class="img-size">
-            <img src="static/images/ire_des_guinness-cake.jpg" class="card-img-top card-image-size" alt="...">
+            <img src="static/images/{{recipe.image}}" class="card-img-top card-img-size" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title card-title-style">{{recipe.title}}</h5>
             <p class="card-text">{{recipe.intro}}</p>
         </div>
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
         </div>
     </div>
 </div>
 
 {% else %}
 
-
-
 <!-- From recipe number 3 on they will get output to rows of three recipes -->
 <!-- Recipes 3, 4, 5 will be in the 2nd row, 6, 7, 8 will be in the 3rd row, etc -->
 
-{% if loop.index % 3 == 0 %}
+
+{% if loop.index > 2 %} {% if loop.index % 3 == 0 %}
 
 <!-- Every 3rd recipe goes into this card -->
 
 <div class="row card-group">
     <div class="col-12 col-md-4 card">
-        <div class="img-size">
-            <img src="static/images/irish_kitchen.jpg" class="card-img-top card-image-size" alt="...">
+
+        <div class="card">
+            <div class="card-header font-italic">
+               <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
+            </div>
+        </div>
+
+        <div class="container img-size">
+            <img src="static/images/{{recipe.image}}" class="card-img-top card-img-size" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title card-title-style">{{recipe.title}}</h5>
             <p class="card-text">{{recipe.intro}}</p>
         </div>
-        <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+       <div class="card-footer">
+            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
         </div>
     </div>
-
+    
     {% else %} {% if loop.index % 3 == 1 %}
 
     <!-- Every 4th recipe goes into this card -->
 
     <div class="col-12 col-md-4 card">
+        <div class="card">
+            <div class="card-header font-italic">
+                <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
+            </div>
+        </div>
+
         <div class="img-size">
-            <img src="static/images/irish_boxty.jpg" class="card-img-top card-image-size" alt="...">
+            <img src="static/images/{{recipe.image}}" class="card-img-top card-img-size" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title card-title-style">{{recipe.title}}</h5>
             <p class="card-text">{{recipe.intro}}</p>
         </div>
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
         </div>
     </div>
-
     {% else %}
+
+
 
     <!-- Every 5th recipe goes into this card -->
 
     <div class="col-12 col-md-4 card">
+
+        <div class="card">
+            <div class="card-header font-italic">
+                 <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}. See this recipe</span></a>
+            </div>
+        </div>
+
         <div class="img-size">
-            <img src="static/images/ire_des_guinness-cake.jpg" class="card-img-top card-image-size" alt="...">
+            <img src="static/images/{{recipe.image}}" class="card-img-top card-img-size" alt="...">
         </div>
         <div class="card-body">
             <h5 class="card-title card-title-style">{{recipe.title}}</h5>
             <p class="card-text">{{recipe.intro}}</p>
         </div>
         <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
         </div>
     </div>
 
 </div>
 
-{% endif %} {% endif %} {% endif %} {% endif %} {% endfor %} {% endblock %}
+{% endif %} {% endif %} {% endif %} {% endif %} {% endif %} {% endfor %} {% endblock %}

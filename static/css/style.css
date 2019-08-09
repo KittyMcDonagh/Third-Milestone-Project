@@ -55,7 +55,7 @@ main {
 ul a {
     color: #3b3b3b!important;
     font-size: 18px;
-    
+
 }
 
 
@@ -111,6 +111,13 @@ ul a {
 
 .intro-par-style {
     padding-top: 20px;
+    color: #76c180;
+}
+
+.card {
+    background-color: #fff;
+    padding: 2px;
+
 }
 
 .card-title-style {
@@ -118,21 +125,41 @@ ul a {
 
 }
 
-.card {
-    background-color: #fff;
-}
 
 .card-padding {
     padding-bottom: 10px;
 }
 
+
 .img-size {
+    max-height: 180px;
+}
+
+
+
+.card-img-size {
+    display: block;
+    width:100%;
     height: 180px;
 }
 
-.card-image-size {
-    height: 100%;
+.card-link-style {
+    text-align: center;
+    text-decoration: none;
+    color: #3b3b3b;
+
 }
+
+.card-link-style:hover {
+    text-decoration: none;
+    color: #76c180;
+}
+
+
+.card-link-padding {
+    padding-left: 50px;
+}
+
 
 .gic-size {
     height: 80px;
@@ -158,7 +185,7 @@ ul a {
     text-align: center;
     position: relative;
     top: 80px;
-    
+
 }
 
 .footer-pb {
