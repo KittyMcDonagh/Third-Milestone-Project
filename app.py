@@ -22,8 +22,21 @@ def get_recipes():
     
     home_recipes=mongo.db.recipes.find({"home_feature":'on'})
     
-    # Redirect to recipes template, return all recipes
+    # Redirect to recipes template, return the recipes that are flagged to be shown on the home page
     return render_template("recipes-home.html", recipes=home_recipes)
+    
+@app.route('/get_recipes_origin/<origin>')
+def get_recipes_origin(origin):
+    
+    if origin == "all":
+        origin_recipes=mongo.db.recipes.find()
+    
+    else:
+        origin_recipes=mongo.db.recipes.find({"origin":origin(origin)})
+    
+    
+    # Redirect to recipes template, return the recipes in the country indicated by 'origin'
+    return render_template("recipes-origin.html", recipes=origin_recipes, this_origin=origin)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
