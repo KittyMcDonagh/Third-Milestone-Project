@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css' )}}" type="text/css" />
-    <link rel="shortcut icon" href="static/images/gic.ico" />
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/gic.ico' )}}" />
 
     <title>Global Irish Café</title>
 </head>
@@ -27,36 +28,35 @@
 
             <div class="collapse navbar-collapse navbar-padding" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto ">
-                    <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
+                    <li id="home" class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('get_recipes_category', sel_category="BAKING") }}">BAKING</a>
+                        <a id="baking" class="nav-link" href="{{ url_for('get_recipes_category', sel_category="BAKING") }}">BAKING</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('get_recipes_category', sel_category="STARTER") }}">STARTER</a>
+                        <a id="starter" class="nav-link" href="{{ url_for('get_recipes_category', sel_category="STARTER") }}">STARTER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('get_recipes_category', sel_category="DINNER") }}">DINNER</a>
+                        <a id="dinner" class="nav-link" href="{{ url_for('get_recipes_category', sel_category="DINNER") }}">DINNER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('get_recipes_category', sel_category="DESSERT") }}">DESSERT</a>
+                        <a id="dessert" class="nav-link" href="{{ url_for('get_recipes_category', sel_category="DESSERT") }}">DESSERT</a>
                     </li>
 
-                    <div class="dropdown dropdown-padding">
-                        <a class="btn btn-secondary dropdown-toggle disabled" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    ORIGIN
-  </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#" >IRELAND</a>
-                            <a class="dropdown-item" href="#">BRITAIN</a>
-                            <a class="dropdown-item" href="#">AMERICA</a>
-                            <a class="dropdown-item" href="#">AUSTRALIA</a>
-                            <a class="dropdown-item" href="#">NEW ZEALAND</a>
-                        </div>
+                    <div class="select-padding">
+                        <select class="custom-select">
+                            <option selected>CHOOSE ORIGIN</option>
+                                  
+                            {% for country in countries %}
+                            
+                            <option value={{ country.country_name }}>{{ country.country_name }}</option>
+                            
+                            {% endfor %}
+                            
+                        </select>
                     </div>
 
                 </ul>
@@ -101,26 +101,59 @@
 
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js " integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous "></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM " crossorigin="anonymous "></script>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+        // Check user selections
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".dropdown-button").dropdown();
-            $('.collapsible').collapsible();
-            $('select').material_select();
-            $(".button-collapse").sideNav();
-        });
+        checkUserSelection();
+
+
+        function checkUserSelection() {
+
+            
+            // Change the selected nav link to green
+
+            $("#baking").click(function() {
+
+                // Testing
+
+                $("#baking").html("<p>clicked</p>");
+
+                // Testing
+
+                // Clear the previous selections
+
+                clearSelection();
+
+                // Change color of current selection to green
+
+                colorSelection();
+
+            });
+
+
+
+        }
+
+
+        function clearSelection() {
+            $("#baking").removeClass("sel-green").hide();
+            $("#home").removeClass("sel-green").hide();
+            $("#starter").removeClass("sel-green").hide();
+            $("#dinner").removeClass("sel-green").hide();
+            $("#dessert").removeClass("sel-green").hide();
+        }
+
+        function colorSelection() {
+            $("#baking").addClass("sel-green");
+
+        }
     </script>
-
-
-    </script>
-
 </body>
 
 </html>

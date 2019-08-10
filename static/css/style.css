@@ -4,13 +4,11 @@
 
 /* The following css was copied from materializecss.com to create a sticky footer */
 
-html {
-    
-}
+html {}
 
 body {
     display: flex;
-    
+
     flex-direction: column;
     font-family: "Nunito", sans-serif;
 }
@@ -110,37 +108,33 @@ main {
 
 /* Move dropdown button over a little */
 
-.dropdown-padding {
+.select-padding {
+
     padding-left: 300px;
 }
 
-/* Dropdown button hover behaviour */
-
-.dropdown a:hover {
+.select-padding option:hover {
+    
     background-color: #76c180!important;
-    border-color: #76c180!important;
-    text-decoration: none;
+    color: #fff!important;
 }
+
 
 /* Mute the colors of the dropdown items */
 
-.dropdown-menu a {
+.custom-select option {
     color: #8c8c8c!important;
 
 }
 
-/* Mute the ORIGIN button when it's disabled */
-
-.disabled {
-    background-color: #e6e6e6!important;
-}
 
 .icon-style {
     color: #76c180;
+
 }
 
 .icon-style:hover {
-    color: #fff;
+    color: #fff!important;
 }
 
 /* css for recipes   */
@@ -260,4 +254,8 @@ footer a {
 .footer-links a:hover {
     background-color: #76c180;
     text-decoration: none;
+}
+
+.sel-green {
+    color: #76c180!important;
 }
