@@ -17,8 +17,8 @@ mongo = PyMongo(app)
 
 # Display all recipes
 @app.route('/')
-@app.route('/get_recipes')
-def get_recipes():
+@app.route('/get_recipes_home')
+def get_recipes_home():
     
     home_recipes=mongo.db.recipes.find({"home_feature":'on'})
     
@@ -37,6 +37,14 @@ def get_recipes_origin(origin):
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
     return render_template("recipes-origin.html", recipes=origin_recipes, this_origin=origin)
+    
+@app.route('/get_recipes_category/<sel_category>')
+def get_recipes_category(sel_category):
+    
+    category_recipes=mongo.db.recipes.find({"category":sel_category})
+    
+    # Redirect to recipes template, return the recipes in the country indicated by 'origin'
+    return render_template("recipes-page.html", recipes=category_recipes, category=sel_category.capitalize(), origin = "All Countries")
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

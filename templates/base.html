@@ -20,33 +20,29 @@
     <header>
         <!-- Navigation bar, using Bootstrap -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-links">
-            <a class="navbar-brand logo" href="{{ url_for('get_recipes') }}"></a>
+            <a class="navbar-brand logo" href="{{ url_for('get_recipes_home') }}"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
             <div class="collapse navbar-collapse navbar-padding" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto ">
-                    <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes') }}"><i class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
+                    <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">BAKING</a>
+                        <a class="nav-link" href="{{ url_for('get_recipes_category', sel_category="BAKING") }}">BAKING</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">BREAKFAST</a>
+                        <a class="nav-link" href="{{ url_for('get_recipes_category', sel_category="STARTER") }}">STARTER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">STARTER</a>
+                        <a class="nav-link" href="{{ url_for('get_recipes_category', sel_category="DINNER") }}">DINNER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">LUNCH/DINNER</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">DESSERT</a>
+                        <a class="nav-link" href="{{ url_for('get_recipes_category', sel_category="DESSERT") }}">DESSERT</a>
                     </li>
 
                     <div class="dropdown dropdown-padding">
