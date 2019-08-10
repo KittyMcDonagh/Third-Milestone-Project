@@ -19,13 +19,13 @@
 
     <header>
         <!-- Navigation bar, using Bootstrap -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-style fixed-top nav-links">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-links">
             <a class="navbar-brand logo" href="{{ url_for('get_recipes') }}"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-            <div class="collapse navbar-collapse nvbr-padding" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse navbar-padding" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto ">
                     <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes') }}"><i class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
 
@@ -49,13 +49,13 @@
                         <a class="nav-link" href="#">DESSERT</a>
                     </li>
 
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown dropdown-padding">
+                        <a class="btn btn-secondary dropdown-toggle disabled" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     ORIGIN
   </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">IRELAND</a>
+                            <a class="dropdown-item" href="#" >IRELAND</a>
                             <a class="dropdown-item" href="#">BRITAIN</a>
                             <a class="dropdown-item" href="#">AMERICA</a>
                             <a class="dropdown-item" href="#">AUSTRALIA</a>

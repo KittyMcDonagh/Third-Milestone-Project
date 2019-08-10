@@ -19,18 +19,18 @@
 <!-- The Intro Card giving user instructions -->
 
 <div class="row m-0 card-group card-padding">
-    <div class="col-12 col-lg-4 card">
+    <div class="col-12 col-lg-4 card intro-card">
 
         <div class="gic-size">
             <img src="{{ url_for('static', filename='images/global-irish-cafe.jpg')}}" class="card-img-top gic-image-size" alt="...">
         </div>
 
-        <div class="card-body intro-card">
+        <div class="card-body">
             <h5 class="card-title intro-title">Welcome to the Global Irish Café!</h5>
             <p class="card-text intro-par-style">Select one of the featured recipes, or use the navigation menu to select recipes by category and country.</p>
         </div>
         <div class="card-footer">
-            <small class="text-muted"><a href="{{ url_for('get_recipes_origin', origin="all") }}" class="card-link-style">See all recipes</a></small>
+            <small>Céad Míle Fáilte</a></small>
         </div>
     </div>
 

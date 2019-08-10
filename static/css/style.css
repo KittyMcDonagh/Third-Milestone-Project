@@ -15,21 +15,24 @@ main {
     flex: 1 0 auto;
 }
 
+/* Navbar is fixed with height of 80px, so need to move containers etc down by 80px*/
+
 .scrn-pos {
     position: relative;
     top: 60px;
 
 }
 
+/*  The padding for the main container */
 .scrn-padding {
     padding: 0 50px;
-   
+
 }
 
-/* Keep a wide margin to left of logo so that side menu on smaller devices doesnt hide the logo   */
+/* Keep a wide margin to left of logo    */
 
 .logo {
-    margin-left: 100px;
+    margin-left: 50px;
     background: url("../images/logo_gic.jpg");
     min-height: 64px;
     min-width: 200px;
@@ -47,33 +50,25 @@ main {
     transition: all .5s ease-in-out;
 }
 
-
-
-.navbar-style {
-    background-color: #fafaff;
-}
-
-.nvbr-padding {
+/*  Padding to position navbar items nicely in the navbar */
+.navbar-padding {
     padding-left: 150px;
 }
 
-ul a {
+
+/* Override color of nav links*/
+
+.nav-link {
     color: #3b3b3b!important;
     font-size: 18px;
 
 }
-
 
 .feature-style {
     background-color: #edf7ef;
     margin-top: 50px;
     margin-bottom: 20px;
     font-family: "Courgette", sans-serif;
-
-}
-
-.dropdown-menu a {
-    color: #8c8c8c!important;
 
 }
 
@@ -86,7 +81,45 @@ ul a {
     text-decoration: none;
 }
 
+/* Style the dropdown button to match navbar colors. Border a light black */
 
+.btn-secondary {
+    background-color: #3b3b3b!important;
+    border-color: #1a1a1a!important;
+}
+
+/* Style the dropdown button link to match navbar colors. */
+
+.btn a {
+
+    color: #212529!important;
+}
+
+/* Move dropdown button over a little */
+
+.dropdown-padding {
+    padding-left: 170px;
+}
+
+/* Dropdown button hover behaviour */
+
+.dropdown a:hover {
+    background-color: #76c180!important;
+    border-color: #76c180!important;
+    text-decoration: none;
+}
+
+/* Mute the colors of the dropdown items */
+
+.dropdown-menu a {
+    color: #8c8c8c!important;
+
+}
+
+/* Mute the ORIGIN button when it's disabled */
+.disabled {
+    background-color: #e6e6e6!important;
+}
 
 .icon-style {
     color: #76c180;
@@ -95,7 +128,6 @@ ul a {
 .icon-style:hover {
     color: #fff;
 }
-
 
 /* css for recipes   */
 
@@ -106,6 +138,7 @@ ul a {
 .intro-card {
     font-family: "Courgette", sans-serif;
     font-size: 18px;
+    color: #76c180!important;
 
 }
 
@@ -138,8 +171,8 @@ ul a {
 
 
 .card-img-size {
-    
-    width:100%;
+
+    width: 100%;
     height: 180px;
 }
 
