@@ -2,7 +2,7 @@
 
 
 <!-- Cards start here -->
-<div class="row">
+<div class="row no-gutters p-0">
     <div class="col feature-style scrn-padding">
         <h1>Featured Recipes</h1>
     </div>
@@ -18,8 +18,8 @@
 
 <!-- The Intro Card giving user instructions -->
 
-<div class="row card-group card-padding">
-    <div class="col-12 col-md-4 card">
+<div class="row m-0 card-group card-padding">
+    <div class="col-12 col-lg-4 card">
 
         <div class="gic-size">
             <img src="{{ url_for('static', filename='images/global-irish-cafe.jpg')}}" class="card-img-top gic-image-size" alt="...">
@@ -35,16 +35,15 @@
     </div>
 
     <!-- Recipe 1 -->
-    <div class="col-12 col-md-4 card ">
+    <div class="col-12 col-lg-4 card ">
 
-        <div class="card">
-            <div class="card-header font-italic">
-                <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
-            </div>
+        <div class="card-header font-italic">
+            <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
         </div>
 
+
         <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-        <div class="container" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 401px; height: 180px; background-size: cover; background-position: center">
+        <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
         </div>
 
         <div class="card-body">
@@ -63,16 +62,14 @@
 
     <!-- Recipe 2 -->
 
-    <div class="col-12 col-md-4 card">
+    <div class="col-12 col-lg-4 card">
 
-        <div class="card">
-            <div class="card-header font-italic">
-                <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
-            </div>
+        <div class="card-header font-italic">
+            <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
         </div>
 
         <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-        <div class="container" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 401px; height: 180px; background-size: cover; background-position: center">
+        <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
         </div>
 
         <div class="card-body">
@@ -95,18 +92,15 @@
 
 <!-- Every 3rd recipe goes into this card -->
 
-<div class="row card-group">
-    <div class="col-12 col-md-4 card">
+<div class="row m-0 card-group card-padding">
+    <div class="col-12 col-lg-4 card">
 
-        <div class="card">
             <div class="card-header font-italic">
                 <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
             </div>
-        </div>
-
 
         <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-        <div class="container" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 401px; height: 180px; background-size: cover; background-position: center">
+        <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
         </div>
 
         <div class="card-body">
@@ -122,15 +116,13 @@
 
     <!-- Every 4th recipe goes into this card -->
 
-    <div class="col-12 col-md-4 card">
-        <div class="card">
+    <div class="col-12 col-lg-4 card">
             <div class="card-header font-italic">
                 <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
             </div>
-        </div>
 
         <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-        <div class="container" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 401px; height: 180px; background-size: cover; background-position: center">
+        <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
         </div>
 
         <div class="card-body">
@@ -147,16 +139,14 @@
 
     <!-- Every 5th recipe goes into this card -->
 
-    <div class="col-12 col-md-4 card">
+    <div class="col-12 col-lg-4 card">
 
-        <div class="card">
             <div class="card-header font-italic">
                 <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}. See this recipe</span></a>
             </div>
-        </div>
 
         <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-        <div class="container" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 401px; height: 180px; background-size: cover; background-position: center">
+        <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
         </div>
 
         <div class="card-body">
