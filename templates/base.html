@@ -31,32 +31,36 @@
                     <li id="home" class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
 
                     <li class="nav-item">
-                        <a id="baking" class="nav-link" href="{{ url_for('get_recipes_category', sel_category="BAKING") }}">BAKING</a>
+                        <a id="baking" class="nav-link" href="{{ url_for('get_recipes_category', sel_category=" BAKING ") }}">BAKING</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="starter" class="nav-link" href="{{ url_for('get_recipes_category', sel_category="STARTER") }}">STARTER</a>
+                        <a id="starter" class="nav-link" href="{{ url_for('get_recipes_category', sel_category=" STARTER ") }}">STARTER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="dinner" class="nav-link" href="{{ url_for('get_recipes_category', sel_category="DINNER") }}">DINNER</a>
+                        <a id="dinner" class="nav-link" href="{{ url_for('get_recipes_category', sel_category=" DINNER ") }}">DINNER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="dessert" class="nav-link" href="{{ url_for('get_recipes_category', sel_category="DESSERT") }}">DESSERT</a>
+                        <a id="dessert" class="nav-link" href="{{ url_for('get_recipes_category', sel_category=" DESSERT ") }}">DESSERT</a>
                     </li>
 
-                    <div class="select-padding">
-                        <select class="custom-select">
-                            <option selected>CHOOSE ORIGIN</option>
-                                  
-                            {% for country in countries %}
-                            
-                            <option value={{ country.country_name }}>{{ country.country_name }}</option>
-                            
+                    <!-- Dropdown menu for ORIGIN  -->
+
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    ORIGIN
+  </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">ALL</a>
+                             
+                            {% for country in countries%}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">{{country.country_name}}</a>
                             {% endfor %}
-                            
-                        </select>
+                        </div>
                     </div>
 
                 </ul>
@@ -115,7 +119,7 @@
 
         function checkUserSelection() {
 
-            
+
             // Change the selected nav link to green
 
             $("#baking").click(function() {
