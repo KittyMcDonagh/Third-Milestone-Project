@@ -4,7 +4,7 @@
 <!-- Cards start here -->
 <div class="row no-gutters p-0">
     <div class="col feature-style scrn-padding">
-        <h1>{{category}} Recipes from {{origin}}</h1>
+        <h1><span id="category">{{category}}</span> Recipes from <span id="origin">{{origin.capitalize()}}</span></h1>
     </div>
 </div>
 
@@ -90,21 +90,56 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script>
 
-    // Enable selection of ORIGIN
+<script type="text/javascript">
+    $(document).ready(function() {
 
-    enableOrigin();
+        // Enable selection of ORIGIN
 
+        // Change home icon from green to black 
+        $("#home").addClass("icon-style-deselected");
 
-    function enableOrigin() {
-       
+        // Enable ORIGIN dropdown
         $(".btn").removeClass("disabled");
         $(".btn").addClass("enabled");
 
+        var origin = document.getElementById('origin').innerHTML;
 
-    }
+        if (origin === "all countries") {
+            $(".btn").html("SELECT");
+        }
+        else {
+            $(".btn").html(origin);
+        }
 
+
+        // Change color of selected category to green
+
+        var category = document.getElementById('category').innerHTML;
+
+        if (category === "Baking") {
+
+            $("#baking").addClass("sel-green");
+        }
+
+        if (category === "Starter") {
+
+            $("#starter").addClass("sel-green");
+        }
+
+        if (category === "Dinner") {
+
+            $("#dinner").addClass("sel-green");
+        }
+
+        if (category === "Dessert") {
+
+            $("#dessert").addClass("sel-green");
+        }
+
+    });
 </script>
+
+
 
 {% endblock %}

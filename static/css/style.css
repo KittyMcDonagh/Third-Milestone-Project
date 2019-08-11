@@ -143,6 +143,11 @@ main {
     color: #fff!important;
 }
 
+.icon-style-deselected {
+    color: #3b3b3b;
+
+}
+
 /* css for recipes   */
 
 .recipe_header {

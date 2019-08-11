@@ -28,7 +28,7 @@
 
             <div class="collapse navbar-collapse navbar-padding" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto ">
-                    <li id="home" class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
+                    <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i id="home" class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
 
                     <li class="nav-item">
                         <a id="baking" class="nav-link" href="{{ url_for('get_recipes_category', sel_category="BAKING") }}">BAKING</a>
@@ -54,12 +54,9 @@
   </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">ALL</a>
-                             
-                            {% for country in countries%}
+                            <a class="dropdown-item" href="#">ALL</a> {% for country in countries%}
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">{{country.country_name}}</a>
-                            {% endfor %}
+                            <a class="dropdown-item" href="{{ url_for('get_recipes_category_origin', sel_category=category, sel_origin=country.country_name) }}">{{country.country_name}}</a> {% endfor %}
                         </div>
                     </div>
 
@@ -111,6 +108,7 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
 
-    </body>
+
+</body>
 
 </html>
