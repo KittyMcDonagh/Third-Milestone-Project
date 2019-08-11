@@ -92,40 +92,46 @@ main {
     text-decoration: none;
 }
 
-/* Style the dropdown button to match navbar colors. Border a light black */
-
-.btn-secondary {
-    background-color: #3b3b3b!important;
-    border-color: #1a1a1a!important;
-}
 
 /* Style the dropdown button link to match navbar colors. */
 
-.btn a {
-
-    color: #212529!important;
-}
-
 /* Move dropdown button over a little */
 
-.select-padding {
+.dropdown {
 
-    padding-left: 300px;
+    margin-left: 350px;
 }
 
-.select-padding option:hover {
-    
+.dropdown a:hover {
+    text-decoration: none;
     background-color: #76c180!important;
-    color: #fff!important;
+    border-color: #76c180!important;
+
 }
+
+
 
 
 /* Mute the colors of the dropdown items */
 
-.custom-select option {
+.dropdown-item {
     color: #8c8c8c!important;
 
 }
+
+
+ 
+.btn-secondary.disabled {
+    color: #d9d9d9!important;
+}
+
+/* Style the dropdown button to match navbar colors. Border a light black */
+
+.btn-secondary.enabled {
+    background-color: #3b3b3b!important;
+    border-color: #1a1a1a!important;
+}
+
 
 
 .icon-style {

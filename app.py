@@ -15,19 +15,21 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
-# Display all recipes
+# Display home page featured recipes
 @app.route('/')
 @app.route('/get_recipes_home')
 def get_recipes_home():
     
-    _countries = mongo.db.countries.find()
-    country_list = [country for country in _countries]
+    temp_countries = mongo.db.countries.find()
+    country_list = [country for country in temp_countries]
+    
+    temp_categories = mongo.db.categories.find()
+    categories_list = [category for category in temp_categories]
     
     home_recipes=mongo.db.recipes.find({"home_feature":'on'})
     
-    
     # Redirect to recipes template, return the recipes that are flagged to be shown on the home page
-    return render_template("recipes-home.html", recipes=home_recipes, countries = country_list, origin = "ALL")
+    return render_template("recipes-home.html", recipes=home_recipes, countries = country_list, origin = "ALL", category = "ALL")
     
     
 @app.route('/get_recipes_origin/<origin>')

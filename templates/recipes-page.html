@@ -86,4 +86,25 @@
 </div>
 
 
-{% endif %} {% endif %} {% endfor %} {% endblock %}
+{% endif %} {% endif %} {% endfor %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+
+    // Enable selection of ORIGIN
+
+    enableOrigin();
+
+
+    function enableOrigin() {
+       
+        $(".btn").removeClass("disabled");
+        $(".btn").addClass("enabled");
+
+
+    }
+
+</script>
+
+{% endblock %}
