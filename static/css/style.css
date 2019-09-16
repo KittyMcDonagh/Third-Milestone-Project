@@ -22,13 +22,13 @@ main {
 
 }
 
-
+/* css used in base.html                                                            */
 
 /* Navbar is fixed with height of 80px, so need to move containers etc down by 80px*/
 
 .scrn-pos {
     position: relative;
-    top: 60px;
+    top: 80px;
 
 }
 
@@ -63,7 +63,13 @@ main {
 /*  Padding to position navbar items nicely in the navbar */
 
 .navbar-padding {
-    padding-left: 150px;
+    padding-left: 50px;
+}
+
+/* Override nav link padding */
+
+.nav-link {
+    padding: 15px!important;
 }
 
 
@@ -75,13 +81,6 @@ main {
 
 }
 
-.feature-style {
-    background-color: #edf7ef;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    font-family: "Courgette", sans-serif;
-
-}
 
 
 /* Set hover behaviour for nav links in Top and Bottom navigation menus */
@@ -99,7 +98,7 @@ main {
 
 .dropdown {
 
-    margin-left: 350px;
+    margin-left: 250px;
 }
 
 .dropdown a:hover {
@@ -148,27 +147,32 @@ main {
 
 }
 
+/* css used on recipes home page                                             */
+
+.feature-style {
+    background-color: #edf7ef;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    font-family: "Courgette", sans-serif;
+
+}
+
+
 /* css for recipes   */
 
 .recipe_header {
     margin-top: 5px;
 }
 
-.intro-card {
+.intro {
     font-family: "Courgette", sans-serif;
-    font-size: 18px;
-    color: #76c180!important;
-
-}
-
-.intro-title {
-    color: #76c180;
+    padding: 20px;
 }
 
 
 .intro-par-style {
-    padding-top: 20px;
-    color: #76c180;
+    font-size: 20px;
 }
 
 .card {
@@ -208,31 +212,37 @@ main {
 }
 
 
-.card-link-padding {
-    padding-left: 50px;
+.card-title-padding {
+    padding-left: 150px;
 }
 
 
-.gic-size {
-    height: 80px;
+
+    
+
+.more-icon-style {
+    color: #3b3b3b;
 }
 
-.img-size {
-    width: 100%;
-    min-height: 180px;
+.more-icon-style:hover {
+    color: #76c180;
+    
 }
 
-.gic-image-size {
-    padding-top: 20px;
-    height: 100%
+.more-icon-pl {
+    padding-left: 190px;
 }
+
+
 
 .bg-img {
     background-image: url("../images/irish_kitchen.jpg");
     background-position: center;
 }
 
-/* Footer Details */
+
+
+/* css used in footer                                                          */
 
 .footer-style {
     background-color: #3b3b3b;
@@ -266,6 +276,9 @@ footer a {
     background-color: #76c180;
     text-decoration: none;
 }
+
+
+/* css used in javascript                                                     */
 
 .sel-green {
     color: #76c180!important;

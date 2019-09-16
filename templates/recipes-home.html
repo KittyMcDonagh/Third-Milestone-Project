@@ -1,46 +1,48 @@
 {% extends 'base.html' %} {% block content %}
 
+<!-- The Introduction, giving user instructions -->
 
-<!-- Cards start here -->
-<div class="row no-gutters p-0">
-    <div class="col feature-style scrn-padding">
-        <h1>Featured Recipes</h1>
+<div class="row m-0">
+    <div class="col-12 text-center intro">
+
+        <div>
+            <h1 class="intro-title">Céad Míle Fáilte to The Global Irish Café!</h1>
+            <p class="intro-par-style m-0">Select one of the featured recipes, or use the navigation menu to select recipes by category and country.</p>
+        </div>
+
     </div>
 </div>
 
+<!-- "Featured" Banner -->
+<div class="row m-0 p-2">
+    <div class="col-12 feature-style">
+        <h2 class="m-0">Featured Recipes</h2>
+    </div>
+</div>
 
 
 {% for recipe in recipes %}
 
-<!-- If this is the first recipe, show the Introduction card first, then recipe cards 1 & 2 -->
+<!-- Every odd number recipe gets output as the first recipe in the row -->
 
-{% if loop.index == 1 %}
+{% if loop.index % 2 != 0 %}
 
-<!-- The Intro Card giving user instructions -->
+<!-- Odd number recipes go into the start of the row -->
 
 <div class="row m-0 card-group card-padding">
-    <div class="col-12 col-lg-4 card intro-card">
+    <div class="col-6 card">
 
-        <div class="gic-size">
-            <img src="{{ url_for('static', filename='images/global-irish-cafe.jpg')}}" class="card-img-top gic-image-size" alt="...">
+        <div class="row no-gutters card-header font-italic">
+            <div class="col-4">
+                <span><strong>{{ recipe.category}} RECIPE</strong></span>
+            </div>
+            <div class="col-4 text-center">
+                <span><strong>From: {{ recipe.origin }}</strong></span>
+            </div>
+            <div class="col-4">
+                <a href="#" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+            </div>
         </div>
-
-        <div class="card-body">
-            <h5 class="card-title intro-title">Welcome to the Global Irish Café!</h5>
-            <p class="card-text intro-par-style">Select one of the featured recipes, or use the navigation menu to select recipes by category and country.</p>
-        </div>
-        <div class="card-footer">
-            <small>Céad Míle Fáilte</a></small>
-        </div>
-    </div>
-
-    <!-- Recipe 1 -->
-    <div class="col-12 col-lg-4 card ">
-
-        <div class="card-header font-italic">
-            <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
-        </div>
-
 
         <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
         <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
@@ -51,99 +53,28 @@
             <p class="card-text">{{recipe.intro}}</p>
         </div>
         <div class="card-footer">
-            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
+            <a href="#" class="card-link-style"><strong><em>See this recipe</em></strong></a>
         </div>
     </div>
 
     {% else %}
 
-    <!-- If its the second recipe, it goes into the same row as the intro and card 1 -->
-    {% if loop.index == 2 %}
+    <!-- Even number recipes go into the second half of the row -->
 
-    <!-- Recipe 2 -->
-
-    <div class="col-12 col-lg-4 card">
-
-        <div class="card-header font-italic">
-            <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
-        </div>
-
-        <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-        <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
-        </div>
-
-        <div class="card-body">
-            <h5 class="card-title card-title-style">{{recipe.title}}</h5>
-            <p class="card-text">{{recipe.intro}}</p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
-        </div>
-    </div>
-</div>
-
-{% else %}
-
-<!-- From recipe number 3 on they will get output to rows of three recipes -->
-<!-- Recipes 3, 4, 5 will be in the 2nd row, 6, 7, 8 will be in the 3rd row, etc -->
-
-
-{% if loop.index > 2 %} {% if loop.index % 3 == 0 %}
-
-<!-- Every 3rd recipe goes into this card -->
-
-<div class="row m-0 card-group card-padding">
-    <div class="col-12 col-lg-4 card">
-
-            <div class="card-header font-italic">
-                <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
+    <div class="col-6 card">
+        
+        <div class="row no-gutters card-header font-italic">
+            
+            <div class="col-4">
+                <span><strong>{{ recipe.category}} RECIPE</strong></span>
             </div>
-
-        <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-        <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
-        </div>
-
-        <div class="card-body">
-            <h5 class="card-title card-title-style">{{recipe.title}}</h5>
-            <p class="card-text">{{recipe.intro}}</p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
-        </div>
-    </div>
-
-    {% else %} {% if loop.index % 3 == 1 %}
-
-    <!-- Every 4th recipe goes into this card -->
-
-    <div class="col-12 col-lg-4 card">
-            <div class="card-header font-italic">
-                <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}.</span><span class="card-link-padding">See this recipe</span></a>
+            <div class="col-4 text-center">
+                <span><strong>From: {{ recipe.origin }}</strong></span>
             </div>
-
-        <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-        <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
-        </div>
-
-        <div class="card-body">
-            <h5 class="card-title card-title-style">{{recipe.title}}</h5>
-            <p class="card-text">{{recipe.intro}}</p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
-        </div>
-    </div>
-    {% else %}
-
-
-
-    <!-- Every 5th recipe goes into this card -->
-
-    <div class="col-12 col-lg-4 card">
-
-            <div class="card-header font-italic">
-                <a class="card-link-style" href="#"><span>{{ recipe.origin }} - {{ recipe.category.capitalize() }}. See this recipe</span></a>
+            <div class="col-4">
+                <a href="#" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
             </div>
+        </div>
 
         <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
         <div class="container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 180px; background-size: cover; background-position: center">
@@ -154,16 +85,11 @@
             <p class="card-text">{{recipe.intro}}</p>
         </div>
         <div class="card-footer">
-            <small class="text-muted"><a href="#" class="card-link-style">See all recipes for {{recipe.origin}}</a></small>
+            <a href="#" class="card-link-style"><strong><em>See this recipe</em></strong></a>
         </div>
     </div>
 
 </div>
 
 
-{% endif %} {% endif %} {% endif %} {% endif %} {% endif %} {% endfor %} 
-
-
-
-
-{% endblock %}
+{% endif %} {% endfor %} {% endblock %}
