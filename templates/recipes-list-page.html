@@ -4,7 +4,11 @@
 
 <div class="row m-0 p-2 mt-3 mb-2">
     <div class="col-12 feature-style">
-        <h2 class="m-0"><span id="category">{{category}}</span> Recipes from <span id="origin">{{origin}}</span></h2>
+        <h2 class="m-0"><span id="category">{{category}}</span> Recipes from <span id="origin">{{origin}}</span>
+        {% if recipes_mesg != "OK" %}
+            <span>{{ recipes_mesg }}</span>
+        {% endif %}
+        </h2>
     </div>
 </div>
 

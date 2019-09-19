@@ -31,24 +31,24 @@
                     <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i id="home" class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
 
                     <li class="nav-item">
-                        <a id="allrecipes" class="nav-link" href="{{ url_for('get_all_recipes', sel_category='All Recipes') }}">ALL RECIPES</a>
+                        <a id="allrecipes" class="nav-link" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin) }}">ALL RECIPES</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="baking" class="nav-link" href="{{ url_for('get_recipes_category', sel_category='BAKING') }}">BAKING</a>
+                        <a id="baking" class="nav-link" href="{{ url_for('get_recipes', sel_category='BAKING', sel_origin=origin) }}">BAKING</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a id="starter" class="nav-link" href="{{ url_for('get_recipes_category', sel_category='STARTER') }}">STARTER</a>
+                        <a id="starter" class="nav-link" href="{{ url_for('get_recipes', sel_category='STARTER', sel_origin=origin) }}">STARTER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="dinner" class="nav-link" href="{{ url_for('get_recipes_category', sel_category='DINNER') }}">DINNER</a>
+                        <a id="dinner" class="nav-link" href="{{ url_for('get_recipes', sel_category='DINNER', sel_origin=origin) }}">DINNER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="dessert" class="nav-link" href="{{ url_for('get_recipes_category', sel_category='DESSERT') }}">DESSERT</a>
+                        <a id="dessert" class="nav-link" href="{{ url_for('get_recipes', sel_category='DESSERT', sel_origin=origin) }}">DESSERT</a>
                     </li>
 
                     <!-- Dropdown menu for ORIGIN  -->
@@ -59,9 +59,9 @@
   </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">ALL</a> {% for country in countries%}
+                            <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin="All Countries") }}">All Countries</a> {% for country in countries%}
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ url_for('get_recipes_category_origin', sel_category=category, sel_origin=country.country_name) }}">{{country.country_name}}</a> {% endfor %}
+                            <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin=country.country_name) }}">{{country.country_name}}</a> {% endfor %}
                         </div>
                     </div>
 
