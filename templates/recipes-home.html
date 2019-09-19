@@ -40,7 +40,7 @@
 
         <div class="row no-gutters card-header font-italic">
             <div class="col-4">
-                <span><strong>{{ recipe.category}} RECIPE</strong></span>
+                <span><strong>{{ recipe.category }} Recipe</strong></span>
             </div>
             <div class="col-4 text-center">
                 <span><strong>From: {{ recipe.origin }}</strong></span>
@@ -69,7 +69,7 @@
         <!-- Card footer -->
 
         <div class="card-footer">
-            <a href="{{ url_for('get_recipes_category_origin', sel_category=recipe.category, sel_origin=recipe.origin) }}" class="card-link-style"><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
+            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }}" class="card-link-style"><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
         </div>
     </div>
 
@@ -86,7 +86,7 @@
         <div class="row no-gutters card-header font-italic">
 
             <div class="col-4">
-                <span><strong>{{ recipe.category}} RECIPE</strong></span>
+                <span><strong>{{ recipe.category}} Recipe</strong></span>
             </div>
             <div class="col-4 text-center">
                 <span><strong>From: {{ recipe.origin }}</strong></span>
@@ -112,7 +112,7 @@
         <!-- Card Footer -->
 
         <div class="card-footer">
-            <a href="#" class="card-link-style"><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
+            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }}" class="card-link-style"><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
         </div>
     </div>
 

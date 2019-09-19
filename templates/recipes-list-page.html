@@ -6,7 +6,9 @@
     <div class="col-12 feature-style">
         <h2 class="m-0"><span id="category">{{category}}</span> Recipes from <span id="origin">{{origin}}</span>
         
-        <span>{{ recipes_mesg }} {{ recipe_count}}</span>
+        {% if recipes_mesg != "OK" %}
+        <span>{{ recipes_mesg }}</span>
+        {% endif %}
         
         </h2>
     </div>
@@ -35,7 +37,7 @@
 
         <div class="row no-gutters card-header font-italic">
             <div class="col-4">
-                <span><strong>{{ recipe.category}} RECIPE</strong></span>
+                <span><strong>{{ recipe.category}} Recipe</strong></span>
             </div>
             <div class="col-4 text-center">
                 <span><strong>From: {{ recipe.origin }}</strong></span>
@@ -64,13 +66,14 @@
         <!-- Card footer -->
 
         <div class="card-footer">
-            <a href="{{ url_for('get_recipes_category_origin', sel_category=recipe.category, sel_origin=recipe.origin) }}" class="card-link-style"><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
+            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }}" class="card-link-style"><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
         </div>
     </div>
 
     {% else %}
 
     <!-- Even number recipes go into the second half of the row -->
+
 
     <!-- Second Card in row -->
 
@@ -81,7 +84,7 @@
         <div class="row no-gutters card-header font-italic">
 
             <div class="col-4">
-                <span><strong>{{ recipe.category}} RECIPE</strong></span>
+                <span><strong>{{ recipe.category}} Recipe</strong></span>
             </div>
             <div class="col-4 text-center">
                 <span><strong>From: {{ recipe.origin }}</strong></span>
@@ -107,7 +110,7 @@
         <!-- Card Footer -->
 
         <div class="card-footer">
-            <a href="#" class="card-link-style"><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
+            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }}" class="card-link-style"><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
         </div>
     </div>
 

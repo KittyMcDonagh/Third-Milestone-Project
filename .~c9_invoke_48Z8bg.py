@@ -30,10 +30,59 @@ def get_recipes_home():
     # Redirect to recipes home page template, return only the recipes that are flagged to be shown on the home page
     return render_template("recipes-home.html", recipes=home_recipes, countries = country_list, origin = "All Countries")
 
-
     
+# CATEGORY = ALL RECIPES - Display all recipes with image and introductory text only
+@app.route('/')
+@app.route('/get_all_recipes/<sel_category>/<sel_origin>')
+def get_all_recipes(sel_category, sel_origin):
 
-# FILTER BY CATEGORY AND/OR ORIGIN - Display all recipes for selected category and origin showing image and introductory text only
+# Create country list for countries dropdown    
+    temp_countries = mongo.db.countries.find()
+    country_list = [country for country in temp_countries]
+    
+# Get all recipes
+    
+    all_recipes=mongo.db.recipes.find()
+    
+    # Redirect to recipes list template
+    return render_template("recipes-list-page.html", recipes=all_recipes, category=sel_category, countries=country_list, origin=sel_origin)
+    
+    
+# BY CATEGORY - Display all recipes for selected category showing image and introductory text only
+@app.route('/get_recipes_category/<sel_category>/<sel_origin>')
+def get_recipes_category(sel_category, sel_origin):
+
+# Create country list for countries dropdown    
+    temp_countries = mongo.db.countries.find()
+    country_list = [country for country in temp_countries]
+    
+    category_recipes=mongo.db.recipes.find({"category":sel_category})
+    
+    # Redirect to recipes template, return the recipes in the country indicated by 'origin'
+    return render_template("recipes-list-page.html", recipes=category_recipes, category=sel_category.capitalize(), countries=country_list, origin=sel_origin)
+
+
+# FILTER CURRENT CATEGORY BY COUNTRY - Display all recipes for selected category and origin showing image and introductory text only
+@app.route('/get_recipes_category_origin/<sel_category>/<sel_origin>')
+def get_recipes_category_origin(sel_category, sel_origin):
+
+# Create country list for countries dropdown    
+    temp_countries = mongo.db.countries.find()
+    country_list = [country for country in temp_countries]
+    
+    if sel_category == "All":
+        cat_origin_recipes=mongo.db.recipes.find({"origin":sel_origin})
+        
+    else:
+    
+        cat_origin_recipes=mongo.db.recipes.find({"category":sel_category, "origin":sel_origin})
+    
+    # Redirect to recipes template, return the recipes in the country indicated by 'origin'
+    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, category=sel_category, countries=country_list, origin=sel_origin)
+
+
+#=================================
+# FILTER CURRENT CATEGORY BY COUNTRY - Display all recipes for selected category and origin showing image and introductory text only
 @app.route('/get_recipes/<sel_category>/<sel_origin>')
 def get_recipes(sel_category, sel_origin):
     
@@ -75,18 +124,24 @@ def get_recipes(sel_category, sel_origin):
                 print("Error acessing the Recipes Database")
     
 # Check that records were found
-
+    count = 0
     recipes_found="OK"
+    check_recipes=""
+    check_recipes == cat_origin_recipes
     
-    if cat_origin_recipes.count() == 0:
+    for i in check_recipes:
+        count+=1
+        
+    if count == 0:
         recipes_found=" - None Found"
     
     
         
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, category=sel_category, countries=country_list, origin=sel_origin, recipes_mesg=recipes_found)
+    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, category=sel_category, countries=country_list, origin=sel_origin, 
+    recipes_mesg=recipes_found, recipe_count = count)
     
-
+#=========================
 
 
 # RECIPE DETAILS - Show Details of Selected Recipe - show introductory text, ingredients and method
@@ -100,10 +155,7 @@ def get_recipe_details(sel_id):
     
 # Note: I was using "mongo.db.recipes.find_one" here, but it wasnt finding the recipe for me
     
-    try:
-        sel_recipe = mongo.db.recipes.find({"_id": ObjectId(sel_id)})
-    except:
-        print("Error getting recipe from the Recipes Database")
+    sel_recipe = mongo.db.recipes.find({"_id": ObjectId(sel_id)})
     
     # Redirect to recipes details template
     return render_template("recipes-details.html", recipes=sel_recipe, countries=country_list)    
