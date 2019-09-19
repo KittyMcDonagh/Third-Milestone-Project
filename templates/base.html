@@ -31,7 +31,7 @@
                     <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i id="home" class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
 
                     <li class="nav-item">
-                        <a id="allrecipes" class="nav-link" href="{{ url_for('get_recipes_category_origin', sel_category='ALL', sel_origin='ALL') }}">ALL RECIPES</a>
+                        <a id="allrecipes" class="nav-link" href="{{ url_for('get_all_recipes') }}">ALL RECIPES</a>
                     </li>
 
                     <li class="nav-item">
@@ -55,7 +55,7 @@
 
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle disabled" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    ORIGIN
+    All Countries
   </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

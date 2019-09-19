@@ -19,7 +19,9 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_recipes_home')
 def get_recipes_home():
-    
+
+# Create country list for dropdown    
+
     temp_countries = mongo.db.countries.find()
     country_list = [country for country in temp_countries]
     
@@ -30,6 +32,28 @@ def get_recipes_home():
     
     # Redirect to recipes template, return the recipes that are flagged to be shown on the home page
     return render_template("recipes-home.html", recipes=home_recipes, countries = country_list, origin = "ALL")
+
+    
+# Display all recipes
+@app.route('/')
+@app.route('/get_all_recipes')
+def get_all_recipes():
+    
+# Create country list for dropdown    
+    
+    temp_countries = mongo.db.countries.find()
+    country_list = [country for country in temp_countries]
+    
+    temp_categories = mongo.db.categories.find()
+    categories_list = [category for category in temp_categories]
+    
+    all_recipes=mongo.db.recipes.find()
+    
+    # Redirect to recipes template, return the recipes that are flagged to be shown on the home page
+    return render_template("recipes-list-page.html", recipes=all_recipes, category="All", countries = country_list, origin = "All Countries")
+    
+    
+
     
     
 @app.route('/get_recipes_category/<sel_category>')

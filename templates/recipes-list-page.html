@@ -1,25 +1,16 @@
 {% extends 'base.html' %} {% block content %}
 
-<!-- The Introduction, giving user instructions -->
+<!-- Banner that tells user what selection they have made -->
 
-<div class="row m-0">
-    <div class="col-12 text-center intro">
-
-        <div>
-            <h1 class="intro-title">Céad Míle Fáilte to The Global Irish Café!</h1>
-            <p class="intro-par-style m-0">Select one of the featured recipes, or use the navigation menu to select recipes by category and country.</p>
-        </div>
-
-    </div>
-</div>
-
-<!-- "Featured" Banner -->
-<div class="row m-0 p-2">
+<div class="row m-0 p-2 mt-3 mb-2">
     <div class="col-12 feature-style">
-        <h2 class="m-0">Featured Recipes</h2>
+        <h2 class="m-0"><span id="category">{{category}}</span> Recipes from <span id="origin">{{origin}}</span></h2>
     </div>
 </div>
 
+
+
+<!-- Cards start here -->
 
 {% for recipe in recipes %}
 
@@ -119,4 +110,56 @@
 </div>
 
 
-{% endif %} {% endfor %} {% endblock %}
+{% endif %} {% endfor %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Enable selection of ORIGIN
+
+        // Change home icon from green to black 
+        $("#home").addClass("icon-style-deselected");
+
+        // Enable Countries dropdown
+        $(".btn").removeClass("disabled");
+        $(".btn").addClass("enabled");
+
+
+        // Change color of selected category to green
+
+        var category = document.getElementById('category').innerHTML;
+
+        if (category === "All") {
+
+            $("#allrecipes").addClass("sel-green");
+        }
+
+        if (category === "Baking") {
+
+            $("#baking").addClass("sel-green");
+        }
+
+        if (category === "Starter") {
+
+            $("#starter").addClass("sel-green");
+        }
+
+        if (category === "Dinner") {
+
+            $("#dinner").addClass("sel-green");
+        }
+
+        if (category === "Dessert") {
+
+            $("#dessert").addClass("sel-green");
+        }
+
+    });
+</script>
+
+
+
+{% endblock %}
