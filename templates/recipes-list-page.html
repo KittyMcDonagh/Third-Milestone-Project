@@ -156,7 +156,11 @@
 
             $("#dessert").addClass("sel-green");
         }
-
+        
+        $(".btn-secondary").addClass("sel-green");
+        
+        var origin = document.getElementById('origin').innerHTML;
+        $(".btn-secondary").text(origin);
     });
 </script>
 
