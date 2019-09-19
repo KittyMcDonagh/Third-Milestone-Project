@@ -40,7 +40,8 @@
                 <span><strong>From: {{ recipe.origin }}</strong></span>
             </div>
             <div class="col-4">
-                <a href="#" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id) }}" target="_blank" class="more-icon-pl" ><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+                
             </div>
         </div>
 
@@ -72,7 +73,7 @@
                 <span><strong>From: {{ recipe.origin }}</strong></span>
             </div>
             <div class="col-4">
-                <a href="#" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id) }}" target="_blank" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
             </div>
         </div>
 

@@ -31,24 +31,24 @@
                     <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i id="home" class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
 
                     <li class="nav-item">
-                        <a id="allrecipes" class="nav-link" href="{{ url_for('get_recipes_category_origin', sel_category=" ALL ", sel_origin="ALL ") }}">ALL RECIPES</a>
+                        <a id="allrecipes" class="nav-link" href="{{ url_for('get_recipes_category_origin', sel_category='ALL', sel_origin='ALL') }}">ALL RECIPES</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="baking" class="nav-link" href="{{ url_for('get_recipes_category', sel_category=" BAKING ") }}">BAKING</a>
+                        <a id="baking" class="nav-link" href="{{ url_for('get_recipes_category', sel_category='BAKING') }}">BAKING</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a id="starter" class="nav-link" href="{{ url_for('get_recipes_category', sel_category=" STARTER ") }}">STARTER</a>
+                        <a id="starter" class="nav-link" href="{{ url_for('get_recipes_category', sel_category='STARTER') }}">STARTER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="dinner" class="nav-link" href="{{ url_for('get_recipes_category', sel_category=" DINNER ") }}">DINNER</a>
+                        <a id="dinner" class="nav-link" href="{{ url_for('get_recipes_category', sel_category='DINNER') }}">DINNER</a>
                     </li>
 
                     <li class="nav-item">
-                        <a id="dessert" class="nav-link" href="{{ url_for('get_recipes_category', sel_category=" DESSERT ") }}">DESSERT</a>
+                        <a id="dessert" class="nav-link" href="{{ url_for('get_recipes_category', sel_category='DESSERT') }}">DESSERT</a>
                     </li>
 
                     <!-- Dropdown menu for ORIGIN  -->

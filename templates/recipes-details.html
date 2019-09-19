@@ -1,0 +1,69 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="row p-3">
+
+</div>
+
+<!-- Show all details for the selected recipe -->
+
+
+{% for recipe in recipes %}
+
+<!-- There's only one recipe in 'recipes' the one selected by the user -->
+
+<div class="row m-0 card-group card-padding">
+    <div class="col-12 card">
+
+        <div class="row no-gutters card-header font-italic">
+            <div class="col-6">
+                <strong>{{ recipe.category}} RECIPE</strong>
+            </div>
+            <div class="col-6">
+                <strong>From: {{ recipe.origin }}</strong>
+            </div>
+        </div>
+
+        <!-- Show image an introduction -->
+
+        <div class="row no-gutters">
+            <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
+            <div class="col-6 container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 50%; height: 400px; background-size: cover; background-position: center; border: solid #f2f2f2">
+            </div>
+
+            <div class="col-6">
+                <div class="card-body">
+                    <h5 class="card-title card-title-style">{{recipe.title}}</h5>
+                    <p class="card-text">{{recipe.intro}}</p>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card-footer">
+            <!-- Show ingredients -->
+
+            <div class="row no-gutters">
+                <div class="col-6  recipe-border ">
+                    <h5 class="p-2 text-center">Ingredients</h5>
+
+                    {% for ingredient in recipe.ingredients %}
+                    <p class="pl-3">{{ ingredient }}</p>
+                    {% endfor %}
+
+                </div>
+                <div class="col-6 recipe-border">
+                    <h5 class="p-2 text-center">Method</h5>
+                    {% for method in recipe.method %}
+                    <p class="pl-3">{{ method }}</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endfor %} {% endblock %}

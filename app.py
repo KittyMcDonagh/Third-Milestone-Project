@@ -55,6 +55,19 @@ def get_recipes_category_origin(sel_category, sel_origin):
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
     return render_template("recipes-page.html", recipes=cat_origin_recipes, category=sel_category.capitalize(), countries = country_list, origin = sel_origin)
+
+
+# Show Details of Selected Recipe
+
+@app.route('/get_recipe_details/<sel_id>')
+def get_recipe_details(sel_id):
+    
+# Note: I was using "mongo.db.recipes.find_one" here, but it wasnt finding the recipe for me
+    
+    sel_recipe = mongo.db.recipes.find({"_id": ObjectId(sel_id)})
+    
+    # Redirect to recipes details template
+    return render_template("recipes-details.html", recipes=sel_recipe)    
     
 
 if __name__ == '__main__':
