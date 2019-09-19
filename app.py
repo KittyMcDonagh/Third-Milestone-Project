@@ -85,7 +85,7 @@ def get_recipes_category_origin(sel_category, sel_origin):
 # FILTER CURRENT CATEGORY BY COUNTRY - Display all recipes for selected category and origin showing image and introductory text only
 @app.route('/get_recipes/<sel_category>/<sel_origin>')
 def get_recipes(sel_category, sel_origin):
-
+    
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find()
     country_list = [country for country in temp_countries]
@@ -94,7 +94,7 @@ def get_recipes(sel_category, sel_origin):
 # All Categories?
     if sel_category == "All":
         
-# All countries?
+# All Categories, All Countries?
         if sel_origin == "All Countries":
             try:
                 cat_origin_recipes=mongo.db.recipes.find()
@@ -115,24 +115,33 @@ def get_recipes(sel_category, sel_origin):
                 cat_origin_recipes=mongo.db.recipes.find({"category":sel_category})
             except:
                 print("Error acessing the Recipes Database")
+                
         else:
 # Specific category for a specific country
             try:
                 cat_origin_recipes=mongo.db.recipes.find({"category":sel_category, "origin":sel_origin})
             except:
                 print("Error acessing the Recipes Database")
-        
-    # Reset error indicator
-    recipes_found="OK"
     
-    if not cat_origin_recipes:
+# Check that records were found
+    count = 0
+    recipes_found="OK"
+    check_recipes=""
+    check_recipes == cat_origin_recipes
+    
+    for origin in check_recipes:
+        count+=1
+        
+    if count == 0:
         recipes_found=" - None Found"
+    
+    
         
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, category=sel_category, countries=country_list, origin=sel_origin, recipes_mesg=recipes_found)
+    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, category=sel_category, countries=country_list, origin=sel_origin, 
+    recipes_mesg=recipes_found, recipe_count = count)
     
 #=========================
-
 
 
 # RECIPE DETAILS - Show Details of Selected Recipe - show introductory text, ingredients and method
