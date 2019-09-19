@@ -119,7 +119,7 @@ main {
 }
 
 
- 
+
 .btn-secondary.disabled {
     color: #d9d9d9!important;
 }
@@ -170,6 +170,15 @@ main {
     padding: 20px;
 }
 
+.intro-title-style {
+    font-family: "Courgette", sans-serif;
+    text-align: center;
+    padding-bottom: 4px;
+    margin:0;
+
+
+}
+
 
 .intro-par-style {
     font-size: 20px;
@@ -182,10 +191,14 @@ main {
 
 }
 
-.card-title-style {
-    font-family: "Courgette", sans-serif;
+/* Bootstrap was removing the left border and not rounding all corners, so created this to fix it*/
 
+.card-border {
+     border: 1px solid rgba(0, 0, 0, 0.125)!important;
+     border-radius: 0.25rem!important;
 }
+
+
 
 
 .card-padding {
@@ -218,7 +231,7 @@ main {
 
 
 
-    
+
 
 .more-icon-style {
     color: #3b3b3b;
@@ -226,7 +239,7 @@ main {
 
 .more-icon-style:hover {
     color: #76c180;
-    
+
 }
 
 .more-icon-pl {
@@ -282,6 +295,7 @@ footer a {
 .recipe-border {
     border: solid 2px #f2f2f2;
 }
+
 
 
 /* css used in javascript                                                     */

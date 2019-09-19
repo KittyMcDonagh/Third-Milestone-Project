@@ -11,31 +11,35 @@
 
 <!-- There's only one recipe in 'recipes' the one selected by the user -->
 
-<div class="row m-0 card-group card-padding">
-    <div class="col-12 card">
+<div class="row no-gutters card-group card-padding">
+
+    <!-- First Card in row -->
+
+    <div class="col-12 card card-border">
+
+        <!-- Card Header -->
 
         <div class="row no-gutters card-header font-italic">
             <div class="col-6">
-                <strong>{{ recipe.category}} RECIPE</strong>
+                <span><strong>{{ recipe.category}} RECIPE</strong></span>
             </div>
-            <div class="col-6">
-                <strong>From: {{ recipe.origin }}</strong>
+            <div class="col-6 ">
+                <span><strong>From: {{ recipe.origin }}</strong></span>
             </div>
+            
         </div>
 
-        <!-- Show image an introduction -->
 
-        <div class="row no-gutters">
-            <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-            <div class="col-6 container m-0 p-0" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 50%; height: 400px; background-size: cover; background-position: center; border: solid #f2f2f2">
+        <div class="row no-gutters p-1 card-body">
+            <div class="col-6">
+                <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
+                <div class="container m-0 p-0 recipe-border" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 350px; background-size: cover; background-position: center">
+                </div>
             </div>
 
-            <div class="col-6">
-                <div class="card-body">
-                    <h5 class="card-title card-title-style">{{recipe.title}}</h5>
-                    <p class="card-text">{{recipe.intro}}</p>
-
-                </div>
+            <div class="col-6 p-3">
+                <h5 class="intro-title-style">{{recipe.title}}</h5>
+                <p class="card-text pl-2 pr-2">{{recipe.intro}}</p>
             </div>
         </div>
 
