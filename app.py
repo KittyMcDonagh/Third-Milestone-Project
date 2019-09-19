@@ -15,7 +15,7 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
-# Display home page featured recipes with image and introductory text only
+# HOME PAGE - Display home page featured recipes with image and introductory text only
 @app.route('/')
 @app.route('/get_recipes_home')
 def get_recipes_home():
@@ -31,10 +31,10 @@ def get_recipes_home():
     return render_template("recipes-home.html", recipes=home_recipes, countries = country_list, origin = "ALL")
 
     
-# Display all recipes with image and introductory text only
+# CATEGORY = ALL RECIPES - Display all recipes with image and introductory text only
 @app.route('/')
-@app.route('/get_all_recipes')
-def get_all_recipes():
+@app.route('/get_all_recipes/<sel_category>')
+def get_all_recipes(sel_category):
 
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find()
@@ -45,10 +45,10 @@ def get_all_recipes():
     all_recipes=mongo.db.recipes.find()
     
     # Redirect to recipes list template
-    return render_template("recipes-list-page.html", recipes=all_recipes, category="All", countries=country_list, origin = "All Countries")
+    return render_template("recipes-list-page.html", recipes=all_recipes, category=sel_category, countries=country_list, origin = "All Countries")
     
     
-# Display all recipes for selected category showing image and introductory text only
+# BY CATEGORY - Display all recipes for selected category showing image and introductory text only
 @app.route('/get_recipes_category/<sel_category>')
 def get_recipes_category(sel_category):
 
@@ -62,7 +62,7 @@ def get_recipes_category(sel_category):
     return render_template("recipes-list-page.html", recipes=category_recipes, category=sel_category.capitalize(), countries=country_list, origin = "All Countries")
 
 
-# Display all recipes for selected category and origin showing image and introductory text only
+# FILTER CURRENT CATEGORY BY COUNTRY - Display all recipes for selected category and origin showing image and introductory text only
 @app.route('/get_recipes_category_origin/<sel_category>/<sel_origin>')
 def get_recipes_category_origin(sel_category, sel_origin):
 
@@ -70,11 +70,15 @@ def get_recipes_category_origin(sel_category, sel_origin):
     temp_countries = mongo.db.countries.find()
     country_list = [country for country in temp_countries]
     
-    # This is NOT WORKING. Doesnt seem to be able to select based on 2 parameters
-    cat_origin_recipes=mongo.db.recipes.find({"category":sel_category}, {"origin":sel_origin})
+    if sel_category == "All Recipes":
+        cat_origin_recipes=mongo.db.recipes.find({"origin":sel_origin})
+        
+    else:
+        # This is NOT WORKING. Doesnt seem to be able to select based on 2 parameters
+        cat_origin_recipes=mongo.db.recipes.find({"category":sel_category, "origin":sel_origin})
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, category=sel_category.capitalize(), countries=country_list, origin = sel_origin)
+    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, category=sel_category, countries=country_list, origin=sel_origin)
 
 
 # Show Details of Selected Recipe - show introductory text, ingredients and method
