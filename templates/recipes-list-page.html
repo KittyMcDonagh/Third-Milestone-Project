@@ -49,7 +49,7 @@
         <div class="row no-gutters p-1 card-body">
             <div class="col-6">
                 <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-                <div class="container m-0 p-0 recipe-border" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 200px; background-size: cover; background-position: center">
+                <div class="container m-0 p-0 recipe-border" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 200px; alt=recipe.alt_txt; background-size: cover; background-position: center">
                 </div>
             </div>
 
@@ -94,7 +94,7 @@
         <div class="row no-gutters p-1 card-body">
             <div class="col-6">
                 <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-                <div class="container m-0 p-0 recipe-border" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 200px; background-size: cover; background-position: center">
+                <div class="container m-0 p-0 recipe-border" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 200px; alt=recipe.alt_txt; background-size: cover; background-position: center">
                 </div>
             </div>
 

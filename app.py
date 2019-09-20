@@ -48,7 +48,8 @@ def get_recipes(sel_category, sel_origin):
 # All Categories, All Countries?
         if sel_origin == "All Countries":
             try:
-                cat_origin_recipes=mongo.db.recipes.find()
+                # Found the code below for sorting mongodb results (the code we were given on the course doesnt work with python/pymongo) on http://delphinus.qns.net/xwiki/bin/view/Blog/sort%20two%20fields%20in%20mongo
+                cat_origin_recipes=mongo.db.recipes.find().sort( [ ("origin_sort",1), ("category_sort",1)] );
             except:
                 print("Error acessing the Recipes Database")
                 
