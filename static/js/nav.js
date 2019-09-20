@@ -1,45 +1,45 @@
+// Enable selection of ORIGIN
+
+// Change home icon from green to black 
+$("#home").addClass("home-icon-deselected");
 
 
-    // Enable selection of ORIGIN
-
-    // Change home icon from green to black 
-    $("#home").addClass("icon-style-deselected");
-
-    // Enable Countries dropdown
-    $(".btn").removeClass("disabled");
-    $(".btn").addClass("enabled");
+// Enable Countries dropdown
+$(".btn").removeClass("disabled");
+$(".btn").addClass("enabled");
 
 
-    // Change color of selected category to green
+// Change color of selected category to green
 
-    var category = document.getElementById('category').innerHTML;
+var category = document.getElementById('category').innerHTML;
 
-    if (category === "All") {
+if (category === "All") {
 
-        $("#allrecipes").addClass("sel-green");
-    }
+    $("#allrecipes").addClass("selected-green");
+}
 
-    if (category === "Baking") {
+if (category === "Baking") {
 
-        $("#baking").addClass("sel-green");
-    }
+    $("#baking").addClass("selected-green");
+}
 
-    if (category === "Starter") {
+if (category === "Starter") {
 
-        $("#starter").addClass("sel-green");
-    }
+    $("#starter").addClass("selected-green");
+}
 
-    if (category === "Dinner") {
+if (category === "Dinner") {
 
-        $("#dinner").addClass("sel-green");
-    }
+    $("#dinner").addClass("selected-green");
+}
 
-    if (category === "Dessert") {
+if (category === "Dessert") {
 
-        $("#dessert").addClass("sel-green");
-    }
+    $("#dessert").addClass("selected-green");
 
-    $(".btn-secondary").addClass("sel-green");
+}
 
-    var origin = document.getElementById('origin').innerHTML;
-    $(".btn-secondary").text(origin);
+$(".btn-secondary").addClass("selected-green");
+
+var origin = document.getElementById('origin').innerHTML;
+$(".btn-secondary").text(origin);

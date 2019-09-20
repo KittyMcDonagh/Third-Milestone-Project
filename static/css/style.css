@@ -13,8 +13,12 @@ body {
     font-family: "Nunito", sans-serif;
 }
 
+/* Set height of Section so that the footer sticks to the bottom longer devices
+   or on pages where the screen is not otherwise filled*/
+
 section {
-    min-height: 100vh;
+
+    min-height: calc(100vh - 224px);
 }
 
 main {
@@ -63,24 +67,25 @@ main {
 /*  Padding to position navbar items nicely in the navbar */
 
 .navbar-padding {
-    padding-left: 50px;
+    padding-left: 0px;
 }
 
-/* Override nav link padding */
-
-.nav-link {
-    padding: 15px!important;
+@media(min-width:1025px) {
+    .navbar-padding {
+        padding-left: 50px;
+    }
 }
 
 
-/* Override color of nav links*/
+
+/* Override color, padding of nav links*/
 
 .nav-link {
     color: #3b3b3b!important;
     font-size: 18px;
+    padding: 15px!important;
 
 }
-
 
 
 /* Set hover behaviour for nav links in Top and Bottom navigation menus */
@@ -98,7 +103,14 @@ main {
 
 .dropdown {
 
-    margin-left: 250px;
+    margin-left: 0px;
+}
+
+
+@media(min-width:1025px) {
+    .dropdown {
+        margin-left: 250px;
+    }
 }
 
 .dropdown a:hover {
@@ -133,19 +145,16 @@ main {
 
 
 
-.icon-style {
+.home-icon {
     color: #76c180;
 
 }
 
-.icon-style:hover {
+.home-icon:hover {
     color: #fff!important;
 }
 
-.icon-style-deselected {
-    color: #3b3b3b;
 
-}
 
 /* css used on recipes home page                                             */
 
@@ -247,7 +256,13 @@ main {
 }
 
 .more-icon-pl {
-    padding-left: 190px;
+    padding-left: 120px;
+}
+
+@media(min-width:1025px) {
+    .more-icon-pl {
+        padding-left: 190px;
+    }
 }
 
 
@@ -263,12 +278,12 @@ main {
 
 .footer-style {
     background-color: #3b3b3b;
-    color: #fff;
     margin-bottom: 0px;
     padding: 30px 30px 10px 30px;
     text-align: center;
     position: relative;
     top: 80px;
+    color: #fff;
 
 }
 
@@ -282,17 +297,25 @@ main {
     padding: 0;
 }
 
+.footer-home {
+     color: #76c180;
+     padding: 10px 15px;
+    
+}
 
 
-footer a {
-    color: #fff!important;
+.footer-links {
+    color: #fff;
     padding: 10px 15px;
 }
 
-.footer-links a:hover {
+.footer-links:hover {
     background-color: #76c180;
+    color: #fff;
     text-decoration: none;
 }
+
+
 
 /* css used in recipes-details.html                                           */
 
@@ -304,6 +327,15 @@ footer a {
 
 /* css used in javascript                                                     */
 
-.sel-green {
+.home-icon-deselected {
+    color: #3b3b3b;
+
+}
+
+
+/**/
+
+.selected-green {
     color: #76c180!important;
 }
+

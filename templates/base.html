@@ -20,7 +20,7 @@
 
     <header>
         <!-- Navigation bar, using Bootstrap -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top nav-links">
+        <nav class="navbar navbar-expand-xl navbar-light bg-light fixed-top nav-links">
             <a class="navbar-brand logo" href="{{ url_for('get_recipes_home') }}"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
 
             <div class="collapse navbar-collapse navbar-padding" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto ">
-                    <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i id="home" class="fa fa-home icon-style" aria-hidden="true"></i></a></li>
+                    <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i id="home" class="fa fa-home home-icon" aria-hidden="true"></i></a></li>
 
                     <li class="nav-item">
                         <a id="allrecipes" class="nav-link" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin) }}">ALL RECIPES</a>
@@ -59,7 +59,7 @@
   </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin="All Countries") }}">All Countries</a> {% for country in countries%}
+                            <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin='All Countries') }}">All Countries</a> {% for country in countries%}
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin=country.country_name) }}">{{country.country_name}}</a> {% endfor %}
                         </div>
@@ -81,27 +81,27 @@
     </section>
 
     <!-- Footer, using bootstrap -->
-    <footer class="footer-style scrn-pos footer-links">
+    <footer class="footer-style scrn-pos">
         <div class="row">
             <div class="col-sm-4 footer-pb">
                 <ul class="footer-ul-style">
-                    <li class="mb-1"><a href="#">Home</a></li>
-                    <li class="mb-1"><a href="#">Baking</a></li>
-                    <li class="mb-1"><a href="#">Breakfast</a></li>
+                    <li class="mb-1"><a id="ftr-home" class="footer-links" href="{{ url_for('get_recipes_home') }}">Home</a></li>
+                    <li class="mb-1"><a id="ftr-allrecipes" class="footer-links " href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin) }}">All Recipes</a></li>
+                    <li class="mb-1"><a id="ftr-baking" class="footer-links" href="{{ url_for('get_recipes', sel_category='Baking', sel_origin=origin) }}">Baking</a></li>
                 </ul>
             </div>
 
             <div class="col-sm-4 footer-pb">
                 <ul class="footer-ul-style">
-                    <li class="mb-1"><a href="#">Starter</a></li>
-                    <li class="mb-1"><a href="#">Lunch/Dinner</a></li>
-                    <li class="mb-1"><a href="#">Dessert</a></li>
+                    <li class="mb-1"><a id="ftr-starter" class="footer-links" href="{{ url_for('get_recipes', sel_category='Starter', sel_origin=origin) }}">Starter</a></li>
+                    <li class="mb-1"><a id="ftr-dinner" class="footer-links" href="{{ url_for('get_recipes', sel_category='Dinner', sel_origin=origin) }}">Dinner</a></li>
+                    <li class="mb-1"><a id="ftr-dessert" class="footer-links" href="{{ url_for('get_recipes', sel_category='Dessert', sel_origin=origin) }}">Dessert</a></li>
                 </ul>
             </div>
 
             <div class="col-sm-4 footer-pb">
-                <p class="mb-1">Origin Selected:</p>
-                <p class="mb-1" id="origin"></p>
+                <p class="mb-1">Origin Selected: <span id="origin">{{ origin }}</span></p>
+
 
             </div>
 
