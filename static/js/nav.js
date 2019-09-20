@@ -1,38 +1,45 @@
-$(document).ready(function() {
-// Check user selections
-
-checkUserSelection();
 
 
-function checkUserSelection() {
-    
-    
-    $("#baking").click(function() {
+    // Enable selection of ORIGIN
 
-       
+    // Change home icon from green to black 
+    $("#home").addClass("icon-style-deselected");
 
-        clearSelection();
-
-        // Change color of current selection to green
-
-        colorSelection();
-
-    });
-
-}
+    // Enable Countries dropdown
+    $(".btn").removeClass("disabled");
+    $(".btn").addClass("enabled");
 
 
-function clearSelection() {
-    $("#baking").removeClass("sel-green").hide();
-    $("#home").addClass("icon-style-deselected").hide();
-    $("#starter").removeClass("sel-green").hide();
-    $("#dinner").removeClass("sel-green").hide();
-    $("#dessert").removeClass("sel-green").hide();
-}
+    // Change color of selected category to green
 
-function colorSelection() {
-    $("#baking").addClass("sel-green");
+    var category = document.getElementById('category').innerHTML;
 
-}
+    if (category === "All") {
 
-});
+        $("#allrecipes").addClass("sel-green");
+    }
+
+    if (category === "Baking") {
+
+        $("#baking").addClass("sel-green");
+    }
+
+    if (category === "Starter") {
+
+        $("#starter").addClass("sel-green");
+    }
+
+    if (category === "Dinner") {
+
+        $("#dinner").addClass("sel-green");
+    }
+
+    if (category === "Dessert") {
+
+        $("#dessert").addClass("sel-green");
+    }
+
+    $(".btn-secondary").addClass("sel-green");
+
+    var origin = document.getElementById('origin').innerHTML;
+    $(".btn-secondary").text(origin);
