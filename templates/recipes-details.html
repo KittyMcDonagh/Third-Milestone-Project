@@ -1,8 +1,17 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="row p-3">
 
+
+<!-- Banner that tells user what selection they have made -->
+
+<div class="row m-0 p-2 mt-3 mb-2">
+    <div class="col-12 feature-style">
+        <h2 class="m-0"><span id="category">{{category}}</span> Recipe from <span id="origin">{{origin}}</span>
+            <span> - {{ rec_title }}</span>
+        </h2>
+    </div>
 </div>
+
 
 <!-- Show all details for the selected recipe -->
 
@@ -24,7 +33,7 @@
             <div class="col-6 ">
                 <span><strong>From: {{ recipe.origin }}</strong></span>
             </div>
-            
+
         </div>
 
 
@@ -48,7 +57,7 @@
 
             <div class="row no-gutters">
                 <div class="col-6  recipe-border ">
-                    <h5 class="p-2 text-center">Ingredients</h5>
+                    <h5 class="p-2 text-center"><strong>Ingredients</strong></h5>
 
                     {% for ingredient in recipe.ingredients %}
                     <p class="pl-3">{{ ingredient }}</p>
@@ -56,7 +65,7 @@
 
                 </div>
                 <div class="col-6 recipe-border">
-                    <h5 class="p-2 text-center">Method</h5>
+                    <h5 class="p-2 text-center"><strong>Method</strong></h5>
                     {% for method in recipe.method %}
                     <p class="pl-3">{{ method }}</p>
                     {% endfor %}
@@ -68,4 +77,12 @@
 
 </div>
 
-{% endfor %} {% endblock %}
+{% endfor %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- <script href="{{ url_for('static', filename='js/nav.js' ) }}"></script> - not working -->
+
+<script src="/static/js/nav.js "></script>
+
+{% endblock %}

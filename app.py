@@ -81,8 +81,6 @@ def get_recipes(sel_category, sel_origin):
     if cat_origin_recipes.count() == 0:
         recipes_found=" - None Found"
     
-    
-        
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
     return render_template("recipes-list-page.html", recipes=cat_origin_recipes, category=sel_category, countries=country_list, origin=sel_origin, recipes_mesg=recipes_found)
     
@@ -91,8 +89,8 @@ def get_recipes(sel_category, sel_origin):
 
 # RECIPE DETAILS - Show Details of Selected Recipe - show introductory text, ingredients and method
 
-@app.route('/get_recipe_details/<sel_id>')
-def get_recipe_details(sel_id):
+@app.route('/get_recipe_details/<sel_id>/<sel_category>/<sel_origin>/<sel_title>')
+def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
 
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find()
@@ -106,7 +104,7 @@ def get_recipe_details(sel_id):
         print("Error getting recipe from the Recipes Database")
     
     # Redirect to recipes details template
-    return render_template("recipes-details.html", recipes=sel_recipe, countries=country_list)    
+    return render_template("recipes-details.html", recipes=sel_recipe, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)    
     
 
 if __name__ == '__main__':

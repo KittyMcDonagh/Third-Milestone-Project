@@ -40,7 +40,7 @@
                 <span><strong>From: {{ recipe.origin }}</strong></span>
             </div>
             <div class="col-4">
-                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category, sel_origin=recipe.origin, sel_title=recipe.title) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
 
             </div>
         </div>
@@ -87,7 +87,7 @@
                 <span><strong>From: {{ recipe.origin }}</strong></span>
             </div>
             <div class="col-4">
-                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category, sel_origin=recipe.origin, sel_title=recipe.title) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
             </div>
         </div>
 
@@ -118,8 +118,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<!-- <script href="{{ url_for('static', filename='js/nav.js' ) }}"></script> - not working -->
+
 <script src="/static/js/nav.js "></script>
-
-
 
 {% endblock %}
