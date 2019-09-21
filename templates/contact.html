@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <!-- Banner for 'Send us a Recipe -->
-<div class="row m-0 p-2">
+<div class="row m-0 p-2 mt-3 mb-2">
     <div class="col-12 feature-style">
         <h2 id="category" class="m-0">Send us a Recipe</h2>
     </div>
@@ -11,11 +11,12 @@
 
 <div class="row form-center">
     <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-12 form-style">
-        <div class="row">
-            <div class="input-field col-12">
 
-                <select id="country" name="country_name" class="form-control">
-                    <option value="" disabled selected>Choose Country</option>
+        <div class="row">
+            <div class="input-field col-10">
+
+                <select id="origin" name="origin" class="form-control" required>
+                    <option id="sel_origin" value="" disabled selected>Choose Country</option>
                   
                     {% for country in countries %}
                     
@@ -23,16 +24,22 @@
                       <option value="{{ country.country_name }}">{{ country.country_name }}</option>
                     
                     {% endfor %}
-                 
+            
                 </select>
+            </div>
+
+            <div class="input-field col-2">
+
+                <!-- The value in 'value' field is what will be submitted to the form -->
+                <input id="origin_sort" name="origin_sort" type="text" value="0" class="form-control invisible">
 
             </div>
         </div>
 
         <div class="row">
-            <div class="input-field col-12">
+            <div class="input-field col-10">
 
-                <select id="category" name="category_name" class="form-control">
+                <select id="category" name="category" class="form-control" required>
                     <option value="" disabled selected>Choose Category</option>
                     
                     {% for cat in categories %}
@@ -43,32 +50,94 @@
                     {% endfor %}
                  
                 </select>
+            </div>
 
+            <div class="input-field col-2">
+                <input id="category_sort" name="category_sort" value="0" type="text" class="form-control invisible">
             </div>
         </div>
 
 
         <div class="row">
-
             <div class="input-field col-12">
-                <input id="title" name="rec_title" type="text" class="form-control" placeholder="Recipe Title">
+                <input id="title" name="title" type="text" class="form-control" placeholder="Recipe Title" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col-12">
+                <input id="owner" name="owner" type="text" class="form-control" placeholder="Owner's Website, if applicable" required>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col-12">
                 <!-- Use textarea, rather than <input type="text> for HTML5 -->
-                <textarea name="title" id="rec_intro" class="form-control" placeholder="Introduction"></textarea>
+                <textarea name="intro" id="intro" class="form-control" placeholder="Introduction" required></textarea>
             </div>
         </div>
 
+        <div class="row">
+            <div class="input-field col-12">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <textarea name="time" id="time" class="form-control" placeholder="Preparation Time [hh:mm]"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col-12">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <textarea name="serves" id="serves" class="form-control" placeholder="Serves how many?"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col-12">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <textarea name="image" id="image" class="form-control" placeholder="Image Name"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col-12">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <textarea name="ingredients" id="ingredients" class="form-control" placeholder="Ingredients" required></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col-12">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <textarea name="method" id="method" class="form-control" placeholder="Method" required></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="input-field col-4">
+                <input id="home_feature" name="home_feature" type="text" class="form-control invisible">
+            </div>
+
+            <div class="input-field col-4">
+                <input id="key_word" name="key_word" type="text" value="new" class="form-control invisible">
+            </div>
+
+            <div class="input-field col-4">
+                <input id="status" name="status" type="text" value="new" class="form-control invisible">
+            </div>
+        </div>
+
+
+
+        <!-- Submit the Recipe -->
+
         <div class="row mt-3">
-            <button class="col-2 ml-3 btn send-btn" type="submit" name="action">Send Recipe
+            <button class="ml-3 btn send-btn" type="submit" name="action">Send Recipe
                 
             </button>
         </div>
     </form>
-    
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

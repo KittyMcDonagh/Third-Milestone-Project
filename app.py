@@ -160,7 +160,7 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
     return render_template("recipes-details.html", recipes=sel_recipe, search_words=search, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
 
 
-# CONTACT US 
+# CONTACT US - Send us a Recipe
 
 
 @app.route('/contact')
@@ -183,13 +183,38 @@ def contact():
 
 
     
-# Insert the task when 'Add Task' is clicked. Invoked by 'form action="{{ url_for('insert_task') }}"'
+# Insert the task the recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     # Access the recipes collection
     recipes = mongo.db.recipes
+    #Insert the new recipe into the database
     recipes.insert_one(request.form.to_dict())
+    
+    
     return redirect(url_for('contact'))
+    
+    
+# ========================================Start
+@app.route('/update_task/<task_id>', methods=['POST'])
+def update_task(task_id):
+     # Access the tasks collection
+    tasks = mongo.db.kitty_tasks
+    tasks.update({"_id": ObjectId(task_id)},
+    {
+        'task_name': request.form.get('task_name'),
+        'category_name': request.form.get('category_name'),
+        'task_description': request.form.get('task_description'),
+        'due_date': request.form.get('due_date'),
+        'is_urgent': request.form.get('is_urgent')
+        
+    })
+    return redirect(url_for('get_tasks'))
+
+
+
+# =========================================End
+
     
 
 

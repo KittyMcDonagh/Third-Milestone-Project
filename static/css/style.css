@@ -341,6 +341,7 @@ main {
 .form-center {
     margin-left: 175px;
     margin-top: 20px;
+    margin-bottom: 20px;
     width: 70%;
     
 }
@@ -352,6 +353,16 @@ main {
     border-color: #1a1a1a;
     color: #fff;
 }
+
+.send-btn:hover {
+    text-decoration: none;
+    background-color: #76c180!important;
+    border-color: #76c180!important;
+    color: #fff;
+
+    
+}
+
 
 /* Override border colors in bootstrap class */
 .form-control {
