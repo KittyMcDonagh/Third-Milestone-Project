@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- Banner for 'Send us a Recipe -->
+<div class="row m-0 p-2">
+    <div class="col-12 feature-style">
+        <h2 id="category" class="m-0">Send us a Recipe</h2>
+    </div>
+</div>
+
+<!-- Recipe input form  -->
+
+<div class="row form-center">
+    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-12 form-style">
+        <div class="row">
+            <div class="input-field col-12">
+
+                <select id="country" name="country_name" class="form-control">
+                    <option value="" disabled selected>Choose Country</option>
+                  
+                    {% for country in countries %}
+                    
+                    <!-- The value in 'value' field is what will be submitted to the form -->
+                      <option value="{{ country.country_name }}">{{ country.country_name }}</option>
+                    
+                    {% endfor %}
+                 
+                </select>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col-12">
+
+                <select id="category" name="category_name" class="form-control">
+                    <option value="" disabled selected>Choose Category</option>
+                    
+                    {% for cat in categories %}
+                    
+                    <!-- The value in 'value' field is what will be submitted to the form -->
+                      <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
+                    
+                    {% endfor %}
+                 
+                </select>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="input-field col-12">
+                <input id="title" name="rec_title" type="text" class="form-control" placeholder="Recipe Title">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col-12">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <textarea name="title" id="rec_intro" class="form-control" placeholder="Introduction"></textarea>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <button class="col-2 ml-3 btn send-btn" type="submit" name="action">Send Recipe
+                
+            </button>
+        </div>
+    </form>
+    
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- <script href="{{ url_for('static', filename='js/nav.js' ) }}"></script> - not working -->
+
+<script src="/static/js/nav.js "></script>
+
+{% endblock %}

@@ -51,6 +51,10 @@
                         <a id="dessert" class="nav-link" href="{{ url_for('get_recipes', sel_category='Dessert', sel_origin=origin) }}">DESSERT</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a id="contact" class="nav-link" href="{{ url_for('contact') }}">CONTACT US</a>
+                    </li>
+
                     <!-- Dropdown menu for ORIGIN  -->
 
                     <div class="dropdown">
@@ -59,15 +63,14 @@
   </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin='All Countries') }}">All Countries</a> 
-                            {% for country in countries%}
+                            <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin='All Countries') }}">All Countries</a> {% for country in countries%}
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin=country.country_name) }}">{{country.country_name}}</a> {% endfor %}
                         </div>
                     </div>
 
                 </ul>
-                
+
             </div>
         </nav>
 
@@ -101,7 +104,7 @@
             </div>
 
             <div class="col-sm-4 footer-pb">
-                <p class="mb-1">Origin Selected: <span id="origin">{{ origin }}</span></p>
+                <p class="mb-1">Country Selected: <span id="origin">{{ origin }}</span></p>
 
 
             </div>

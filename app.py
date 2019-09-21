@@ -157,8 +157,41 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
         print("Error getting recipe from the Recipes Database")
     
     # Redirect to recipes details template
-    return render_template("recipes-details.html", recipes=sel_recipe, search_words=search, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)    
+    return render_template("recipes-details.html", recipes=sel_recipe, search_words=search, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
+
+
+# CONTACT US 
+
+
+@app.route('/contact')
+def contact():
+
+# Create country list for countries dropdown    
+    temp_countries = mongo.db.countries.find()
+    country_list = [country for country in temp_countries]
     
+# Create category list for categories dropdown    
+    temp_categories = mongo.db.categories.find()
+    category_list = [category for category in temp_categories]
+    
+    sel_category="All"
+    sel_origin="All Countries"
+
+
+# Redirect to contact template
+    return render_template("contact.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin)
+
+
+    
+# Insert the task when 'Add Task' is clicked. Invoked by 'form action="{{ url_for('insert_task') }}"'
+@app.route('/insert_recipe', methods=['POST'])
+def insert_recipe():
+    # Access the recipes collection
+    recipes = mongo.db.recipes
+    recipes.insert_one(request.form.to_dict())
+    return redirect(url_for('contact'))
+    
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

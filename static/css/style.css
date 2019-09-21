@@ -88,12 +88,16 @@ main {
 }
 
 
-/* Set hover behaviour for nav links in Top and Bottom navigation menus */
+/* Set hover behaviour for the nav links in Top and Bottom navigation menu  */
 
 .nav-links a:hover {
     background-color: #76c180;
     color: #fff!important;
     text-decoration: none;
+}
+
+.home-icon:hover {
+    color: #fff!important;
 }
 
 
@@ -102,14 +106,14 @@ main {
 /* Move dropdown button over a little */
 
 .dropdown {
-
+    margin-top: 10px;
     margin-left: 0px;
 }
 
 
 @media(min-width:1025px) {
     .dropdown {
-        margin-left: 250px;
+        margin-left: 100px;
     }
 }
 
@@ -150,9 +154,7 @@ main {
 
 }
 
-.home-icon:hover {
-    color: #fff!important;
-}
+
 
 
 
@@ -169,7 +171,7 @@ main {
 }
 
 
-/* css for recipes   */
+/* css for recipe cardss   */
 
 .recipe_header {
     margin-top: 5px;
@@ -324,6 +326,38 @@ main {
     border: solid 2px #f2f2f2;
 }
 
+/*  css used in contact.html                                                */
+
+.input-field label {
+     color: #000;
+}
+
+.form-style {
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+
+}
+
+.form-center {
+    margin-left: 175px;
+    margin-top: 20px;
+    width: 70%;
+    
+}
+
+
+
+.send-btn {
+    background-color: #3b3b3b;
+    border-color: #1a1a1a;
+    color: #fff;
+}
+
+/* Override border colors in bootstrap class */
+.form-control {
+    border: 1px solid #edf7ef;
+}
+
 
 
 /* css used on all pages                                                      */
@@ -345,8 +379,8 @@ main {
 
 }
 
-/* Overide btn-secondary colors */
-.btn-secondary {
+/* Set search button style */
+.search-btn {
     border: solid #edf7ef;
     color: #3b3b3b;
     background-color: #fff
