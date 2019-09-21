@@ -15,27 +15,17 @@
 
 <!-- "Featured" Banner -->
 <div class="row m-0 p-2">
-    <div class="col-9 feature-style">
+    <div class="col-8 feature-style">
         <h2 class="m-0">Featured Recipes</h2>
     </div>
-
-<!-- Search Box Dropdown-->
-
-    <div class="col-3">
-        <div class="search-box">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Search All Recipes
-  </a>
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                {% for word in search_words %}
-                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_word, sel_desc=word.desc, sel_category=word.category, sel_origin='All Countries') }}">{{ word.key_word }}</a> 
-                
-                {% endfor %}
-            </div>
-        </div>
+    
+    <div class="col-4 form-mt">
+        <form class="form-inline my-2 my-lg-0 " action="{{ url_for('search_recipes', sel_keywords=placeholder, sel_category=category, sel_origin=origin) }}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn form-btn my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </div>
-
+    
 </div>
 
 

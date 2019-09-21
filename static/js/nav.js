@@ -5,8 +5,8 @@ $("#home").addClass("home-icon-deselected");
 
 
 // Enable Countries dropdown
-$(".btn").removeClass("disabled");
-$(".btn").addClass("enabled");
+$("#origindd").removeClass("disabled");
+$("#origindd").addClass("enabled");
 
 
 // Change color of selected category to green
@@ -39,7 +39,7 @@ if (category === "Dessert") {
 
 }
 
-$(".btn-secondary").addClass("selected-green");
+$("#origindd").addClass("selected-green");
 
 var origin = document.getElementById('origin').innerHTML;
-$(".btn-secondary").text(origin);
+$("origindd").text(origin);

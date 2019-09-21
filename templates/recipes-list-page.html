@@ -3,11 +3,37 @@
 <!-- Banner that tells user what selection they have made -->
 
 <div class="row m-0 p-2 mt-3 mb-2">
-    <div class="col-12 feature-style">
-        <h2 class="m-0"><span id="category">{{category}}</span> Recipes from <span id="origin">{{origin}}</span> {% if recipes_mesg != "OK" %}
+    <div class="col-9 feature-style">
+        <h2 class="m-0"><span id="category">{{category}}</span> 
+        
+        <!-- If this template is called through keyword search, show the recipe
+        description, e.g. bread, cake, etc -->
+        
+        {% if rec_desc != "none" %}
+        <span> - {{ rec_desc }} </span> 
+        {% endif %}
+        
+        Recipes from <span id="origin">{{origin}}</span> {% if recipes_mesg != "OK" %}
             <span>{{ recipes_mesg }}</span> {% endif %}
 
         </h2>
+    </div>
+    
+    <!-- Search Box Dropdown-->
+
+    <div class="col-3">
+        <div class="search-box">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Search All Recipes
+  </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                {% for word in search_words %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_word, sel_desc=word.desc, sel_category=word.category, sel_origin='All Countries') }}">{{ word.key_word }}</a> 
+                
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 
