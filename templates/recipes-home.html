@@ -19,19 +19,17 @@
         <h2 class="m-0">Featured Recipes</h2>
     </div>
 
-<!-- Search Box Dropdown-->
+    <!-- Search Box Dropdown-->
 
     <div class="col-3">
         <div class="search-box">
-            <a class="btn btn-secondary dropdown-toggle search-btn " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="btn btn-secondary dropdown-toggle search-btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Search All Recipes
   </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {% for word in search_words %}
-                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_word, sel_desc=word.desc, sel_category=word.category, sel_origin='All Countries') }}">{{ word.key_word }}</a> 
-                
-                {% endfor %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_word, sel_desc=word.desc, sel_category=word.category, sel_origin='All Countries') }}">{{ word.key_word }}</a> {% endfor %}
             </div>
         </div>
     </div>
@@ -57,11 +55,11 @@
         <!-- Card Header -->
 
         <div class="row no-gutters card-header font-italic">
-            <div class="col-4">
-                <span><strong>{{ recipe.category }} Recipe</strong></span>
+            <div class="col-4 ">
+                <span><strong>From: {{ recipe.origin }}</strong></span>
             </div>
             <div class="col-4 text-center">
-                <span><strong>From: {{ recipe.origin }}</strong></span>
+                <span><strong>{{ recipe.category }} Recipe</strong></span>
             </div>
             <div class="col-4">
                 <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category, sel_origin=recipe.origin, sel_title=recipe.title) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
@@ -73,7 +71,7 @@
         <div class="row no-gutters p-1 card-body">
             <div class="col-6">
                 <!-- Show recipe image. Using inline style as style.css didnt seem to recognize 'recipe.image' -->
-                <div class="container m-0 p-0 recipe-border" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 200px; background-size: cover; background-position: center; alt=" Irish Soda Bread ">
+                <div class="container m-0 p-0 recipe-border" style="background-image:url({{ url_for('static', filename='images/'+recipe.image)}}); width: 100%; height: 200px; background-size: cover; background-position: center">
                 </div>
             </div>
 
@@ -102,13 +100,13 @@
         <!-- Card Header -->
 
         <div class="row no-gutters card-header font-italic ">
-
             <div class="col-4 ">
-                <span><strong>{{ recipe.category}} Recipe</strong></span>
-            </div>
-            <div class="col-4 text-center ">
                 <span><strong>From: {{ recipe.origin }}</strong></span>
             </div>
+            <div class="col-4 text-center">
+                <span><strong>{{ recipe.category}} Recipe</strong></span>
+            </div>
+
             <div class="col-4 ">
                 <a href="{{ url_for( 'get_recipe_details', sel_id=recipe._id, sel_category=recipe.category, sel_origin=recipe.origin, sel_title=recipe.title) }} " class="more-icon-pl "><i class="fas fa-ellipsis-v more-icon-style "></i></a>
             </div>

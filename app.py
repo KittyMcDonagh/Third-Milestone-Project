@@ -21,16 +21,15 @@ mongo = PyMongo(app)
 def get_recipes_home():
 
 # Create country list for countries dropdown    
-    temp_countries = mongo.db.countries.find()
+    temp_countries = mongo.db.countries.find().sort("country_name", 1)
     country_list = [country for country in temp_countries]
 
 # First get all key words to create search dropdown list, sort the key words
-
     search=mongo.db.key_words.find().sort("key_word",1)
     
     
 # Select only the recipes that are flagged to appear on the home page (one per country)
-    home_recipes=mongo.db.recipes.find({"home_feature":'on'})
+    home_recipes=mongo.db.recipes.find({"home_feature":'on'}).sort("origin",1)
     
     # Redirect to recipes home page template, return only the recipes that are flagged to be shown on the home page
     return render_template("recipes-home.html", recipes=home_recipes, search_words=search, countries = country_list, category="All", origin = "All Countries")
@@ -43,7 +42,7 @@ def get_recipes_home():
 def get_recipes(sel_category, sel_origin):
     
 # Create country list for countries dropdown    
-    temp_countries = mongo.db.countries.find()
+    temp_countries = mongo.db.countries.find().sort("country_name", 1)
     country_list = [country for country in temp_countries]
     
 # First get all key words to create search dropdown list, sort the key words
@@ -62,14 +61,14 @@ def get_recipes(sel_category, sel_origin):
         if sel_origin == "All Countries":
             try:
                 # Found the code below for sorting mongodb results (the code we were given on the course doesnt work with python/pymongo) on http://delphinus.qns.net/xwiki/bin/view/Blog/sort%20two%20fields%20in%20mongo
-                cat_origin_recipes=mongo.db.recipes.find().sort( [ ("origin_sort",1), ("category_sort",1)] );
+                cat_origin_recipes=mongo.db.recipes.find().sort( [ ("origin",1), ("category",1)] );
             except:
                 print("Error acessing the Recipes Database")
                 
         else:
 # All Categories for a specific country
             try:
-                cat_origin_recipes=mongo.db.recipes.find({"origin":sel_origin}).sort( [ ("origin_sort",1), ("category_sort",1)] )
+                cat_origin_recipes=mongo.db.recipes.find({"origin":sel_origin}).sort("category",1)
             except:
                 print("Error acessing the Recipes Database")
         
@@ -77,14 +76,14 @@ def get_recipes(sel_category, sel_origin):
 # Specific category for all countries?
         if sel_origin == "All Countries":
             try:
-                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category}).sort( [ ("origin_sort",1), ("category_sort",1)] )
+                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category}).sort("origin",1)
             except:
                 print("Error acessing the Recipes Database")
                 
         else:
 # Specific category for a specific country
             try:
-                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category, "origin":sel_origin}).sort( [ ("origin_sort",1), ("category_sort",1)] )
+                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category, "origin":sel_origin})
             except:
                 print("Error acessing the Recipes Database")
     
@@ -106,7 +105,7 @@ def get_recipes(sel_category, sel_origin):
 def search_recipes(sel_keyword, sel_desc, sel_category, sel_origin):
     
 # Create country list for countries dropdown    
-    temp_countries = mongo.db.countries.find()
+    temp_countries = mongo.db.countries.find().sort("country_name", 1)
     country_list = [country for country in temp_countries]
     
 # First get all key words to create search dropdown list, sort the key words
@@ -117,7 +116,7 @@ def search_recipes(sel_keyword, sel_desc, sel_category, sel_origin):
 
 # Search for all recipes with the selected key words
     try:
-        cat_origin_recipes=mongo.db.recipes.find({"key_word":sel_keyword}).sort( [ ("origin_sort",1), ("category_sort",1)] )
+        cat_origin_recipes=mongo.db.recipes.find({"key_word":sel_keyword}).sort( [ ("origin",1), ("category",1)] )
     except:
         print("Error acessing the Recipes Database")
         
@@ -142,7 +141,7 @@ def search_recipes(sel_keyword, sel_desc, sel_category, sel_origin):
 def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
 
 # Create country list for countries dropdown    
-    temp_countries = mongo.db.countries.find()
+    temp_countries = mongo.db.countries.find().sort("country_name", 1)
     country_list = [country for country in temp_countries]
 
 # First get all key words to create search dropdown list, sort the key words
@@ -167,7 +166,7 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
 def contact():
 
 # Create country list for countries dropdown    
-    temp_countries = mongo.db.countries.find()
+    temp_countries = mongo.db.countries.find().sort("country_name", 1)
     country_list = [country for country in temp_countries]
     
 # Create category list for categories dropdown    

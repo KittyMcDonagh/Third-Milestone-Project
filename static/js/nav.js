@@ -57,20 +57,3 @@ if (category != "Send us a Recipe") {
     $("#origindd").text(origin);
 }
 
-// Auto fill 'origin_sort' field depending on country selection
-
-$("#sel_origin").click(function() {
-    
-    var country = document.getElementById('sel_origin').innerHTML;
-    
-    if (country == "Ireland") {
-        $("#origin_sort").text("0");
-    }
-
-});
-
-
-
-
-
-

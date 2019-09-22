@@ -15,8 +15,8 @@
         <div class="row">
             <div class="input-field col-10">
 
-                <select id="origin" name="origin" class="form-control" required>
-                    <option id="sel_origin" value="" disabled selected>Choose Country</option>
+                <select id="sel_origin" name="origin" class="form-control" required>
+                    <option  value="" disabled selected>Choose Country</option>
                   
                     {% for country in countries %}
                     
@@ -28,10 +28,10 @@
                 </select>
             </div>
 
-            <div class="input-field col-2">
+            <div  class="input-field col-2">
 
                 <!-- The value in 'value' field is what will be submitted to the form -->
-                <input id="origin_sort" name="origin_sort" type="text" value="0" class="form-control invisible">
+                <input id="origin_seq" name="origin_sort" value="0" type="text" class="form-control">
 
             </div>
         </div>
