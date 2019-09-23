@@ -3,7 +3,7 @@
 // Change home icon from green to black 
 $("#home").addClass("home-icon-deselected");
 
-// Leave the country dropdown disabled if we're on the Contact Page
+// Leave the country dropdown disabled if we're on the Send Recipe Page
 
 var category = document.getElementById('category').innerHTML;
 
@@ -45,10 +45,10 @@ if (category === "Dessert") {
 
 if (category === "Send us a Recipe") {
 
-    $("#contact").addClass("selected-green");
+    $("#send-recipe").addClass("selected-green");
 }
 
-// Leave the country dropdown disabled if we're on the Contact Page
+// Leave the country dropdown disabled if we're on the Send Recipe Page
 if (category != "Send us a Recipe") {
 
     $("#origindd").addClass("selected-green");

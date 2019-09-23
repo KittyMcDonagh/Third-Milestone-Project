@@ -1,11 +1,13 @@
 import os
 
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, flash, url_for
 
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
+
+app.secret_key = "kitty1914"
 
 # Mongo Database for The Global Irish Cafe
 MONGODB_URI = os.getenv("MONGO_URI")
@@ -195,7 +197,7 @@ def insert_recipe():
               "category" : request.form['category'].lower(),
               "title" : request.form['title'].lower(),
               "intro" : request.form['intro'].lower(),
-              "owner" : "",
+              "owner" : request.form['owner'].lower(),
               "prep_time" : request.form['prep_time'],
               "serves" : request.form['serves'],
               "image" : request.form['image-name'].lower(),
@@ -208,6 +210,9 @@ def insert_recipe():
     #Insert the new recipe into the database
     recipes.insert_one(recipe)
     
+    
+    flash("Thank You. We have received your recipe.")
+    
     return redirect(url_for('send_recipe'))
 
 
@@ -217,3 +222,4 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),
     debug=True)
+   
