@@ -13,7 +13,7 @@
     <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-12 form-style">
 
         <div class="row">
-            <div class="input-field col-10">
+            <div class="input-field col-12">
 
                 <select id="sel_origin" name="origin" class="form-control" required>
                     <option  value="" disabled selected>Choose Country</option>
@@ -28,16 +28,11 @@
                 </select>
             </div>
 
-            <div  class="input-field col-2">
-
-                <!-- The value in 'value' field is what will be submitted to the form -->
-                <input id="origin_seq" name="origin_sort" value="0" type="text" class="form-control">
-
-            </div>
+            
         </div>
 
         <div class="row">
-            <div class="input-field col-10">
+            <div class="input-field col-12">
 
                 <select id="category" name="category" class="form-control" required>
                     <option value="" disabled selected>Choose Category</option>
@@ -52,9 +47,7 @@
                 </select>
             </div>
 
-            <div class="input-field col-2">
-                <input id="category_sort" name="category_sort" value="0" type="text" class="form-control invisible">
-            </div>
+            
         </div>
 
 
@@ -80,7 +73,7 @@
         <div class="row">
             <div class="input-field col-12">
                 <!-- Use textarea, rather than <input type="text> for HTML5 -->
-                <textarea name="time" id="time" class="form-control" placeholder="Preparation Time [hh:mm]"></textarea>
+                <textarea name="prep_time" id="prep_time" class="form-control" placeholder="Preparation Time [hh:mm]"></textarea>
             </div>
         </div>
 
@@ -94,7 +87,7 @@
         <div class="row">
             <div class="input-field col-12">
                 <!-- Use textarea, rather than <input type="text> for HTML5 -->
-                <textarea name="image" id="image" class="form-control" placeholder="Image Name"></textarea>
+                <textarea name="image-name" id="image-name" class="form-control" placeholder="Image Name (name.jpg / name.png) "></textarea>
             </div>
         </div>
 

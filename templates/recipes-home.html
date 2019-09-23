@@ -29,7 +29,7 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {% for word in search_words %}
-                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_word, sel_desc=word.desc, sel_category=word.category, sel_origin='All Countries') }}">{{ word.key_word }}</a> {% endfor %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_desc=word.key_words, sel_category=word.category, sel_origin='All Countries') }}">{{ word.key_words }}</a> {% endfor %}
             </div>
         </div>
     </div>
@@ -56,13 +56,14 @@
 
         <div class="row no-gutters card-header font-italic">
             <div class="col-4 ">
-                <span><strong>From: {{ recipe.origin }}</strong></span>
+                <!-- Use .title() (found on https://stackoverflow.com/questions/1549641/how-to-capitalize-the-first-letter-of-each-word-in-a-string-python) to capitalize the first letter of each word, where the country name is more than one word - e.g. New Zealand -->
+                <span><strong>From: {{ recipe.origin.title() }}</strong></span>
             </div>
             <div class="col-4 text-center">
-                <span><strong>{{ recipe.category }} Recipe</strong></span>
+                <span><strong>{{ recipe.category.capitalize() }} Recipe</strong></span>
             </div>
             <div class="col-4">
-                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category, sel_origin=recipe.origin, sel_title=recipe.title) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
 
             </div>
         </div>
@@ -76,7 +77,7 @@
             </div>
 
             <div class="col-6 p-3 ">
-                <h5 class="intro-title-style ">{{recipe.title}}</h5>
+                <h5 class="intro-title-style ">{{recipe.title.title()}}</h5>
                 <p class="card-text pl-2 pr-2 ">{{recipe.intro}}</p>
             </div>
         </div>
@@ -85,7 +86,7 @@
         <!-- Card footer -->
 
         <div class="card-footer ">
-            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }} " class="card-link-style "><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
+            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 
@@ -101,14 +102,14 @@
 
         <div class="row no-gutters card-header font-italic ">
             <div class="col-4 ">
-                <span><strong>From: {{ recipe.origin }}</strong></span>
+                <span><strong>From: {{ recipe.origin.title() }}</strong></span>
             </div>
             <div class="col-4 text-center">
-                <span><strong>{{ recipe.category}} Recipe</strong></span>
+                <span><strong>{{ recipe.category.capitalize()}} Recipe</strong></span>
             </div>
 
             <div class="col-4 ">
-                <a href="{{ url_for( 'get_recipe_details', sel_id=recipe._id, sel_category=recipe.category, sel_origin=recipe.origin, sel_title=recipe.title) }} " class="more-icon-pl "><i class="fas fa-ellipsis-v more-icon-style "></i></a>
+                <a href="{{ url_for( 'get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title) }} " class="more-icon-pl "><i class="fas fa-ellipsis-v more-icon-style "></i></a>
             </div>
         </div>
 
@@ -120,7 +121,7 @@
             </div>
 
             <div class="col-6 p-3 ">
-                <h5 class="intro-title-style ">{{recipe.title}}</h5>
+                <h5 class="intro-title-style ">{{recipe.title.title()}}</h5>
                 <p class="card-text pl-2 pr-2 ">{{recipe.intro}}</p>
             </div>
         </div>
@@ -128,7 +129,7 @@
         <!-- Card Footer -->
 
         <div class="card-footer ">
-            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }} " class="card-link-style "><strong><em>See all {{ recipe.category }} recipes from {{ recipe.origin }}</em></strong></a>
+            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 

@@ -25,14 +25,14 @@ def get_recipes_home():
     country_list = [country for country in temp_countries]
 
 # First get all key words to create search dropdown list, sort the key words
-    search=mongo.db.key_words.find().sort("key_word",1)
+    search=mongo.db.key_words.find().sort("key_words",1)
     
     
 # Select only the recipes that are flagged to appear on the home page (one per country)
     home_recipes=mongo.db.recipes.find({"home_feature":'on'}).sort("origin",1)
     
     # Redirect to recipes home page template, return only the recipes that are flagged to be shown on the home page
-    return render_template("recipes-home.html", recipes=home_recipes, search_words=search, countries = country_list, category="All", origin = "All Countries")
+    return render_template("recipes-home.html", recipes=home_recipes, search_words=search, countries = country_list, category="all", origin = "All Countries")
 
 
     
@@ -47,11 +47,11 @@ def get_recipes(sel_category, sel_origin):
     
 # First get all key words to create search dropdown list, sort the key words
 
-    search=mongo.db.key_words.find().sort("key_word",1)
+    search=mongo.db.key_words.find().sort("key_words",1)
 
 # Set recipe description to "none" - to allow recipes-list to distinguish between
 # search by category / country, and searh by keyword
-    sel_desc="none"
+    sel_desc="None"
 
 
 # All Categories?
@@ -68,7 +68,7 @@ def get_recipes(sel_category, sel_origin):
         else:
 # All Categories for a specific country
             try:
-                cat_origin_recipes=mongo.db.recipes.find({"origin":sel_origin}).sort("category",1)
+                cat_origin_recipes=mongo.db.recipes.find({"origin":sel_origin.lower()}).sort("category",1)
             except:
                 print("Error acessing the Recipes Database")
         
@@ -76,14 +76,14 @@ def get_recipes(sel_category, sel_origin):
 # Specific category for all countries?
         if sel_origin == "All Countries":
             try:
-                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category}).sort("origin",1)
+                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category.lower()}).sort("origin",1)
             except:
                 print("Error acessing the Recipes Database")
                 
         else:
 # Specific category for a specific country
             try:
-                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category, "origin":sel_origin})
+                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category.lower(), "origin":sel_origin.lower()})
             except:
                 print("Error acessing the Recipes Database")
     
@@ -95,7 +95,7 @@ def get_recipes(sel_category, sel_origin):
         recipes_found=" - None Found"
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, search_words=search, category=sel_category, countries=country_list, origin=sel_origin, rec_desc=sel_desc, recipes_mesg=recipes_found)
+    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, search_words=search, category=sel_category, countries=country_list, origin=sel_origin, rec_desc=sel_desc.capitalize(), recipes_mesg=recipes_found)
 
 
     
@@ -110,13 +110,13 @@ def search_recipes(sel_keyword, sel_desc, sel_category, sel_origin):
     
 # First get all key words to create search dropdown list, sort the key words
 
-    search=mongo.db.key_words.find().sort("key_word",1)
+    search=mongo.db.key_words.find().sort("key_words",1)
 
 
 
 # Search for all recipes with the selected key words
     try:
-        cat_origin_recipes=mongo.db.recipes.find({"key_word":sel_keyword}).sort( [ ("origin",1), ("category",1)] )
+        cat_origin_recipes=mongo.db.recipes.find({"key_words":sel_keyword}).sort( [ ("origin",1), ("category",1)] )
     except:
         print("Error acessing the Recipes Database")
         
@@ -130,7 +130,7 @@ def search_recipes(sel_keyword, sel_desc, sel_category, sel_origin):
         recipes_found=" - None Found"
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, search_words=search, category=sel_category, countries=country_list, origin=sel_origin, rec_desc=sel_desc, recipes_mesg=recipes_found)
+    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, search_words=search, category=sel_category, countries=country_list, origin=sel_origin, rec_desc=sel_desc.capitalize(), recipes_mesg=recipes_found)
     
 
 
@@ -146,7 +146,7 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
 
 # First get all key words to create search dropdown list, sort the key words
 
-    search=mongo.db.key_words.find().sort("key_word",1)
+    search=mongo.db.key_words.find().sort("key_words",1)
     
 # Note: I was using "mongo.db.recipes.find_one" here, but it wasnt finding the recipe for me
     
@@ -181,41 +181,37 @@ def contact():
     return render_template("contact.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin)
 
 
-    
 # Insert the task the recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
+    
     # Access the recipes collection
     recipes = mongo.db.recipes
-    #Insert the new recipe into the database
-    recipes.insert_one(request.form.to_dict())
     
+    ingredients_array = request.form['ingredients'].splitlines()
+    method_array = request.form['method'].splitlines()
+    
+    recipe = {"origin" : request.form['origin'].lower(), 
+              "category" : request.form['category'].lower(),
+              "title" : request.form['title'].lower(),
+              "intro" : request.form['intro'].lower(),
+              "owner" : "",
+              "prep_time" : request.form['prep_time'],
+              "serves" : request.form['serves'],
+              "image" : request.form['image-name'].lower(),
+              "ingredients" : ingredients_array,
+              "method" : method_array,
+              "key_words": "new",
+              "home_feature" : "",
+              "status": "new"
+    }
+    #Insert the new recipe into the database
+    recipes.insert_one(recipe)
     
     return redirect(url_for('contact'))
-    
-    
-# ========================================Start
-@app.route('/update_task/<task_id>', methods=['POST'])
-def update_task(task_id):
-     # Access the tasks collection
-    tasks = mongo.db.kitty_tasks
-    tasks.update({"_id": ObjectId(task_id)},
-    {
-        'task_name': request.form.get('task_name'),
-        'category_name': request.form.get('category_name'),
-        'task_description': request.form.get('task_description'),
-        'due_date': request.form.get('due_date'),
-        'is_urgent': request.form.get('is_urgent')
-        
-    })
-    return redirect(url_for('get_tasks'))
 
-
-
-# =========================================End
 
     
-
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

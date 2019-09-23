@@ -28,10 +28,11 @@
 
         <div class="row no-gutters card-header font-italic">
             <div class="col-6 ">
-                <span><strong>From: {{ recipe.origin }}</strong></span>
+                 <!-- Use .title() (found on https://stackoverflow.com/questions/1549641/how-to-capitalize-the-first-letter-of-each-word-in-a-string-python) to capitalize the first letter of each word, where the country name is more than one word - e.g. New Zealand -->
+                <span><strong>From: {{ recipe.origin.title() }}</strong></span>
             </div>
             <div class="col-6">
-                <span><strong>{{ recipe.category}} Recipe</strong></span>
+                <span><strong>{{ recipe.category.capitalize()}} Recipe</strong></span>
             </div>
 
 
@@ -48,14 +49,14 @@
             <div class="col-6 p-3">
                 <div class="row no-gutters">
                     <div class="col-12">
-                        <h5 class="intro-title-style">{{recipe.title}}</h5>
+                        <h5 class="intro-title-style">{{recipe.title.title()}}</h5>
                         <p class="card-text pl-2 pr-2">{{recipe.intro}}</p>
                     </div>
                 </div>
                 <div class="row no-gutters mt-5">
                     <div class="col-12">
                         <hr class="mb-5">
-                        <p>Time: {{ recipe.time }}</p>
+                        <p>Time: {{ recipe.prep_time }}</p>
                         <p>Serves: {{ recipe.serves }}</p>
                     </div>
                 </div>
