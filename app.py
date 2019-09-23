@@ -159,11 +159,11 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
     return render_template("recipes-details.html", recipes=sel_recipe, search_words=search, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
 
 
-# CONTACT US - Send us a Recipe
+# SEND RECIPE
 
 
-@app.route('/contact')
-def contact():
+@app.route('/send_recipe')
+def send_recipe():
 
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find().sort("country_name", 1)
@@ -177,8 +177,8 @@ def contact():
     sel_origin="All Countries"
 
 
-# Redirect to contact template
-    return render_template("contact.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin)
+# Redirect to send_recipe template
+    return render_template("send-recipe.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin)
 
 
 # Insert the task the recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'
@@ -208,7 +208,7 @@ def insert_recipe():
     #Insert the new recipe into the database
     recipes.insert_one(recipe)
     
-    return redirect(url_for('contact'))
+    return redirect(url_for('send_recipe'))
 
 
     
