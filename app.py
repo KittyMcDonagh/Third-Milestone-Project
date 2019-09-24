@@ -83,7 +83,7 @@ def get_recipes(sel_category, sel_origin, page_nr):
             nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
             
             # Create an array of page numbers (page_list)
-            page_list = create_page_list(nr_of_pages)
+            page_list = create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page)
     
             try:
                 # Found the code below for sorting mongodb results (the code we were given on the course doesnt work with python/pymongo) on http://delphinus.qns.net/xwiki/bin/view/Blog/sort%20two%20fields%20in%20mongo
@@ -101,7 +101,7 @@ def get_recipes(sel_category, sel_origin, page_nr):
             nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
             
             # Create an array of page numbers (page_list)
-            page_list = create_page_list(nr_of_pages)
+            page_list = create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page)
     
             
             try:
@@ -119,7 +119,7 @@ def get_recipes(sel_category, sel_origin, page_nr):
         nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
             
         # Create an array of page numbers (page_list)
-        page_list = create_page_list(nr_of_pages)
+        page_list = create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page)
     
             
         if sel_origin == "All Countries":
@@ -138,7 +138,7 @@ def get_recipes(sel_category, sel_origin, page_nr):
             nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
             
             # Create an array of page numbers (page_list)
-            page_list = create_page_list(nr_of_pages)
+            page_list = create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page)
     
         
             try:
@@ -302,15 +302,17 @@ def number_of_pages(nr_of_recipes, nr_of_recipes_per_page):
     
     
 # For pagination - Create a list of the page numbers 
-def create_page_list(nr_of_pages):
+def create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page):
     
     page_list = []
     
     count = 1
     
-    while count <= nr_of_pages:
-        page_list.append(count)
-        count +=1
+    if nr_of_recipes > nr_of_recipes_per_page:
+        
+        while count <= nr_of_pages:
+            page_list.append(count)
+            count +=1
         
     return page_list
     

@@ -47,7 +47,7 @@
     <div class="col-3">
         <div class="search-box">
             <a class="btn btn-secondary dropdown-toggle search-btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Search All Recipes
+    Search By Keyword
   </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -178,12 +178,12 @@
             <li id="prev" class="page-item">
                 <!-- Output the page number, but dont display it. js  will use it to disable the 'prev' button-->
                 <span id="pg-nr" class="d-none">{{ page_nr }}</span>
-                <a id="prev-link" class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin, page_nr=page_nr-1) }}" aria-label="Previous">
+                <a id="prev-link" class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category=category, sel_origin=origin, page_nr=page_nr-1) }}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
            
            {% for number in rec_pages %}
-                <li class="page-item  "><a class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin, page_nr=number) }}">{{ number }}</a></li>
+                <li class="page-item  "><a class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category=category, sel_origin=origin, page_nr=number) }}">{{ number }}</a></li>
                 
             
             {% endfor %}
@@ -191,7 +191,7 @@
             <li id="next" class="page-item ">
                 <!-- Output the total page numbers, but dont display it. js  will use it to disable the 'prev' button-->
                 <span id="tot-pg" class="d-none">{{ total_pages }}</span>
-                <a id="next-link" class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin, page_nr=page_nr+1) }}" aria-label="Next">
+                <a id="next-link" class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category=category, sel_origin=origin, page_nr=page_nr+1) }}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
             </li>
