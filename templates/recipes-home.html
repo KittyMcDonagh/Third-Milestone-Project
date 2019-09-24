@@ -20,9 +20,9 @@
         
         <!-- If no recipes were found for this keyword, display a user message -->
         
-                {% if recipes_mesg != "OK" %}
-                    <span>{{ recipes_mesg }}</span>
-                {% endif %}
+            {% if rec_count == 0 %}
+                <span>- Not Found</span> 
+            {% endif %}
                 
         </h2>
     </div>
@@ -94,7 +94,7 @@
         <!-- Card footer -->
 
         <div class="card-footer ">
-            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr=1) }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 
@@ -137,7 +137,7 @@
         <!-- Card Footer -->
 
         <div class="card-footer ">
-            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr=1) }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 

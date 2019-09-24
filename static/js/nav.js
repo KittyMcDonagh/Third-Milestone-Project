@@ -17,6 +17,47 @@ if (category != "Send us a Recipe") {
 }
 
 
+// For pagination
+// Get the current page number
+var this_page_nr = document.getElementById('pg-nr').innerHTML;
+
+
+// Disable / Enable 'previous' icon, depending on page number
+if (this_page_nr == 1) {
+    $("#prev").addClass("disabled");
+    $("#prev-link").addClass("prev-next-disabled");
+
+}
+else {
+    $("#prev").removeClass("disabled");
+    $("#prev-link").removeClass("prev-next-disabled");
+
+}
+
+// Get the total numer of pages required for the recipes
+var total_pages = document.getElementById('tot-pg').innerHTML;
+
+// Disable / Enable 'next' icon, depending on page number
+if (this_page_nr < total_pages) {
+    $("#next").removeClass("disabled");
+    $("#next-link").removeClass("prev-next-disabled");
+
+}
+else {
+    $("#next").addClass("disabled");
+    $("#next-link").addClass("prev-next-disabled");
+
+}
+
+
+
+
+
+
+
+
+
+
 // Change color of selected category to green
 
 if (category === "All") {

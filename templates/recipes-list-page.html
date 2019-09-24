@@ -7,39 +7,38 @@
 
         {% if rec_kw_search == 'Y' %}
         <!-- If this template is called through keyword search, show the keyword, e.g. bread, cake, etc -->
-        
-            <h2 class="m-0">
-                <span>{{ rec_keyword }} Recipes</span>
-                <!-- Include Category and Origin, but don't display them. They need to be picked up by nav.js -->
-                <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
-                <!-- Category is not applicable when in keyword search - dont highlight category in navbar -->
-                <span id="category" class="d-none">na</span>
-                <span id="origin" class="d-none">{{origin}}</span> 
-            
-            
-            <!-- If no recipes were found for this keyword, display a user message -->
-        
-                {% if recipes_mesg != "OK" %}
-                    <span>{{ recipes_mesg }}</span>
-                {% endif %}
-            </h2>
-        
-        {% else %}
-            <!-- Template called on search by category and/or origin -->
-            
-            <h2 class="m-0">
-                <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
-                <span id="category">{{category}}</span>
-                <span>Recipes from</span>
-                <span id="origin">{{origin}}</span> 
-            
-            <!-- If no recipes were found for this category / origin, display a user message -->
-            
-                {% if recipes_mesg != "OK" %}
-                    <span>{{ recipes_mesg }}</span> 
-                {% endif %}
 
-            </h2>
+        <h2 class="m-0">
+            <span>{{ rec_keyword }} Recipes</span>
+            <!-- Include Category and Origin, but don't display them. They need to be picked up by nav.js -->
+            <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
+            <!-- Category is not applicable when in keyword search - dont highlight category in navbar -->
+            <span id="category" class="d-none">na</span>
+            <span id="origin" class="d-none">{{origin}}</span>
+
+
+            <!-- If no recipes were found for this keyword, display a user message -->
+
+            {% if rec_count == 0 %}
+            <span>- Not Found</span> 
+            {% endif %}
+        </h2>
+
+        {% else %}
+        <!-- Template called on search by category and/or origin -->
+
+        <h2 class="m-0">
+            <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
+            <span id="category">{{category}}</span>
+            <span>Recipes from</span>
+            <span id="origin">{{origin}}</span>
+
+            <!-- If no recipes were found for this category / origin, display a user message -->
+
+            {% if recipes_mesg != "OK" %}
+            <span>{{ recipes_mesg }}</span> {% endif %}
+
+        </h2>
         {% endif %}
     </div>
 
@@ -53,8 +52,7 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {% for word in search_words %}
-                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_category='All', sel_origin=origin) }}">{{ word.key_words }}</a> 
-                {% endfor %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_category='All', sel_origin=origin) }}">{{ word.key_words }}</a> {% endfor %}
             </div>
         </div>
     </div>
@@ -67,6 +65,7 @@
 {% for recipe in recipes %}
 
 <!-- Every odd number recipe gets output as the first recipe in the row -->
+
 
 {% if loop.index % 2 != 0 %}
 
@@ -83,7 +82,7 @@
 
         <div class="row no-gutters card-header font-italic">
             <div class="col-4 ">
-                 <!-- Use .title() (found on https://stackoverflow.com/questions/1549641/how-to-capitalize-the-first-letter-of-each-word-in-a-string-python) to capitalize the first letter of each word, where the country name is more than one word - e.g. New Zealand -->
+                <!-- Use .title() (found on https://stackoverflow.com/questions/1549641/how-to-capitalize-the-first-letter-of-each-word-in-a-string-python) to capitalize the first letter of each word, where the country name is more than one word - e.g. New Zealand -->
                 <span><strong>From: {{ recipe.origin.title() }}</strong></span>
             </div>
             <div class="col-4 text-center">
@@ -114,7 +113,7 @@
         <!-- Card footer -->
 
         <div class="card-footer">
-            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }}" class="card-link-style"><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr=1) }}" class="card-link-style"><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 
@@ -158,14 +157,49 @@
         <!-- Card Footer -->
 
         <div class="card-footer">
-            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin) }}" class="card-link-style"><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr=1) }}" class="card-link-style"><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 
 </div>
-
-
 {% endif %} {% endfor %}
+
+<!-- If there's an odd number of recipies, the last row wont have closed, so add a </div> if required -->
+{% if rec_count  % 2 != 0 %}
+</div>
+{% endif %}
+
+
+<!-- Pagination Section -->
+
+{% if rec_pages != [] %}
+    <nav aria-label="Page navigation" >
+        <ul class="pagination justify-content-center">
+            <li id="prev" class="page-item">
+                <!-- Output the page number, but dont display it. js  will use it to disable the 'prev' button-->
+                <span id="pg-nr" class="d-none">{{ page_nr }}</span>
+                <a id="prev-link" class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin, page_nr=page_nr-1) }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+           
+           {% for number in rec_pages %}
+                <li class="page-item  "><a class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin, page_nr=number) }}">{{ number }}</a></li>
+                
+            
+            {% endfor %}
+            
+            <li id="next" class="page-item ">
+                <!-- Output the total page numbers, but dont display it. js  will use it to disable the 'prev' button-->
+                <span id="tot-pg" class="d-none">{{ total_pages }}</span>
+                <a id="next-link" class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin, page_nr=page_nr+1) }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+            </li>
+        </ul>
+    </nav>
+    
+{% endif %}
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 

@@ -26,7 +26,7 @@ main {
 
 }
 
-/* css used in base.html                                                            */
+/* css used in base.html                                                      */
 
 /* Navbar is fixed with height of 80px, so need to move containers etc down by 80px*/
 
@@ -158,7 +158,7 @@ main {
 
 
 
-/* css used on recipes home page                                             */
+/* css used on recipes-home & recipes-list page                              */
 
 /* Banner background is a shade of green */
 .feature-style {
@@ -203,7 +203,8 @@ main {
 
 }
 
-/* Bootstrap was removing the left border and not rounding all corners, so created this to fix it*/
+/* Bootstrap was removing the left border and not rounding all corners, 
+/* so created this to fix it*/
 
 .card-border {
      border: 1px solid rgba(0, 0, 0, 0.125)!important;
@@ -268,13 +269,52 @@ main {
     }
 }
 
+/* css used for search box on home and recipes-list pages                     */
 
 
-.bg-img {
-    background-image: url("../images/irish_kitchen.jpg");
-    background-position: center;
+/* Search box dropdown stying */
+
+.search-box {
+    margin-top:7px;
+    background-color: #fff;
+    margin-left: 0px;
 }
 
+
+.search-box a:hover {
+    text-decoration: none;
+    background-color: #76c180!important;
+    border-color: #76c180!important;
+
+}
+
+/* Set search button style */
+.search-btn {
+    border: solid #edf7ef;
+    color: #3b3b3b;
+    background-color: #fff
+}
+
+
+/* css for styling the pagination nav */
+
+.nav-pag {
+    
+    color: #3b3b3b;
+}
+
+.nav-pag:hover {
+    background-color: #76c180;
+    color: #fff;
+}
+
+.disabled {
+    background-color: #d9d9d9;
+}
+
+.prev-next-disabled {
+    background-color: #f2f2f2!important;
+}
 
 
 /* css used in footer                                                          */
@@ -381,31 +421,7 @@ main {
 
 
 
-/* css used on all pages                                                      */
 
-
-/* Search box dropdown stying */
-
-.search-box {
-    margin-top:7px;
-    background-color: #fff;
-    margin-left: 0px;
-}
-
-
-.search-box a:hover {
-    text-decoration: none;
-    background-color: #76c180!important;
-    border-color: #76c180!important;
-
-}
-
-/* Set search button style */
-.search-btn {
-    border: solid #edf7ef;
-    color: #3b3b3b;
-    background-color: #fff
-}
 
 
 
@@ -420,4 +436,5 @@ main {
 .selected-green {
     color: #76c180!important;
 }
+
 

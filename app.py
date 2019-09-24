@@ -38,24 +38,26 @@ def get_recipes_home():
     
     # Check that records were found
 
-    recipes_found="OK"
-    
-    if sel_recipes.count() == 0:
-        recipes_found=" - None Found"
+    recipes_count = sel_recipes.count()
     
     # Redirect to recipes home page template, return only the recipes that are flagged to be shown on the home page
-    return render_template("recipes-home.html", recipes=sel_recipes, search_words=key_word_list, countries = country_list, category="all", origin = "All Countries", recipes_mesg=recipes_found)
+    return render_template("recipes-home.html", recipes=sel_recipes, search_words=key_word_list, countries = country_list, category="all", origin = "All Countries", rec_count=recipes_count)
     
 # =================================
 # FILTER BY CATEGORY AND/OR ORIGIN - Display all recipes for selected category and origin showing image and introductory text only
 #==================================
-@app.route('/get_recipes/<sel_category>/<sel_origin>')
-def get_recipes(sel_category, sel_origin):
+@app.route('/get_recipes/<sel_category>/<sel_origin>/<page_nr>')
+def get_recipes(sel_category, sel_origin, page_nr):
     
     # Set search_kw_flag = 'N'. It lets recipes_list.html know whether a search by keyword is being done or not 
 # and it will show the relevant details accordingly
 
     search_kw_flag = "N"
+    
+# For pagination - set the number of recipes to show per list page
+    nr_of_recipes_per_page = 6
+
+
     
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find().sort("country_name", 1)
@@ -66,49 +68,91 @@ def get_recipes(sel_category, sel_origin):
     search=mongo.db.key_words.find().sort("key_words",1)
     key_word_list = [word for word in search]
     
+    this_page_nr = int(page_nr)
+
 # Search by All Categories?
     if sel_category == "All":
         
     # All Categories, All Countries?
         if sel_origin == "All Countries":
+            
+            # For pagination purposes get the number of recipes
+            nr_of_recipes = mongo.db.recipes.count()
+            
+            # Get number of pages required for the number of recipes
+            nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
+            
+            # Create an array of page numbers (page_list)
+            page_list = create_page_list(nr_of_pages)
+    
             try:
                 # Found the code below for sorting mongodb results (the code we were given on the course doesnt work with python/pymongo) on http://delphinus.qns.net/xwiki/bin/view/Blog/sort%20two%20fields%20in%20mongo
-                sel_recipes=mongo.db.recipes.find().sort( [ ("origin",1), ("category",1)] );
+                sel_recipes=mongo.db.recipes.find().skip((this_page_nr -1) * nr_of_recipes_per_page).limit(nr_of_recipes_per_page).sort( [ ("origin",1), ("category",1)] );
             except:
                 print("Error acessing the Recipes Database")
                 
         else:
             # All Categories for a specific country
+            
+            # For pagination purposes get the nnumber of recipes
+            nr_of_recipes = mongo.db.recipes.count({"origin":sel_origin.lower()})
+            
+            # Get number of pages required for the number of recipes
+            nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
+            
+            # Create an array of page numbers (page_list)
+            page_list = create_page_list(nr_of_pages)
+    
+            
             try:
-                sel_recipes=mongo.db.recipes.find({"origin":sel_origin.lower()}).sort("category",1)
+                sel_recipes=mongo.db.recipes.find({"origin":sel_origin.lower()}).skip((this_page_nr -1) * nr_of_recipes_per_page).limit(nr_of_recipes_per_page).sort("category",1)
             except:
                 print("Error acessing the Recipes Database")
         
     else:
         # Specific category for all countries?
+        
+        # For pagination purposes get the nnumber of recipes
+        nr_of_recipes = mongo.db.recipes.count({"category":sel_category.lower()})
+        
+        # Get number of pages required for the number of recipes
+        nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
+            
+        # Create an array of page numbers (page_list)
+        page_list = create_page_list(nr_of_pages)
+    
+            
         if sel_origin == "All Countries":
             try:
-                sel_recipes=mongo.db.recipes.find({"category":sel_category.lower()}).sort("origin",1)
+                sel_recipes=mongo.db.recipes.find({"category":sel_category.lower()}).skip((this_page_nr -1) * nr_of_recipes_per_page).limit(nr_of_recipes_per_page).sort("origin",1)
             except:
                 print("Error acessing the Recipes Database")
                 
         else:
         # Specific category for a specific country
+        
+            # For pagination purposes get the nnumber of recipes
+            nr_of_recipes = mongo.db.recipes.count({"category":sel_category.lower(), "origin":sel_origin.lower()})
+            
+            # Get number of pages required for the number of recipes
+            nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
+            
+            # Create an array of page numbers (page_list)
+            page_list = create_page_list(nr_of_pages)
+    
+        
             try:
-                sel_recipes=mongo.db.recipes.find({"category":sel_category.lower(), "origin":sel_origin.lower()})
+                sel_recipes=mongo.db.recipes.find({"category":sel_category.lower(), "origin":sel_origin.lower()}).skip((this_page_nr -1) * nr_of_recipes_per_page).limit(nr_of_recipes_per_page)
             except:
                 print("Error acessing the Recipes Database")
 
     
 # Check that records were found
 
-    recipes_found="OK"
-    
-    if sel_recipes.count() == 0:
-        recipes_found=" - None Found"
+    recipes_count = sel_recipes.count()
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, recipes_mesg=recipes_found)
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_count=recipes_count, rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages)
 
 
 # ================================
@@ -152,13 +196,10 @@ def search_recipes(sel_keyword, sel_category, sel_origin):
     
 # Check that records were found
 
-    recipes_found="OK"
-    
-    if sel_recipes.count() == 0:
-        recipes_found=" - None Found"
+    recipes_count = sel_recipes.count()
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_keyword=sel_keyword.title(), recipes_mesg=recipes_found)
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_keyword=sel_keyword.title(), rec_count=recipes_count)
     
 
 
@@ -237,13 +278,44 @@ def insert_recipe():
     #Insert the new recipe into the database
     recipes.insert_one(recipe)
     
+    # Send a message to the user thanking them for sending their recipe
     
     flash("Thank You. We have received your recipe.")
     
     return redirect(url_for('send_recipe'))
-
-
     
+
+
+# For pagination - Get the number of pages required
+def number_of_pages(nr_of_recipes, nr_of_recipes_per_page):
+    
+    # Initialise number of pages
+    nr_of_pages = 1
+    
+    if nr_of_recipes > nr_of_recipes_per_page:
+        nr_of_pages = nr_of_recipes / nr_of_recipes_per_page
+        
+        if nr_of_recipes % nr_of_recipes_per_page != 0:
+            nr_of_pages +=1
+    
+    return int(nr_of_pages)
+    
+    
+# For pagination - Create a list of the page numbers 
+def create_page_list(nr_of_pages):
+    
+    page_list = []
+    
+    count = 1
+    
+    while count <= nr_of_pages:
+        page_list.append(count)
+        count +=1
+        
+    return page_list
+    
+
+        
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
