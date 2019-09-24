@@ -8,9 +8,12 @@ $("#home").addClass("home-icon-deselected");
 var category = document.getElementById('category').innerHTML;
 
 if (category != "Send us a Recipe") {
-    // Enable Countries dropdown
-    $("#origindd").removeClass("disabled");
-    $("#origindd").addClass("enabled");
+    // If in search keyword mode, dont enable the countries dropdown
+    if (category != "na") {
+        // Enable Countries dropdown
+        $("#origindd").removeClass("disabled");
+        $("#origindd").addClass("enabled");
+    }
 }
 
 
@@ -48,12 +51,17 @@ if (category === "Send us a Recipe") {
     $("#send-recipe").addClass("selected-green");
 }
 
-// Leave the country dropdown disabled if we're on the Send Recipe Page
+// The category in the navbar wont be highlighted when in search keyword mode as
+// 'category' will be = 'na'
+
+// Dont highlight the country value in the dropdown if in 'send-recipe' . . .
 if (category != "Send us a Recipe") {
+    // Or if in search keyword mode
+    if (category != "na") {
 
-    $("#origindd").addClass("selected-green");
+        $("#origindd").addClass("selected-green");
 
-    var origin = document.getElementById('origin').innerHTML;
-    $("#origindd").text(origin);
+        var origin = document.getElementById('origin').innerHTML;
+        $("#origindd").text(origin);
+    }
 }
-

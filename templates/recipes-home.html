@@ -16,7 +16,15 @@
 <!-- "Featured" Banner -->
 <div class="row m-0 p-2">
     <div class="col-9 feature-style">
-        <h2 class="m-0">Featured Recipes</h2>
+        <h2 class="m-0"><span>Featured Recipes</span>
+        
+        <!-- If no recipes were found for this keyword, display a user message -->
+        
+                {% if recipes_mesg != "OK" %}
+                    <span>{{ recipes_mesg }}</span>
+                {% endif %}
+                
+        </h2>
     </div>
 
     <!-- Search Box Dropdown-->
@@ -29,7 +37,7 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {% for word in search_words %}
-                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_desc=word.key_words, sel_category=word.category, sel_origin='All Countries') }}">{{ word.key_words }}</a> {% endfor %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_category='All', sel_origin=origin) }}">{{ word.key_words }}</a> {% endfor %}
             </div>
         </div>
     </div>

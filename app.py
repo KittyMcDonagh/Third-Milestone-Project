@@ -17,7 +17,9 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
+# =========
 # HOME PAGE - Display home page featured recipes with image and introductory text only
+# =========
 @app.route('/')
 @app.route('/get_recipes_home')
 def get_recipes_home():
@@ -28,111 +30,135 @@ def get_recipes_home():
 
 # First get all key words to create search dropdown list, sort the key words
     search=mongo.db.key_words.find().sort("key_words",1)
+    key_word_list = [word for word in search]
     
     
 # Select only the recipes that are flagged to appear on the home page (one per country)
-    home_recipes=mongo.db.recipes.find({"home_feature":'on'}).sort("origin",1)
+    sel_recipes=mongo.db.recipes.find({"home_feature":'on'}).sort( [ ("origin",1), ("category",1)] )
+    
+    # Check that records were found
+
+    recipes_found="OK"
+    
+    if sel_recipes.count() == 0:
+        recipes_found=" - None Found"
     
     # Redirect to recipes home page template, return only the recipes that are flagged to be shown on the home page
-    return render_template("recipes-home.html", recipes=home_recipes, search_words=search, countries = country_list, category="all", origin = "All Countries")
-
-
+    return render_template("recipes-home.html", recipes=sel_recipes, search_words=key_word_list, countries = country_list, category="all", origin = "All Countries", recipes_mesg=recipes_found)
     
-
+# =================================
 # FILTER BY CATEGORY AND/OR ORIGIN - Display all recipes for selected category and origin showing image and introductory text only
+#==================================
 @app.route('/get_recipes/<sel_category>/<sel_origin>')
 def get_recipes(sel_category, sel_origin):
+    
+    # Set search_kw_flag = 'N'. It lets recipes_list.html know whether a search by keyword is being done or not 
+# and it will show the relevant details accordingly
+
+    search_kw_flag = "N"
     
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find().sort("country_name", 1)
     country_list = [country for country in temp_countries]
     
-# First get all key words to create search dropdown list, sort the key words
+# Get all key words to create search dropdown list, sort the key words
 
     search=mongo.db.key_words.find().sort("key_words",1)
-
-# Set recipe description to "none" - to allow recipes-list to distinguish between
-# search by category / country, and searh by keyword
-    sel_desc="None"
-
-
-# All Categories?
+    key_word_list = [word for word in search]
+    
+# Search by All Categories?
     if sel_category == "All":
         
-# All Categories, All Countries?
+    # All Categories, All Countries?
         if sel_origin == "All Countries":
             try:
                 # Found the code below for sorting mongodb results (the code we were given on the course doesnt work with python/pymongo) on http://delphinus.qns.net/xwiki/bin/view/Blog/sort%20two%20fields%20in%20mongo
-                cat_origin_recipes=mongo.db.recipes.find().sort( [ ("origin",1), ("category",1)] );
+                sel_recipes=mongo.db.recipes.find().sort( [ ("origin",1), ("category",1)] );
             except:
                 print("Error acessing the Recipes Database")
                 
         else:
-# All Categories for a specific country
+            # All Categories for a specific country
             try:
-                cat_origin_recipes=mongo.db.recipes.find({"origin":sel_origin.lower()}).sort("category",1)
+                sel_recipes=mongo.db.recipes.find({"origin":sel_origin.lower()}).sort("category",1)
             except:
                 print("Error acessing the Recipes Database")
         
     else:
-# Specific category for all countries?
+        # Specific category for all countries?
         if sel_origin == "All Countries":
             try:
-                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category.lower()}).sort("origin",1)
+                sel_recipes=mongo.db.recipes.find({"category":sel_category.lower()}).sort("origin",1)
             except:
                 print("Error acessing the Recipes Database")
                 
         else:
-# Specific category for a specific country
+        # Specific category for a specific country
             try:
-                cat_origin_recipes=mongo.db.recipes.find({"category":sel_category.lower(), "origin":sel_origin.lower()})
+                sel_recipes=mongo.db.recipes.find({"category":sel_category.lower(), "origin":sel_origin.lower()})
             except:
                 print("Error acessing the Recipes Database")
+
     
 # Check that records were found
 
     recipes_found="OK"
     
-    if cat_origin_recipes.count() == 0:
+    if sel_recipes.count() == 0:
         recipes_found=" - None Found"
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, search_words=search, category=sel_category, countries=country_list, origin=sel_origin, rec_desc=sel_desc.capitalize(), recipes_mesg=recipes_found)
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, recipes_mesg=recipes_found)
 
 
+# ================================
+# SEARCH BY KEYWORD AND/OR COUNTRY- Display all recipes that have the selected key word, showing image and introductory text only
+# ================================
+@app.route('/search_recipes/<sel_keyword>/<sel_category>/<sel_origin>')
+def search_recipes(sel_keyword, sel_category, sel_origin):
     
+# Set search_kw_flag = 'Y'. It lets recipes_list.html know whether a search by keyword is being done or not 
+# and it will show the relevant details accordingly
 
-# SEARCH BY KEYWORD - Display all recipes that have the selected key word, showing image and introductory text only
-@app.route('/search_recipes/<sel_keyword>/<sel_desc>/<sel_category>/<sel_origin>')
-def search_recipes(sel_keyword, sel_desc, sel_category, sel_origin):
+    search_kw_flag = "Y"
     
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find().sort("country_name", 1)
     country_list = [country for country in temp_countries]
     
-# First get all key words to create search dropdown list, sort the key words
+# Get all key words to create search dropdown list, sort the key words
 
     search=mongo.db.key_words.find().sort("key_words",1)
-
-
-
-# Search for all recipes with the selected key words
-    try:
-        cat_origin_recipes=mongo.db.recipes.find({"key_words":sel_keyword}).sort( [ ("origin",1), ("category",1)] )
-    except:
-        print("Error acessing the Recipes Database")
-        
+    key_word_list = [word for word in search]
     
+# Search Keyword in All Countries?
+
+    if sel_origin == "All Countries":
+
+        # Search for all recipes with the selected key words for all countries
+        try:
+            sel_recipes=mongo.db.recipes.find({"key_words":sel_keyword}).sort( [ ("origin",1), ("category",1)] )
+        except:
+            print("Error acessing the Recipes Database")
+            
+    else:
+        # Search Keyword in a specific country
+        try:
+            sel_recipes=mongo.db.recipes.find({"key_words":sel_keyword, "origin":sel_origin.lower()}).sort( [ ("origin",1), ("category",1)] )
+        except:
+            print("Error acessing the Recipes Database")
+            
+            
     
 # Check that records were found
 
     recipes_found="OK"
     
-    if cat_origin_recipes.count() == 0:
+    if sel_recipes.count() == 0:
         recipes_found=" - None Found"
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=cat_origin_recipes, search_words=search, category=sel_category, countries=country_list, origin=sel_origin, rec_desc=sel_desc.capitalize(), recipes_mesg=recipes_found)
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_keyword=sel_keyword.title(), recipes_mesg=recipes_found)
     
 
 
@@ -149,6 +175,7 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
 # First get all key words to create search dropdown list, sort the key words
 
     search=mongo.db.key_words.find().sort("key_words",1)
+    key_word_list = [word for word in search]
     
 # Note: I was using "mongo.db.recipes.find_one" here, but it wasnt finding the recipe for me
     
@@ -158,7 +185,7 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
         print("Error getting recipe from the Recipes Database")
     
     # Redirect to recipes details template
-    return render_template("recipes-details.html", recipes=sel_recipe, search_words=search, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
+    return render_template("recipes-details.html", recipes=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
 
 
 # SEND RECIPE

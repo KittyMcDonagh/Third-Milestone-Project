@@ -31,75 +31,76 @@
                     <li class="nav-item mr-2 "><a class="nav-link" href="{{ url_for('get_recipes_home') }}"><i id="home" class="fa fa-home home-icon" aria-hidden="true"></i></a></li>
 
                     <li class="nav-item">
-                        <a id="allrecipes" class="nav-link" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin) }}">ALL RECIPES</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a id="baking" class="nav-link" href="{{ url_for('get_recipes', sel_category='Baking', sel_origin=origin) }}">BAKING</a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a id="starter" class="nav-link" href="{{ url_for('get_recipes', sel_category='Starter', sel_origin=origin) }}">STARTER</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a id="dinner" class="nav-link" href="{{ url_for('get_recipes', sel_category='Dinner', sel_origin=origin) }}">DINNER</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a id="dessert" class="nav-link" href="{{ url_for('get_recipes', sel_category='Dessert', sel_origin=origin) }}">DESSERT</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a id="send-recipe" class="nav-link" href="{{ url_for('send_recipe') }}">SEND RECIPE</a>
-                    </li>
-
-                    <!-- Dropdown menu for ORIGIN  -->
-
-                    <div class="dropdown">
-                        <a id="origindd" class="btn btn-secondary dropdown-toggle disabled" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    All Countries
-  </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin='All Countries') }}">All Countries</a> {% for country in countries%}
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin=country.country_name) }}">{{country.country_name}}</a> {% endfor %}
+                        <a id="allrecipes" class="nav-link" href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin, search_flag = 'N') }}">ALL RECIPES</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a id="baking" class="nav-link" href="{{ url_for('get_recipes', sel_category='Baking', sel_origin=origin, search_flag = 'N') }}">BAKING</a>
+                        </li>
+                        
+                        
+                        <li class="nav-item">
+                            <a id="starter" class="nav-link" href="{{ url_for('get_recipes', sel_category='Starter', sel_origin=origin, search_flag = 'N') }}">STARTER</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a id="dinner" class="nav-link" href="{{ url_for('get_recipes', sel_category='Dinner', sel_origin=origin, search_flag = 'N') }}">DINNER</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a id="dessert" class="nav-link" href="{{ url_for('get_recipes', sel_category='Dessert', sel_origin=origin, search_flag = 'N') }}">DESSERT</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a id="send-recipe" class="nav-link" href="{{ url_for('send_recipe') }}">SEND RECIPE</a>
+                        </li>
+                        
+                        <!-- Dropdown menu for ORIGIN  -->
+                        
+                        <div class="dropdown">
+                            <a id="origindd" class="btn btn-secondary dropdown-toggle disabled" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    All Countries
+                                                  </a>
+                        
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin='All Countries', search_flag = 'N') }}">All Countries</a> {% for country in countries%}
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ url_for('get_recipes', sel_category=category, sel_origin=country.country_name, search_flag = 'N') }}">{{country.country_name}}</a> {% endfor %}
+                            </div>
                         </div>
-                    </div>
-
-                </ul>
-
-            </div>
-        </nav>
-
-    </header>
-
-    <section class="container-fluid scrn-padding">
-
-        <main class="scrn-pos">
-            {% block content %} {% endblock %}
-        </main>
-
-    </section>
-
-    <!-- Footer, using bootstrap -->
-    <footer class="footer-style scrn-pos">
-        <div class="row">
-            <div class="col-sm-4 footer-pb">
-                <ul class="footer-ul-style">
-                    <li class="mb-1"><a id="ftr-home" class="footer-links" href="{{ url_for('get_recipes_home') }}">Home</a></li>
-                    <li class="mb-1"><a id="ftr-allrecipes" class="footer-links " href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin) }}">All Recipes</a></li>
-                    <li class="mb-1"><a id="ftr-baking" class="footer-links" href="{{ url_for('get_recipes', sel_category='Baking', sel_origin=origin) }}">Baking</a></li>
-                </ul>
-            </div>
-
-            <div class="col-sm-4 footer-pb">
-                <ul class="footer-ul-style">
-                    <li class="mb-1"><a id="ftr-starter" class="footer-links" href="{{ url_for('get_recipes', sel_category='Starter', sel_origin=origin) }}">Starter</a></li>
-                    <li class="mb-1"><a id="ftr-dinner" class="footer-links" href="{{ url_for('get_recipes', sel_category='Dinner', sel_origin=origin) }}">Dinner</a></li>
-                    <li class="mb-1"><a id="ftr-dessert" class="footer-links" href="{{ url_for('get_recipes', sel_category='Dessert', sel_origin=origin) }}">Dessert</a></li>
+                        
+                        </ul>
+                        
+                        </div>
+                        </nav>
+                        
+                        </header>
+                        
+                        <section class="container-fluid scrn-padding">
+                        
+                            <main class="scrn-pos">
+                                {% block content %} {% endblock %}
+                            </main>
+                        
+                        </section>
+                        
+                        <!-- Footer, using bootstrap -->
+                        <footer class="footer-style scrn-pos">
+                            <div class="row">
+                                <div class="col-sm-4 footer-pb">
+                                    <ul class="footer-ul-style">
+                                        <li class="mb-1"><a id="ftr-home" class="footer-links" href="{{ url_for('get_recipes_home') }}">Home</a></li>
+                                        <li class="mb-1"><a id="ftr-allrecipes" class="footer-links " href="{{ url_for('get_recipes', sel_category='All', sel_origin=origin, search_flag = 'N') }}">All Recipes</a></li>
+                                        <li class="mb-1"><a id="ftr-baking" class="footer-links" href="{{ url_for('get_recipes', sel_category='Baking', sel_origin=origin, search_flag = 'N') }}">Baking</a></li>
+                                    </ul>
+                                </div>
+                        
+                                <div class="col-sm-4 footer-pb">
+                                    <ul class="footer-ul-style">
+                                        <li class="mb-1"><a id="ftr-starter" class="footer-links" href="{{ url_for('get_recipes', sel_category='Starter', sel_origin=origin, search_flag = 'N') }}">Starter</a></li>
+                                        <li class="mb-1"><a id="ftr-dinner" class="footer-links" href="{{ url_for('get_recipes', sel_category='Dinner', sel_origin=origin, search_flag = 'N') }}">Dinner</a></li>
+                                        <li class="mb-1">
+                                            <a id="ftr-dessert" class="footer-links" href="{{ url_for('get_recipes', sel_category='Dessert', sel_origin=origin, search_flag = 'N') }}">Dessert</a></li>
                 </ul>
             </div>
 

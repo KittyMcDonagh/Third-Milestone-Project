@@ -4,16 +4,43 @@
 
 <div class="row m-0 p-2 mt-3 mb-2">
     <div class="col-9 feature-style">
-        <h2 class="m-0"><span id="category">{{category}}</span>
 
-            <!-- If this template is called through keyword search, show the recipe
-        description, e.g. bread, cake, etc -->
+        {% if rec_kw_search == 'Y' %}
+        <!-- If this template is called through keyword search, show the keyword, e.g. bread, cake, etc -->
+        
+            <h2 class="m-0">
+                <span>{{ rec_keyword }} Recipes</span>
+                <!-- Include Category and Origin, but don't display them. They need to be picked up by nav.js -->
+                <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
+                <!-- Category is not applicable when in keyword search - dont highlight category in navbar -->
+                <span id="category" class="d-none">na</span>
+                <span id="origin" class="d-none">{{origin}}</span> 
+            
+            
+            <!-- If no recipes were found for this keyword, display a user message -->
+        
+                {% if recipes_mesg != "OK" %}
+                    <span>{{ recipes_mesg }}</span>
+                {% endif %}
+            </h2>
+        
+        {% else %}
+            <!-- Template called on search by category and/or origin -->
+            
+            <h2 class="m-0">
+                <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
+                <span id="category">{{category}}</span>
+                <span>Recipes from</span>
+                <span id="origin">{{origin}}</span> 
+            
+            <!-- If no recipes were found for this category / origin, display a user message -->
+            
+                {% if recipes_mesg != "OK" %}
+                    <span>{{ recipes_mesg }}</span> 
+                {% endif %}
 
-            {% if rec_desc != "None" %}
-            <span> - {{ rec_desc }} </span> {% endif %} Recipes from <span id="origin">{{origin}}</span> {% if recipes_mesg != "OK" %}
-            <span>{{ recipes_mesg }}</span> {% endif %}
-
-        </h2>
+            </h2>
+        {% endif %}
     </div>
 
     <!-- Search Box Dropdown-->
@@ -26,7 +53,8 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {% for word in search_words %}
-                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_desc=word.key_words, sel_category=word.category, sel_origin='All Countries') }}">{{ word.key_words }}</a> {% endfor %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_category='All', sel_origin=origin) }}">{{ word.key_words }}</a> 
+                {% endfor %}
             </div>
         </div>
     </div>
