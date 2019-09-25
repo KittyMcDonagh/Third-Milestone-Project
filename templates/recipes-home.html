@@ -10,7 +10,7 @@
 
 <div class="row m-0">
     <div class="col-12 ">
-        <p class="intro-par-style">You can use the navigation menu to select recipes by category and country, search by keyword, or select from the recipes featured below. Enjoy!</p>
+        <p class="intro-par-style">You can use the navigation menu to select recipes by category and country, search for recipes by keyword, or select from the recipes and quick links featured below. Enjoy!</p>
     </div>
 </div>
 
@@ -30,6 +30,7 @@
     </div>
 
     <!-- Search Box Dropdown-->
+    <!-- The keyword search searches by keyword, all countries, and all categories. -->
 
     <div class="col-3">
         <div class="search-box">
@@ -39,7 +40,7 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {% for word in search_words %}
-                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_category='All', sel_origin=origin) }}">{{ word.key_words }}</a> {% endfor %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_category='All', sel_origin='All Countries', page_nr='1') }}">{{ word.key_words }}</a> {% endfor %}
             </div>
         </div>
     </div>
@@ -87,7 +88,7 @@
             </div>
 
             <div class="col-6 p-3 ">
-                <h5 class="intro-title-style ">{{recipe.title.title()}}</h5>
+                <h5 class="rec-intro-title ">{{recipe.title.title()}}</h5>
                 <p class="card-text pl-2 pr-2 ">{{recipe.intro}}</p>
             </div>
         </div>
@@ -96,7 +97,7 @@
         <!-- Card footer -->
 
         <div class="card-footer ">
-            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr=1) }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 
@@ -131,7 +132,7 @@
             </div>
 
             <div class="col-6 p-3 ">
-                <h5 class="intro-title-style ">{{recipe.title.title()}}</h5>
+                <h5 class="rec-intro-title ">{{recipe.title.title()}}</h5>
                 <p class="card-text pl-2 pr-2 ">{{recipe.intro}}</p>
             </div>
         </div>
@@ -139,11 +140,14 @@
         <!-- Card Footer -->
 
         <div class="card-footer ">
-            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr=1) }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 
 </div>
 
 
-{% endif %} {% endfor %} {% endblock %}
+{% endif %} {% endfor %} 
+
+
+{% endblock %}

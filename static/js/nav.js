@@ -3,6 +3,7 @@
 // Change home icon from green to black 
 $("#home").addClass("home-icon-deselected");
 
+
 // Leave the country dropdown disabled if we're on the Send Recipe Page
 
 var category = document.getElementById('category').innerHTML;

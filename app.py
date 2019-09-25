@@ -54,8 +54,12 @@ def get_recipes(sel_category, sel_origin, page_nr):
 
     search_kw_flag = "N"
     
-# For pagination - set the number of recipes to show per list page
-    nr_of_recipes_per_page = 6
+# For pagination - 
+# - Set the number of recipes to show per list page
+    nr_of_recipes_per_page = 4
+    
+# - Store the page number passed in, as an integer
+    this_page_nr = int(page_nr)
 
 
     
@@ -68,7 +72,7 @@ def get_recipes(sel_category, sel_origin, page_nr):
     search=mongo.db.key_words.find().sort("key_words",1)
     key_word_list = [word for word in search]
     
-    this_page_nr = int(page_nr)
+    
 
 # Search by All Categories?
     if sel_category == "All":
@@ -76,14 +80,15 @@ def get_recipes(sel_category, sel_origin, page_nr):
     # All Categories, All Countries?
         if sel_origin == "All Countries":
             
-            # For pagination purposes get the number of recipes
-            nr_of_recipes = mongo.db.recipes.count()
+            # For pagination purposes -
+            # - Get the total number of recipes
+            total_recipes_selected = mongo.db.recipes.count()
             
-            # Get number of pages required for the number of recipes
-            nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
+            # - Get number of pages required for the number of recipes
+            nr_of_pages = number_of_pages(total_recipes_selected, nr_of_recipes_per_page )
             
-            # Create an array of page numbers (page_list)
-            page_list = create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page)
+            # - Create an array of page numbers (page_list)
+            page_list = create_page_list(nr_of_pages, total_recipes_selected, nr_of_recipes_per_page)
     
             try:
                 # Found the code below for sorting mongodb results (the code we were given on the course doesnt work with python/pymongo) on http://delphinus.qns.net/xwiki/bin/view/Blog/sort%20two%20fields%20in%20mongo
@@ -94,14 +99,15 @@ def get_recipes(sel_category, sel_origin, page_nr):
         else:
             # All Categories for a specific country
             
-            # For pagination purposes get the nnumber of recipes
-            nr_of_recipes = mongo.db.recipes.count({"origin":sel_origin.lower()})
+            # For pagination purposes -
+            # - Get the total number of recipes
+            total_recipes_selected = mongo.db.recipes.count({"origin":sel_origin.lower()})
             
-            # Get number of pages required for the number of recipes
-            nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
+            # - Get number of pages required for the number of recipes
+            nr_of_pages = number_of_pages(total_recipes_selected, nr_of_recipes_per_page )
             
-            # Create an array of page numbers (page_list)
-            page_list = create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page)
+            # - Create an array of page numbers (page_list)
+            page_list = create_page_list(nr_of_pages, total_recipes_selected, nr_of_recipes_per_page)
     
             
             try:
@@ -112,14 +118,15 @@ def get_recipes(sel_category, sel_origin, page_nr):
     else:
         # Specific category for all countries?
         
-        # For pagination purposes get the nnumber of recipes
-        nr_of_recipes = mongo.db.recipes.count({"category":sel_category.lower()})
+        # For pagination purposes -
+        # - Get the total number of recipes
+        total_recipes_selected = mongo.db.recipes.count({"category":sel_category.lower()})
         
-        # Get number of pages required for the number of recipes
-        nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
+        # - Get number of pages required for the number of recipes
+        nr_of_pages = number_of_pages(total_recipes_selected, nr_of_recipes_per_page )
             
-        # Create an array of page numbers (page_list)
-        page_list = create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page)
+        # - Create an array of page numbers (page_list)
+        page_list = create_page_list(nr_of_pages, total_recipes_selected, nr_of_recipes_per_page)
     
             
         if sel_origin == "All Countries":
@@ -131,41 +138,43 @@ def get_recipes(sel_category, sel_origin, page_nr):
         else:
         # Specific category for a specific country
         
-            # For pagination purposes get the nnumber of recipes
-            nr_of_recipes = mongo.db.recipes.count({"category":sel_category.lower(), "origin":sel_origin.lower()})
+            # For pagination purposes -
+            # - Get the total number of recipes
+            total_recipes_selected = mongo.db.recipes.count({"category":sel_category.lower(), "origin":sel_origin.lower()})
             
-            # Get number of pages required for the number of recipes
-            nr_of_pages = number_of_pages(nr_of_recipes, nr_of_recipes_per_page )
+            # - Get number of pages required for the number of recipes
+            nr_of_pages = number_of_pages(total_recipes_selected, nr_of_recipes_per_page )
             
-            # Create an array of page numbers (page_list)
-            page_list = create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page)
+            # - Create an array of page numbers (page_list)
+            page_list = create_page_list(nr_of_pages, total_recipes_selected, nr_of_recipes_per_page)
     
         
             try:
                 sel_recipes=mongo.db.recipes.find({"category":sel_category.lower(), "origin":sel_origin.lower()}).skip((this_page_nr -1) * nr_of_recipes_per_page).limit(nr_of_recipes_per_page)
             except:
                 print("Error acessing the Recipes Database")
-
     
-# Check that records were found
-
-    recipes_count = sel_recipes.count()
+    # Check whether an odd number of recipes will display, and if so close the last div row
+    
+    odd_nr_display = check_odd_nr_rec_display(total_recipes_selected, this_page_nr, nr_of_recipes_per_page)
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_count=recipes_count, rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages)
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_count=sel_recipes.count(), rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages, close_div_row=odd_nr_display)
 
 
-# ================================
-# SEARCH BY KEYWORD AND/OR COUNTRY- Display all recipes that have the selected key word, showing image and introductory text only
-# ================================
-@app.route('/search_recipes/<sel_keyword>/<sel_category>/<sel_origin>')
-def search_recipes(sel_keyword, sel_category, sel_origin):
+# =================
+# SEARCH BY KEYWORD - Display all recipes that have the selected key word, showing image and introductory text only
+# =================
+# (For simplicity, I decided to keep the search_recipes functionality separate from the get_recipes functionality)
+
+@app.route('/search_recipes/<sel_keyword>/<sel_category>/<sel_origin>/<page_nr>')
+def search_recipes(sel_keyword, sel_category, sel_origin, page_nr):
     
 # Set search_kw_flag = 'Y'. It lets recipes_list.html know whether a search by keyword is being done or not 
 # and it will show the relevant details accordingly
 
     search_kw_flag = "Y"
-    
+
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find().sort("country_name", 1)
     country_list = [country for country in temp_countries]
@@ -175,37 +184,42 @@ def search_recipes(sel_keyword, sel_category, sel_origin):
     search=mongo.db.key_words.find().sort("key_words",1)
     key_word_list = [word for word in search]
     
-# Search Keyword in All Countries?
+# Search Keyword in All Countries, All Categories
 
-    if sel_origin == "All Countries":
 
-        # Search for all recipes with the selected key words for all countries
-        try:
-            sel_recipes=mongo.db.recipes.find({"key_words":sel_keyword}).sort( [ ("origin",1), ("category",1)] )
-        except:
-            print("Error acessing the Recipes Database")
-            
-    else:
-        # Search Keyword in a specific country
-        try:
-            sel_recipes=mongo.db.recipes.find({"key_words":sel_keyword, "origin":sel_origin.lower()}).sort( [ ("origin",1), ("category",1)] )
-        except:
-            print("Error acessing the Recipes Database")
-            
-            
+# For pagination - 
+# - Set the number of recipes to show per list page
+    nr_of_recipes_per_page = 4
     
-# Check that records were found
-
-    recipes_count = sel_recipes.count()
+# - Store the page number passed in, as an integer
+    this_page_nr = int(page_nr)
     
+# - Get the total number of recipes for this keyword
+    total_recipes_selected = mongo.db.recipes.count({"key_words":sel_keyword})
+            
+# - Get number of pages required for the number of recipes
+    nr_of_pages = number_of_pages(total_recipes_selected, nr_of_recipes_per_page )
+            
+# - Create an array of page numbers (page_list)
+    page_list = create_page_list(nr_of_pages, total_recipes_selected, nr_of_recipes_per_page)
+    
+
+# Search for all recipes with the selected key words, for all countries and categories
+    try:
+        sel_recipes=mongo.db.recipes.find({"key_words":sel_keyword}).skip((this_page_nr -1) * nr_of_recipes_per_page).limit(nr_of_recipes_per_page).sort( [ ("origin",1), ("category",1)] )
+       
+    except:
+        print("Error acessing the Recipes Database")
+    
+
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_keyword=sel_keyword.title(), rec_count=recipes_count)
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_keyword=sel_keyword.title(), rec_count=sel_recipes.count(), rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages, close_div_row='y')
     
 
 
-
+# ==============
 # RECIPE DETAILS - Show Details of Selected Recipe - show introductory text, ingredients and method
-
+# ==============
 @app.route('/get_recipe_details/<sel_id>/<sel_category>/<sel_origin>/<sel_title>')
 def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
 
@@ -229,9 +243,9 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
     return render_template("recipes-details.html", recipes=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
 
 
+# ===========
 # SEND RECIPE
-
-
+# ===========
 @app.route('/send_recipe')
 def send_recipe():
 
@@ -285,38 +299,68 @@ def insert_recipe():
     return redirect(url_for('send_recipe'))
     
 
-
+# =====================
+# Functions called above
+# ======================
 # For pagination - Get the number of pages required
-def number_of_pages(nr_of_recipes, nr_of_recipes_per_page):
+def number_of_pages(total_recipes_selected, nr_of_recipes_per_page):
     
     # Initialise number of pages
     nr_of_pages = 1
     
-    if nr_of_recipes > nr_of_recipes_per_page:
-        nr_of_pages = nr_of_recipes / nr_of_recipes_per_page
+    if total_recipes_selected > nr_of_recipes_per_page:
+        nr_of_pages = total_recipes_selected / nr_of_recipes_per_page
         
-        if nr_of_recipes % nr_of_recipes_per_page != 0:
+        if total_recipes_selected % nr_of_recipes_per_page != 0:
             nr_of_pages +=1
     
     return int(nr_of_pages)
     
     
 # For pagination - Create a list of the page numbers 
-def create_page_list(nr_of_pages, nr_of_recipes, nr_of_recipes_per_page):
+def create_page_list(nr_of_pages, total_recipes_selected, nr_of_recipes_per_page):
     
     page_list = []
     
     count = 1
     
-    if nr_of_recipes > nr_of_recipes_per_page:
+    # Only create page list, if more than one page required
+    if total_recipes_selected > nr_of_recipes_per_page:
         
         while count <= nr_of_pages:
             page_list.append(count)
             count +=1
         
     return page_list
-    
 
+# Recipe lists dispalys 2 recipes per line - one row, 2 col-6s
+# Check if an odd number of recipes will display on the page. If so pass a flag
+# to recipes-list to close the div row, so that pagination will appear at the 
+# bottom of the screen, not in the empty col-6 on the right
+
+def check_odd_nr_rec_display(total_recipes_selected, this_page_nr, nr_of_recipes_per_page):
+    
+    odd_nr_display='n'
+    
+    if this_page_nr == 1:
+        if total_recipes_selected > nr_of_recipes_per_page:
+            if nr_of_recipes_per_page % 2 != 0:
+                odd_nr_display='y'
+    
+    else:
+        pages = this_page_nr-1
+        rec_displayed = pages*nr_of_recipes_per_page
+        rec_to_display = total_recipes_selected-rec_displayed
+        
+        if rec_to_display > nr_of_recipes_per_page:
+            if nr_of_recipes_per_page % 2 != 0:
+                odd_nr_display='y'
+                
+        else:
+            if rec_to_display % 2 != 0:
+                odd_nr_display='y'
+        
+    return odd_nr_display
         
 
 if __name__ == '__main__':

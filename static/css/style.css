@@ -96,9 +96,7 @@ main {
     text-decoration: none;
 }
 
-.home-icon:hover {
-    color: #fff!important;
-}
+
 
 
 /* Style the dropdown button link to match navbar colors. */
@@ -152,6 +150,9 @@ main {
 .home-icon {
     color: #76c180;
 
+}
+.home-icon:hover {
+    color: #fff!important;
 }
 
 
@@ -251,6 +252,12 @@ main {
     padding-left: 150px;
 }
 
+.rec-intro-title {
+    font-family: "Courgette", sans-serif;
+    text-align: center;
+    
+}
+
 
 
 
@@ -345,11 +352,6 @@ main {
     padding: 0;
 }
 
-.footer-home {
-     color: #76c180;
-     padding: 10px 15px;
-    
-}
 
 
 .footer-links {
@@ -362,7 +364,6 @@ main {
     color: #fff;
     text-decoration: none;
 }
-
 
 
 /* css used in recipes-details.html                                           */
