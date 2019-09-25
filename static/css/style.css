@@ -151,6 +151,7 @@ main {
     color: #76c180;
 
 }
+
 .home-icon:hover {
     color: #fff!important;
 }
@@ -162,6 +163,7 @@ main {
 /* css used on recipes-home & recipes-list page                              */
 
 /* Banner background is a shade of green */
+
 .feature-style {
     background-color: #edf7ef;
     padding-top: 10px;
@@ -181,13 +183,13 @@ main {
 
 .intro {
     font-family: "Courgette", sans-serif;
-    padding: 5px 20px; 
+    padding: 5px 20px;
 }
 
 .intro-title {
     font-family: "Courgette", sans-serif;
     text-align: center;
-    margin:0;
+    margin: 0;
 }
 
 
@@ -197,7 +199,7 @@ main {
     padding-left: 150px;
     padding-right: 150px;
 
-    
+
 
 }
 
@@ -213,8 +215,8 @@ main {
 /* so created this to fix it*/
 
 .card-border {
-     border: 1px solid rgba(0, 0, 0, 0.125)!important;
-     border-radius: 0.25rem!important;
+    border: 1px solid rgba(0, 0, 0, 0.125)!important;
+    border-radius: 0.25rem!important;
 }
 
 
@@ -255,7 +257,7 @@ main {
 .rec-intro-title {
     font-family: "Courgette", sans-serif;
     text-align: center;
-    
+
 }
 
 
@@ -283,11 +285,10 @@ main {
 
 /* css used for search box on home and recipes-list pages                     */
 
-
 /* Search box dropdown stying */
 
 .search-box {
-    margin-top:7px;
+    margin-top: 7px;
     background-color: #fff;
     margin-left: 0px;
 }
@@ -301,6 +302,7 @@ main {
 }
 
 /* Set search button style */
+
 .search-btn {
     border: solid #edf7ef;
     color: #3b3b3b;
@@ -311,7 +313,7 @@ main {
 /* css for styling the pagination nav */
 
 .nav-pag {
-    
+
     color: #3b3b3b;
 }
 
@@ -372,23 +374,60 @@ main {
     border: solid 2px #f2f2f2;
 }
 
+/* css used in my-recipes.html                                               */
+
+.my-recipe-actions {
+    background-color: #3b3b3b;
+    border-color: #1a1a1a;
+    
+    text-align: center;
+    font-family: "Courgette", sans-serif;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.my-recipe-actions:hover {
+    text-decoration: none;
+    background-color: #76c180!important;
+    border-color: #76c180!important;
+    color: #fff;
+    
+}
+
+.my-recipe-btns {
+    background-color: #3b3b3b;
+    border-color: #1a1a1a;
+    color: #fff;
+    box-sizing: border-box;
+
+}
+
+.my-recipe-btns:hover {
+    text-decoration: none;
+    background-color: #76c180!important;
+    border-color: #76c180!important;
+    color: #fff;
+
+
+}
+
+
 /*  css used in send-recipe.html                                                */
 
-
 .flashes {
-    color:#76c180;
+    color: #76c180;
 }
 
 .input-field {
-     
-     padding-bottom: 3px;
-     padding-top: 3px;
+
+    padding-bottom: 3px;
+    padding-top: 3px;
 }
 
 .form-style {
     font-family: "Nunito", sans-serif;
     font-size: 16px;
-    padding:10px;
+    padding: 10px;
     background-color: #b3b3b3;
     border-radius: 15px;
 
@@ -399,7 +438,7 @@ main {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 96%;
-    
+
 }
 
 
@@ -416,11 +455,12 @@ main {
     border-color: #76c180!important;
     color: #fff;
 
-    
+
 }
 
 
 /* Override border colors in bootstrap class */
+
 .form-control {
     border: 1px solid #edf7ef;
 }
@@ -442,5 +482,3 @@ main {
 .selected-green {
     color: #76c180!important;
 }
-
-

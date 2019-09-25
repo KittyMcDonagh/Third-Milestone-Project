@@ -56,7 +56,7 @@ def get_recipes(sel_category, sel_origin, page_nr):
     
 # For pagination - 
 # - Set the number of recipes to show per list page
-    nr_of_recipes_per_page = 4
+    nr_of_recipes_per_page = 6
     
 # - Store the page number passed in, as an integer
     this_page_nr = int(page_nr)
@@ -189,7 +189,7 @@ def search_recipes(sel_keyword, sel_category, sel_origin, page_nr):
 
 # For pagination - 
 # - Set the number of recipes to show per list page
-    nr_of_recipes_per_page = 4
+    nr_of_recipes_per_page = 6
     
 # - Store the page number passed in, as an integer
     this_page_nr = int(page_nr)
@@ -263,6 +263,29 @@ def send_recipe():
 
 # Redirect to send_recipe template
     return render_template("send-recipe.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin)
+
+
+# ===========
+# MY RECIPES
+# ===========
+@app.route('/my_recipes')
+def my_recipes():
+
+# Create country list for countries dropdown    
+    temp_countries = mongo.db.countries.find().sort("country_name", 1)
+    country_list = [country for country in temp_countries]
+    
+# Create category list for categories dropdown    
+    temp_categories = mongo.db.categories.find()
+    category_list = [category for category in temp_categories]
+    
+    sel_category="All"
+    sel_origin="All Countries"
+
+
+# Redirect to send_recipe template
+    return render_template("my-recipes.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin)
+
 
 
 # Insert the task the recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'

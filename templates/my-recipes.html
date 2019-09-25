@@ -1,20 +1,26 @@
 {% extends 'base.html' %} {% block content %}
 
-<!-- Banner for 'Send us a Recipe -->
-<div class="row m-0 p-2 mt-3 mb-2">
-    <div class="col-12 feature-style">
-        <h2 id="category" class="text-center m-0">Send us a Recipe</h2>
-        <!-- Hold rec_pages here but dont display it. It is needed by nav.js to determine 
-     whether there is more than one page -->
-        <div><span id="pag_ind" class="d-none">[]</span></div>
+<div>
+    <!-- Hold rec_pages here but dont display it. It is needed by nav.js to determine 
+             whether there is more than one page -->
+    <span id="pag_ind" class="d-none">[]</span>
+</div>
+
+<!-- Banner for options  -->
+<div class="row m-0 p-2 mt-3 mb-2 feature-style">
+    <div class="col-2">
+        <a class="ml-3 btn send-btn" href="{{ url_for('my_recipes') }}">Send Recipe</a>
+        
+       <!-- <a href="{{ url_for('my_recipes') }}" class="my-recipe-btns">New Recipe</a> -->
     </div>
 </div>
+
 
 <!-- Flash a thank you message to the user when recipe received -->
 <div class="row">
     <div class="col-12 mx-auto">
         {% with messages = get_flashed_messages() %} {% if messages %} {% endif %}
-        <ul >
+        <ul>
             {% for message in messages %}
             <li class="flashes">{{ message }}</li>
             {% endfor %}
@@ -119,14 +125,16 @@
                 <!-- Submit the Recipe -->
 
                 <div class="row mt-3">
-                    <button class="ml-3 btn send-btn" type="submit" name="action">Send Recipe
-                
-            </button>
+                    <button class="ml-3 btn send-btn" type="submit" name="action">Send Recipe</button>
                 </div>
+
             </form>
 
         </div>
     </div>
+    <!-- Hold rec_pages here but dont display it. It is needed by nav.js to determine 
+     whether there is more than one page -->
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -12,17 +12,16 @@
             <span>{{ rec_keyword }} Recipes</span>
             <!-- Include Category and Origin, but don't display them. They need to be picked up by nav.js -->
             <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
-            <!-- Category is not applicable when in keyword search - dont highlight category in navbar -->
+            <!-- Category is not applicable when in keyword search - don't highlight category in navbar -->
             <span id="category" class="d-none">na</span>
             <span id="origin" class="d-none">{{origin}}</span>
 
 
             <!-- If no recipes were found for this keyword, display a user message -->
-            <span class="d-none">rec_count: {{ rec_count }}</span> 
-            <span class="d-none">page_nr: {{ page_nr }}</span> 
-            <span class="d-none">total_pages: {{ total_pages }}</span> 
+             
             {% if rec_count == 0 %}
-            <span>- Not Found</span> {% endif %}
+            <span>- Not Found</span> 
+            {% endif %}
         </h2>
 
         {% else %}
@@ -36,7 +35,6 @@
 
             <!-- If no recipes were found for this category / origin, display a user message -->
 
-            <span class="d-none">{{ rec_count }}</span> 
             {% if rec_count == 0 %}
             <span>- Not Found</span> {% endif %}
 
@@ -178,6 +176,10 @@
 
 <!-- Pagination Section -->
 
+<!-- Hold rec_pages here but dont display it. It is needed by nav.js to determine 
+     whether there is more than one page -->
+<span id="pag_ind" class="d-none">{{ rec_pages }}</span>
+
 {% if rec_pages != [] %}
 
 <nav aria-label="Page navigation">
@@ -216,7 +218,7 @@
       {% endfor %}
 
         <li id="next" class="page-item ">
-        <!-- Output the total page numbers, but dont display it. js  will use it to disable the 'prev' button-->
+        <!-- Output the total page numbers, but dont display it. js  will use it to disable the 'next' button-->
             <span id="tot-pg" class="d-none">{{ total_pages }}</span>
             
             {% if rec_kw_search == "Y" %}
