@@ -7,13 +7,31 @@
 </div>
 
 <!-- Banner for options  -->
-<div class="row m-0 p-2 mt-3 mb-2 feature-style">
-    <div class="col-2">
-        <a class="ml-3 btn send-btn" href="{{ url_for('my_recipes') }}">Send Recipe</a>
-        
-       <!-- <a href="{{ url_for('my_recipes') }}" class="my-recipe-btns">New Recipe</a> -->
+<div class="row m-0 p-2 mt-3 mb-2">
+    <div class="col-12 feature-style">
+        <h2 class="m-0">My Recipes:
+            <span class="my-rec-user-msg">Use the Form below to send us a recipe, or enter your Email Address to View, Edit, or Delete your recipes.</span></h2>
     </div>
 </div>
+
+<!-- Enter Email Address -->
+<div class=class="row m-0 p-2 mt-3 mb-2">
+    <form action="{{ url_for('insert_recipe') }}" class="form-style offset-2 col-8">
+
+        <div class="row no-gutters">
+            <div class="offset-2 col-4 ">
+                <input id="owner" name="owner" type="email" class="form-control text-center" placeholder="Enter Your Email Address" required>
+            </div>
+            
+            <div class="offset-1 col-5">
+                <button class="ml-3 btn send-btn" type="submit" name="action">Get My Recipes</button>
+            </div>
+            
+        </div>
+    </form>
+</div>
+
+
 
 
 <!-- Flash a thank you message to the user when recipe received -->
@@ -32,7 +50,7 @@
         <div class="row form-center">
             <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-12 form-style">
 
-                <!-- Input Owners' Name and Image Name -->
+                <!-- Input Owners' Email Address and Image Name -->
 
                 <div class="row">
                     <div class="input-field col-4">

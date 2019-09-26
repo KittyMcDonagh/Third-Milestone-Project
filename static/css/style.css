@@ -174,7 +174,7 @@ main {
 }
 
 
-/* css for recipe cardss   */
+/* css for recipe cards   */
 
 .recipe_header {
     margin-top: 5px;
@@ -376,10 +376,19 @@ main {
 
 /* css used in my-recipes.html                                               */
 
+.my-rec-user-msg {
+    font-size: 20px;
+
+}
+
+.my-rec-form {
+    padding-left: 100px;
+}
+
 .my-recipe-actions {
     background-color: #3b3b3b;
     border-color: #1a1a1a;
-    
+
     text-align: center;
     font-family: "Courgette", sans-serif;
     font-size: 16px;
@@ -391,7 +400,7 @@ main {
     background-color: #76c180!important;
     border-color: #76c180!important;
     color: #fff;
-    
+
 }
 
 .my-recipe-btns {
@@ -454,8 +463,6 @@ main {
     background-color: #76c180!important;
     border-color: #76c180!important;
     color: #fff;
-
-
 }
 
 

@@ -88,9 +88,9 @@ if (category === "Dessert") {
 
 }
 
-if (category === "Send us a Recipe") {
+if (category === "My Recipes") {
 
-    $("#send-recipe").addClass("selected-green");
+    $("#my-recipes").addClass("selected-green");
 }
 
 // The category in the navbar wont be highlighted when in search keyword mode as

@@ -167,8 +167,8 @@ def get_recipes(sel_category, sel_origin, page_nr):
 # =================
 # (For simplicity, I decided to keep the search_recipes functionality separate from the get_recipes functionality)
 
-@app.route('/search_recipes/<sel_keyword>/<sel_category>/<sel_origin>/<page_nr>')
-def search_recipes(sel_keyword, sel_category, sel_origin, page_nr):
+@app.route('/search_recipes/<sel_keyword>/<sel_category>/<sel_origin>/<search-flag>/<page_nr>')
+def search_recipes(sel_keyword, sel_category, sel_origin, search_flag, page_nr):
     
 # Set search_kw_flag = 'Y'. It lets recipes_list.html know whether a search by keyword is being done or not 
 # and it will show the relevant details accordingly
