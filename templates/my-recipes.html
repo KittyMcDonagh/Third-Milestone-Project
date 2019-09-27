@@ -14,7 +14,7 @@
 </div>
 
 <!-- Enter Email Address -->
-<div class=class="row m-0 p-2 mt-3 mb-2">
+<div class=class="row m-0 p-2 mt-3 mb-4">
     <div class="offset-2 col-8 email-form-style">
         <div class="row no-gutters">
             <div class="col-12">
@@ -45,40 +45,43 @@
 <div class="row">
     <div class="col-12 mx-auto">
         {% with messages = get_flashed_messages() %} {% if messages %} {% endif %}
-        <ul>
+        <ul class="flashes">
             {% for message in messages %}
-            <li class="flashes">{{ message }}</li>
+            <li><strong>{{ message }}</strong></li>
             {% endfor %}
         </ul>
         {% endwith %}
+    </div>
+</div>
 
-        <!-- Recipe input form  -->
 
-        <div class="row form-center">
-            <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-12 form-style">
+<!-- Recipe input form  -->
 
-                <!-- Input Owners' Email Address and Image Name -->
+<div class="row form-center">
+    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-12 form-style">
 
-                <div class="row">
-                    <div class="input-field col-4">
-                        <input id="owner" name="owner" type="email" class="form-control" placeholder="Your Email Address" required>
-                    </div>
+        <!-- Input Owners' Email Address and Image Name -->
 
-                    <div class="input-field col-4">
-                        <input maxlength="50" id="title" name="title" type="text" class="form-control" placeholder="Recipe Title" required></textarea>
-                    </div>
+        <div class="row">
+            <div class="input-field col-4">
+                <input id="owner" name="owner" type="email" class="form-control" placeholder="Your Email Address" required>
+            </div>
 
-                    <div class="input-field col-4">
-                        <!-- Use textarea, rather than <input type="text> for HTML5 -->
-                        <input name="image-name" id="image-name" class="form-control" placeholder="Image Name (name.jpg / name.png) "></textarea>
-                    </div>
+            <div class="input-field col-4">
+                <input maxlength="50" id="title" name="title" type="text" class="form-control" placeholder="Recipe Title" required></textarea>
+            </div>
 
-                </div>
+            <div class="input-field col-4">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <input name="image-name" id="image-name" class="form-control" placeholder="Image Name (name.jpg / name.png) "></textarea>
+            </div>
 
-                <!-- Choose Country, Category, Preparation Time and Serves -->
-                <div class="row">
-                    <div class="input-field col-4">
-                        <select id="sel_origin" name="origin" class="form-control" required>
+        </div>
+
+        <!-- Choose Country, Category, Preparation Time and Serves -->
+        <div class="row">
+            <div class="input-field col-4">
+                <select id="sel_origin" name="origin" class="form-control" required>
                     <option  value="" disabled selected>Choose Country</option>
                   
                     {% for country in countries %}
@@ -89,11 +92,11 @@
                     {% endfor %}
             
                 </select>
-                    </div>
+            </div>
 
-                    <div class="input-field col-4">
+            <div class="input-field col-4">
 
-                        <select id="category" name="category" class="form-control" required>
+                <select id="category" name="category" class="form-control" required>
                     <option value="" disabled selected>Choose Category</option>
                     
                     {% for cat in categories %}
@@ -104,60 +107,60 @@
                     {% endfor %}
                  
                 </select>
-                    </div>
+            </div>
 
-                    <!-- Input Preparation time and how many it serves -->
-                    <div class="input-field col-2">
-                        <!-- Use textarea, rather than <input type="text> for HTML5 -->
-                        <input name="prep_time" id="prep_time" class="form-control" placeholder="Prep Time [hh:mm]"></textarea>
-                    </div>
+            <!-- Input Preparation time and how many it serves -->
+            <div class="input-field col-2">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <input name="prep_time" id="prep_time" class="form-control" placeholder="Prep Time [hh:mm]"></textarea>
+            </div>
 
-                    <div class="input-field col-2">
-                        <!-- Use textarea, rather than <input type=text> for HTML5 -->
-                        <input type="number" min="1" max="999" name="serves" id="serves" class="form-control" placeholder="Serves? (1 - 999)"></textarea>
-                    </div>
-
-                </div>
-
-
-                <!-- Input Recipe title and introductory comments -->
-
-                <div class="row">
-
-                    <div class="input-field col-12">
-                        <!-- Use textarea, rather than <input type="text> for HTML5 -->
-                        <textarea rows="2" name="intro" id="intro" class="form-control" placeholder="Introduction" required></textarea>
-                    </div>
-                </div>
-
-
-
-                <!-- Input Ingredients and Method -->
-
-
-                <div class="row">
-                    <div class="input-field col-6">
-                        <!-- Use textarea, rather than <input type= text> for HTML5 -->
-                        <textarea rows="20" name="ingredients" id="ingredients" class="form-control" placeholder="Ingredients" required></textarea>
-                    </div>
-
-                    <div class="input-field col-6">
-                        <!-- Use textarea, rather than <input type="text> for HTML5 -->
-                        <textarea rows="20" name="method" id="method" class="form-control" placeholder="Method" required></textarea>
-                    </div>
-                </div>
-
-                <!-- Submit the Recipe -->
-
-                <div class="row mt-3">
-                    <button class="ml-3 btn send-btn" type="submit" name="action">Send Recipe</button>
-                </div>
-
-            </form>
+            <div class="input-field col-2">
+                <!-- Use textarea, rather than <input type=text> for HTML5 -->
+                <input type="number" min="1" max="999" name="serves" id="serves" class="form-control" placeholder="Serves? (1 - 999)"></textarea>
+            </div>
 
         </div>
-    </div>
-    <!-- Hold rec_pages here but dont display it. It is needed by nav.js to determine 
+
+
+        <!-- Input Recipe title and introductory comments -->
+
+        <div class="row">
+
+            <div class="input-field col-12">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <textarea rows="2" name="intro" id="intro" class="form-control" placeholder="Introduction" required></textarea>
+            </div>
+        </div>
+
+
+
+        <!-- Input Ingredients and Method -->
+
+
+        <div class="row">
+            <div class="input-field col-6">
+                <!-- Use textarea, rather than <input type= text> for HTML5 -->
+                <textarea rows="20" name="ingredients" id="ingredients" class="form-control" placeholder="Ingredients" required></textarea>
+            </div>
+
+            <div class="input-field col-6">
+                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                <textarea rows="20" name="method" id="method" class="form-control" placeholder="Method" required></textarea>
+            </div>
+        </div>
+
+        <!-- Submit the Recipe -->
+
+        <div class="row mt-3">
+            <button class="ml-3 btn send-btn" type="submit" name="action">Send Recipe</button>
+        </div>
+
+    </form>
+
+</div>
+
+<!-- Hold rec_pages here but dont display it. It is needed by nav.js to determine 
      whether there is more than one page -->
 
 </div>

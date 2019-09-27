@@ -385,14 +385,6 @@ def get_my_recipes_page(page_nr, sel_email_addr):
 
 
 
-
-
-
-
-
-
-
-
 # =====================
 # Insert the new recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'
 # =====================
@@ -426,7 +418,7 @@ def insert_recipe():
     
     flash("Thank You. We have received your recipe.")
     
-    return redirect(url_for('send_recipe'))
+    return redirect(url_for('my_recipes'))
     
 
 # =====================
