@@ -424,13 +424,13 @@ def insert_recipe():
 # =============
 # DELETE RECIPE 
 # =============
-@app.route('/delete_recipe/<recipe_id>')
+@app.route('/delete_recipe/<sel_id>')
 def delete_recipe(recipe_id):
     
     # Access the recipes collection
     mongo.db.kitty_recipes.remove({'_id': ObjectId(recipe_id)})
     
-    return redirect(url_for('get_tasks'))
+    return redirect(url_for('my_recipes'))
     
     
     

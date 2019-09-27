@@ -5,22 +5,11 @@
 <!-- Banner that tells user what selection they have made -->
 
 <div class="row m-0 p-2 mt-3 mb-2 feature-style">
-    <div class="col-6">
+    <div class="col-12">
         <h2 class="m-0"><span id="category">Recipe Details</h2>
         <span id="origin" class="d-none">{{origin}}</span>
     </div>
-    
-    {% if rec_search_flag == "E" %}
-        <div class="offset-3 col-1">
-            <span><button class="edit-delete-btn btn send-btn" type="submit" name="action">Edit</button></span>
-        </div>
-        <div class="col-1">
-            <span><button class="edit-delete-btn  btn send-btn" type="submit" name="action">Delete</button></span>
-        </div>
-        {% endif %}
-    
 </div>
-
 
 
 <!-- Show all details for the selected recipe -->
@@ -95,7 +84,20 @@
 
                 </div>
             </div>
+            {% if rec_search_flag == "E" %}
+                <div class="row no-gutters">
+                    <div class="col-1">
+                        <span><button class="edit-delete-btn btn send-btn" type="submit" name="action">Edit</button></span>
+                    </div>
+                    <div class="col-1">
+                        <span><a href="{{ url_for('delete_recipe', sel_id=recipe._id) }}" class="edit-delete-btn  btn send-btn">Delete</a></span>
+                    </div>
+                </div>
+                {% endif %}
         </div>
+
+
+
     </div>
 
 </div>
@@ -105,6 +107,8 @@
              whether there is more than one page -->
     <span id="pag_ind" class="d-none">[]</span>
 </div>
+
+
 
 {% endfor %}
 
