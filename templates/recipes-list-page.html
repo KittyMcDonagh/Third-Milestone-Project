@@ -18,7 +18,10 @@
             <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
             <!-- Category is not applicable when in keyword search - don't highlight category in navbar -->
             <span id="category" class="d-none">na</span>
-            <span id="origin" class="d-none">{{origin}}</span> {% else %} {% if rec_search_flag == 'E' %}
+            <span id="origin" class="d-none">{{origin}}</span> 
+            {% else %} 
+            
+            {% if rec_search_flag == 'E' %}
             <!-- If this template is called through keyword search, show the keyword, e.g. bread, cake, etc -->
 
             <h2 class="m-0">
@@ -102,7 +105,7 @@
             </div>
 
             <div class="col-4">
-                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title.title()) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title.title(), search_flag=rec_search_flag) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
 
             </div>
         </div>
@@ -149,7 +152,7 @@
             </div>
 
             <div class="col-4">
-                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title.title()) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title.title(), search_flag=rec_search_flag) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
             </div>
         </div>
 

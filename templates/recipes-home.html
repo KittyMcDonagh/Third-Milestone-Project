@@ -74,7 +74,7 @@
                 <span><strong>{{ recipe.category.capitalize() }} Recipe</strong></span>
             </div>
             <div class="col-4">
-                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title.title()) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
+                <a href="{{ url_for('get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title.title(), search_flag=rec_search_flag) }}" class="more-icon-pl"><i class="fas fa-ellipsis-v more-icon-style"></i></a>
 
             </div>
         </div>
@@ -120,7 +120,7 @@
             </div>
 
             <div class="col-4 ">
-                <a href="{{ url_for( 'get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title.title()) }} " class="more-icon-pl "><i class="fas fa-ellipsis-v more-icon-style "></i></a>
+                <a href="{{ url_for( 'get_recipe_details', sel_id=recipe._id, sel_category=recipe.category.capitalize(), sel_origin=recipe.origin.title(), sel_title=recipe.title.title(), search_flag=rec_search_flag) }} " class="more-icon-pl "><i class="fas fa-ellipsis-v more-icon-style "></i></a>
             </div>
         </div>
 

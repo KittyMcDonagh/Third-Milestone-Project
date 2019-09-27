@@ -219,8 +219,8 @@ def search_recipes(page_nr, sel_keyword):
 # ===================================
 # SHOW THE DETAILS OF A SINGLE RECIPE - Showing introductory text, ingredients and method
 # ===================================
-@app.route('/get_recipe_details/<sel_id>/<sel_category>/<sel_origin>/<sel_title>')
-def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
+@app.route('/get_recipe_details/<sel_id>/<sel_category>/<sel_origin>/<sel_title><search_flag>')
+def get_recipe_details(sel_id, sel_category, sel_origin, sel_title, search_flag):
 
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find().sort("country_name", 1)
@@ -239,7 +239,7 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
         print("Error getting recipe from the Recipes Database")
     
     # Redirect to recipes details template
-    return render_template("recipe-details.html", recipes=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
+    return render_template("recipe-details.html", recipes=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title, rec_search_flag=search_flag)  
 
 
 

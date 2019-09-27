@@ -4,13 +4,23 @@
 
 <!-- Banner that tells user what selection they have made -->
 
-<div class="row m-0 p-2 mt-3 mb-2">
-    <div class="col-12 feature-style">
-        <h2 class="m-0"><span id="category">Recipe Details</span>
+<div class="row m-0 p-2 mt-3 mb-2 feature-style">
+    <div class="col-6">
+        <h2 class="m-0"><span id="category">Recipe Details</h2>
         <span id="origin" class="d-none">{{origin}}</span>
-        </h2>
     </div>
+    
+    {% if rec_search_flag == "E" %}
+        <div class="offset-3 col-1">
+            <span><button class="edit-delete-btn btn send-btn" type="submit" name="action">Edit</button></span>
+        </div>
+        <div class="col-1">
+            <span><button class="edit-delete-btn  btn send-btn" type="submit" name="action">Delete</button></span>
+        </div>
+        {% endif %}
+    
 </div>
+
 
 
 <!-- Show all details for the selected recipe -->
@@ -28,7 +38,7 @@
 
         <div class="row no-gutters card-header font-italic">
             <div class="col-6 ">
-                 <!-- Use .title() (found on https://stackoverflow.com/questions/1549641/how-to-capitalize-the-first-letter-of-each-word-in-a-string-python) to capitalize the first letter of each word, where the country name is more than one word - e.g. New Zealand -->
+                <!-- Use .title() (found on https://stackoverflow.com/questions/1549641/how-to-capitalize-the-first-letter-of-each-word-in-a-string-python) to capitalize the first letter of each word, where the country name is more than one word - e.g. New Zealand -->
                 <span><strong>From: {{ recipe.origin.title() }}</strong></span>
             </div>
             <div class="col-6">
