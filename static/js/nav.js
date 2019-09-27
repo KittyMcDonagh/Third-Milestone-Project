@@ -1,21 +1,28 @@
-// Enable selection of ORIGIN
-
 // Change home icon from green to black 
 $("#home").addClass("home-icon-deselected");
 
 
-// Leave the country dropdown disabled if we're on the Send Recipe Page
+// Get the Category and Origin
+
+var category = document.getElementById('category').innerHTML;
+var origin = document.getElementById('origin').innerHTML;
+
+// Leave the country dropdown disabled if we're on the 'My Recipes' or on
+// 'Recipe Details' Page, or in Search Mode. 
 
 var category = document.getElementById('category').innerHTML;
 
-if (category != "My Recipes") {
+if (category != "My Recipes" && category != "Recipe Details") {
     // If in search keyword mode, dont enable the countries dropdown
     if (category != "na") {
         // Enable Countries dropdown
         $("#origindd").removeClass("disabled");
         $("#origindd").addClass("enabled");
+        $("#origindd").text(origin);
+        $("#origindd").addClass("selected-green");
     }
 }
+
 
 
 // For pagination
@@ -97,19 +104,11 @@ if (category === "My Recipes") {
     $("#my-recipes").addClass("selected-green");
 }
 
-// The category in the navbar wont be highlighted when in search keyword mode as
-// 'category' will be = 'na'
 
-// Dont highlight the country value in the dropdown if in 'send-recipe' . . .
-if (category != "My Recipes") {
-    // Or if in search keyword mode
-    if (category != "na") {
 
-        $("#origindd").addClass("selected-green");
 
-        var origin = document.getElementById('origin').innerHTML;
-        $("#origindd").text(origin);
-    }
-}
+
+
+
 
 

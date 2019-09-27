@@ -160,7 +160,7 @@ main {
 
 
 
-/* css used on recipes-home & recipes-list page                              */
+/* css used on recipes-home & recipes-list & recipe-details page        */
 
 /* Banner background is a shade of green */
 
@@ -410,7 +410,8 @@ main {
 }
 
 .usr-msg {
-    padding-left: 75px;
+    font-size: 16px;
+    padding-left: 30px;
 }
 
 .form-style {

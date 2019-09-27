@@ -3,14 +3,13 @@
 <!-- Banner that tells user what selection they have made -->
 
 <div class="row m-0 p-2 mt-3 mb-2">
-    
+
     {% if rec_search_flag == "E" %}
     <div class="col-12 feature-style">
     {% else %}
     <div class="col-9 feature-style">
-    {% endif %}
-
-        {% if rec_search_flag == 'K' %}
+        
+        {% endif %} {% if rec_search_flag == 'K' %}
         <!-- If this template is called through keyword search, show the keyword, e.g. bread, cake, etc -->
 
         <h2 class="m-0">
@@ -24,37 +23,41 @@
 
             <h2 class="m-0">
                 <span id="category">{{category}}</span>
+                <span> - Select Recipe Details (<i class="fas fa-ellipsis-v"></i>) to Edit / Delete Recipe</span>
                 <!-- Include Origin, but don't display it. It needs to be picked up by nav.js -->
-                <span id="origin" class="d-none">{{origin}}</span> {% else %}
-                <!-- Template called on search by category and/or origin -->
+                <span id="origin" class="d-none">{{origin}}</span>
 
-                <h2 class="m-0">
-                    <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
-                    <span id="category">{{category}}</span>
-                    <span>Recipes from</span>
-                    <span id="origin">{{origin}}</span> {% endif %} {% endif %}
+        {% else %}
+        <!-- Template called on search by category and/or origin -->
 
-                    <!-- If no recipes were found for this category / origin, display a user message -->
+        <h2 class="m-0">
+            <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
+            <span id="category">{{category}}</span>
+            <span>Recipes from</span>
+            <span id="origin">{{origin}}</span>
+            {% endif %} 
+            {% endif %}
 
-                    {% if rec_count == 0 %}
-                    <span>- None Found</span> {% endif %}
+            <!-- If no recipes were found for this category / origin, display a user message -->
 
-                </h2>
+            {% if rec_count == 0 %}
+            <span>- None Found</span> {% endif %}
+
+        </h2>
     </div>
-
 
     <!-- If searching for recipes using the user's email address (my-recipes) don't include the search by keyword box -->
     {% if rec_search_flag != "E" %}
-    
-    <!-- Search Box Dropdown-->
+
+    <!-- Search Box Dropdown - goes on same line as the banner above -->
     <!-- The keyword search searches by keyword, all countries, and all categories. -->
 
     <div class="col-3">
         <div class="search-box">
             <a class="btn btn-secondary dropdown-toggle search-btn" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Search By Keyword
-  </a>
-
+        Search By Keyword
+      </a>
+    
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {% for word in search_words %}
                 <a class="dropdown-item" href="{{ url_for('search_recipes', sel_category='All', sel_origin='All Countries', page_nr='1', sel_keyword=word.key_words) }}">{{ word.key_words }}</a> {% endfor %}
@@ -62,6 +65,7 @@
         </div>
     </div>
     {% endif %}
+    
 </div>
 
 

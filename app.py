@@ -239,7 +239,7 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
         print("Error getting recipe from the Recipes Database")
     
     # Redirect to recipes details template
-    return render_template("recipes-details.html", recipes=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
+    return render_template("recipe-details.html", recipes=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
 
 
 
@@ -419,6 +419,21 @@ def insert_recipe():
     flash("Thank You. We have received your recipe.")
     
     return redirect(url_for('my_recipes'))
+
+
+# =============
+# DELETE RECIPE 
+# =============
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    
+    # Access the recipes collection
+    mongo.db.kitty_recipes.remove({'_id': ObjectId(recipe_id)})
+    
+    return redirect(url_for('get_tasks'))
+    
+    
+    
     
 
 # =====================
