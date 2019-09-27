@@ -3,9 +3,14 @@
 <!-- Banner that tells user what selection they have made -->
 
 <div class="row m-0 p-2 mt-3 mb-2">
+    
+    {% if rec_search_flag == "E" %}
+    <div class="col-12 feature-style">
+    {% else %}
     <div class="col-9 feature-style">
+    {% endif %}
 
-        {% if rec_kw_search == 'Y' %}
+        {% if rec_search_flag == 'K' %}
         <!-- If this template is called through keyword search, show the keyword, e.g. bread, cake, etc -->
 
         <h2 class="m-0">
@@ -14,34 +19,33 @@
             <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
             <!-- Category is not applicable when in keyword search - don't highlight category in navbar -->
             <span id="category" class="d-none">na</span>
-            <span id="origin" class="d-none">{{origin}}</span>
+            <span id="origin" class="d-none">{{origin}}</span> {% else %} {% if rec_search_flag == 'E' %}
+            <!-- If this template is called through keyword search, show the keyword, e.g. bread, cake, etc -->
 
+            <h2 class="m-0">
+                <span id="category">{{category}}</span>
+                <!-- Include Origin, but don't display it. It needs to be picked up by nav.js -->
+                <span id="origin" class="d-none">{{origin}}</span> {% else %}
+                <!-- Template called on search by category and/or origin -->
 
-            <!-- If no recipes were found for this keyword, display a user message -->
-             
-            {% if rec_count == 0 %}
-            <span>- Not Found</span> 
-            {% endif %}
-        </h2>
+                <h2 class="m-0">
+                    <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
+                    <span id="category">{{category}}</span>
+                    <span>Recipes from</span>
+                    <span id="origin">{{origin}}</span> {% endif %} {% endif %}
 
-        {% else %}
-        <!-- Template called on search by category and/or origin -->
+                    <!-- If no recipes were found for this category / origin, display a user message -->
 
-        <h2 class="m-0">
-            <!-- Category and Origin need to be in their own span to be picked up by nav.js -->
-            <span id="category">{{category}}</span>
-            <span>Recipes from</span>
-            <span id="origin">{{origin}}</span>
+                    {% if rec_count == 0 %}
+                    <span>- None Found</span> {% endif %}
 
-            <!-- If no recipes were found for this category / origin, display a user message -->
-
-            {% if rec_count == 0 %}
-            <span>- Not Found</span> {% endif %}
-
-        </h2>
-        {% endif %}
+                </h2>
     </div>
 
+
+    <!-- If searching for recipes using the user's email address (my-recipes) don't include the search by keyword box -->
+    {% if rec_search_flag != "E" %}
+    
     <!-- Search Box Dropdown-->
     <!-- The keyword search searches by keyword, all countries, and all categories. -->
 
@@ -53,10 +57,11 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {% for word in search_words %}
-                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_category='All', sel_origin='All Countries', search_flag='K', page_nr='1') }}">{{ word.key_words }}</a> {% endfor %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_category='All', sel_origin='All Countries', page_nr='1', sel_keyword=word.key_words) }}">{{ word.key_words }}</a> {% endfor %}
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 
 
@@ -116,7 +121,7 @@
         <!-- Card footer -->
 
         <div class="card-footer">
-            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }}" class="card-link-style"><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for('get_recipes_list', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }}" class="card-link-style"><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 
@@ -160,15 +165,12 @@
         <!-- Card Footer -->
 
         <div class="card-footer">
-            <a href="{{ url_for('get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }}" class="card-link-style"><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for('get_recipes_list', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }}" class="card-link-style"><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 
 </div>
-{% endif %} {% endfor %} 
-
-
-{% if close_div_row == "y" %}
+{% endif %} {% endfor %} {% if close_div_row == "y" %}
 <!-- If there's an odd number of recipies, the last row wont have closed, so add a </div> if required -->
 </div>
 {% endif %}
@@ -178,59 +180,69 @@
 
 <!-- Hold rec_pages here but dont display it. It is needed by nav.js to determine 
      whether there is more than one page -->
-<span id="pag_ind" class="d-none">{{ rec_pages }}</span>
-
-{% if rec_pages != [] %}
+<span id="pag_ind" class="d-none">{{ rec_pages }}</span> {% if rec_pages != [] %}
 
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
         <li id="prev" class="page-item">
             <!-- Output the page number, but dont display it. js  will use it to disable the 'prev' button-->
             <span id="pg-nr" class="d-none">{{ page_nr }}</span>
-            
+
             <!-- Check if searching by keyword, or by country / category , to return to correct label -->
-            {% if rec_kw_search == "Y" %}
+            {% if rec_search_flag == "K" %}
             <!-- Pagination previous - search by keyword, return to search label -->
-            <a id="prev-link" class="page-link nav-pag" href="{{ url_for('search_recipes', sel_keyword=rec_keyword.lower(), sel_category='All', sel_origin='All Countries', search_flag='K', page_nr=page_nr-1) }}" aria-label="Previous">
+            <a id="prev-link" class="page-link nav-pag" href="{{ url_for('search_recipes', page_nr=page_nr-1, sel_keyword=rec_keyword.lower()) }}" aria-label="Previous">
+                
+            {% else %}
+            
+            {% if rec_search_flag == "E" %}
+            <!-- Pagination previous - search by keyword, return to search label -->
+            <a id="prev-link" class="page-link nav-pag" href="{{ url_for('get_my_recipes_page', page_nr=page_nr-1, sel_email_addr=rec_email_addr) }}" aria-label="Previous">
       
             {% else %}
+            
             <!-- Pagination previous - search by country/category, return to get label -->
-            <a id="prev-link" class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category=category, sel_origin=origin, page_nr=page_nr-1) }}" aria-label="Previous">
+            <a id="prev-link" class="page-link nav-pag" href="{{ url_for('get_recipes_list', sel_category=category, sel_origin=origin, page_nr=page_nr-1) }}" aria-label="Previous">
         
        
-      {% endif %}
+      {% endif %} {% endif %}
       <span aria-hidden="true">&laquo;</span></a>
-      
-      <!-- Check if searching by keyword, or by country / category , to return to correct label -->
-      {% for number in rec_pages %}
-      
-      {% if rec_kw_search == "Y" %}
-      <!-- Pagination page nr - search by keyword, return to search label -->
-      <li class="page-item  "><a class="page-link nav-pag" href="{{ url_for('search_recipes', sel_keyword=rec_keyword.lower(), sel_category='All', sel_origin='All Countries', search_flag='K', page_nr=number) }}">{{ number }}</a></li>
-      
-      {% else%}
-      
-      <!-- Pagination page nr - search by country/category, return to get label -->
-      <li class="page-item  "><a class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category=category, sel_origin=origin, page_nr=number) }}">{{ number }}</a></li>
-      
-      {% endif %}
-      
-      {% endfor %}
 
-        <li id="next" class="page-item ">
-        <!-- Output the total page numbers, but dont display it. js  will use it to disable the 'next' button-->
-            <span id="tot-pg" class="d-none">{{ total_pages }}</span>
+            <!-- Check if searching by keyword, or by country / category , to return to correct label -->
+            {% for number in rec_pages %} {% if rec_search_flag == "K" %}
+            <!-- Pagination page nr - search by keyword, return to search label. Add dummy class "page_{{number}}, so as to allow nav.js to highlight
+           the selected page number -->
+            <li class="page-item  "><a class="page-link nav-pag page_{{number}}" href="{{ url_for('search_recipes', page_nr=number, sel_keyword=rec_keyword.lower()) }}">{{ number }}</a></li>
+
+            {% else %} {% if rec_search_flag == "E" %}
+            <!-- Pagination page nr - search by keyword, return to search label -->
+            <li class="page-item  "><a class="page-link nav-pag page_{{number}}" href="{{ url_for('get_my_recipes_page', page_nr=number, sel_email_addr=rec_email_addr) }}">{{ number }}</a></li>
+
+            {% else%}
+
+            <!-- Pagination page nr - search by country/category, return to get label -->
+            <li class="page-item  "><a class="page-link nav-pag page_{{number}}" href="{{ url_for('get_recipes_list', sel_category=category, sel_origin=origin, page_nr=number) }}">{{ number }}</a></li>
+
+            {% endif %} {% endif %} {% endfor %}
+
+            <li id="next" class="page-item ">
+                <!-- Output the total page numbers, but dont display it. js  will use it to disable the 'next' button-->
+                <span id="tot-pg" class="d-none">{{ total_pages }}</span> {% if rec_search_flag == "K" %}
+                <!-- Pagination - search by keyword, return to search label -->
+                <a id="next-link" class="page-link nav-pag" href="{{ url_for('search_recipes', page_nr=page_nr+1, sel_keyword=rec_keyword.lower()) }}" aria-label="Next">
+                
+            {% else %}
             
-            {% if rec_kw_search == "Y" %}
+            {% if rec_search_flag == "E" %}
             <!-- Pagination - search by keyword, return to search label -->
-            <a id="next-link" class="page-link nav-pag" href="{{ url_for('search_recipes', sel_keyword=rec_keyword.lower(), sel_category='All', sel_origin='All Countries', search_flag='K', page_nr=page_nr+1) }}" aria-label="Previous">
+            <a id="next-link" class="page-link nav-pag" href="{{ url_for('get_my_recipes_page', page_nr=page_nr+1, sel_email_addr=rec_email_addr) }}" aria-label="Next">
                 
             {% else%}
             
             <!-- Pagination next - search by country/category, return to get label -->
-            <a id="next-link" class="page-link nav-pag" href="{{ url_for('get_recipes', sel_category=category, sel_origin=origin, page_nr=page_nr+1) }}" aria-label="Next">
+            <a id="next-link" class="page-link nav-pag" href="{{ url_for('get_recipes_list', sel_category=category, sel_origin=origin, page_nr=page_nr+1) }}" aria-label="Next">
                 
-            {% endif %}
+            {% endif %} {% endif %}
                 
         <span aria-hidden="true">&raquo;</span>
       </a>

@@ -8,7 +8,7 @@ $("#home").addClass("home-icon-deselected");
 
 var category = document.getElementById('category').innerHTML;
 
-if (category != "Send us a Recipe") {
+if (category != "My Recipes") {
     // If in search keyword mode, dont enable the countries dropdown
     if (category != "na") {
         // Enable Countries dropdown
@@ -56,6 +56,10 @@ if (mult_pages_ind != "[]" ) {
         $("#next-link").addClass("prev-next-disabled");
 
     }
+    // Find the appropriate page number in the list and highlight it in green
+    var selected_page = ".page_"+this_page_nr
+    $(selected_page).addClass("selected-page-green");
+    
 }
 
 
@@ -97,7 +101,7 @@ if (category === "My Recipes") {
 // 'category' will be = 'na'
 
 // Dont highlight the country value in the dropdown if in 'send-recipe' . . .
-if (category != "Send us a Recipe") {
+if (category != "My Recipes") {
     // Or if in search keyword mode
     if (category != "na") {
 
@@ -107,3 +111,5 @@ if (category != "Send us a Recipe") {
         $("#origindd").text(origin);
     }
 }
+
+

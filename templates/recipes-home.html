@@ -40,7 +40,7 @@
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 {% for word in search_words %}
-                <a class="dropdown-item" href="{{ url_for('search_recipes', sel_keyword=word.key_words, sel_category='All', sel_origin='All Countries', search_flag='K', page_nr='1') }}">{{ word.key_words }}</a> {% endfor %}
+                <a class="dropdown-item" href="{{ url_for('search_recipes', page_nr='1', sel_keyword=word.key_words.lower()) }}">{{ word.key_words }}</a> {% endfor %}
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
         <!-- Card footer -->
 
         <div class="card-footer ">
-            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for( 'get_recipes_list', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 
@@ -140,7 +140,7 @@
         <!-- Card Footer -->
 
         <div class="card-footer ">
-            <a href="{{ url_for( 'get_recipes', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
+            <a href="{{ url_for( 'get_recipes_list', sel_category=recipe.category, sel_origin=recipe.origin, page_nr='1') }} " class="card-link-style "><strong><em>See all {{ recipe.category.capitalize() }} recipes from {{ recipe.origin.title() }}</em></strong></a>
         </div>
     </div>
 

@@ -44,19 +44,19 @@ def get_recipes_home():
     return render_template("recipes-home.html", recipes=sel_recipes, search_words=key_word_list, countries = country_list, category="all", origin = "All Countries", rec_count=recipes_count)
     
 # =================================
-# FILTER BY CATEGORY AND/OR ORIGIN - Display all recipes for selected category and origin showing image and introductory text only
+# GET LIST OF RECIPES FILTERED BY CATEGORY AND/OR ORIGIN - Showing image and introductory text
 #==================================
-@app.route('/get_recipes/<sel_category>/<sel_origin>/<page_nr>')
-def get_recipes(sel_category, sel_origin, page_nr):
+@app.route('/get_recipes_list/<sel_category>/<sel_origin>/<page_nr>')
+def get_recipes_list(sel_category, sel_origin, page_nr):
     
-    # Set search_kw_flag = 'N'. It lets recipes_list.html know whether a search by keyword is being done or not 
+# Set search_flag = 'N'. It lets recipes_list.html know whether a search by keyword is being done or not 
 # and it will show the relevant details accordingly
 
-    search_kw_flag = "N"
+    search_flag = "N"
     
 # For pagination - 
 # - Set the number of recipes to show per list page
-    nr_of_recipes_per_page = 6
+    nr_of_recipes_per_page = 5
     
 # - Store the page number passed in, as an integer
     this_page_nr = int(page_nr)
@@ -71,8 +71,6 @@ def get_recipes(sel_category, sel_origin, page_nr):
 
     search=mongo.db.key_words.find().sort("key_words",1)
     key_word_list = [word for word in search]
-    
-    
 
 # Search by All Categories?
     if sel_category == "All":
@@ -159,67 +157,68 @@ def get_recipes(sel_category, sel_origin, page_nr):
     odd_nr_display = check_odd_nr_rec_display(total_recipes_selected, this_page_nr, nr_of_recipes_per_page)
     
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_count=sel_recipes.count(), rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages, close_div_row=odd_nr_display)
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_search_flag=search_flag, rec_count=sel_recipes.count(), rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages, close_div_row=odd_nr_display)
 
 
-# =================
-# SEARCH BY KEYWORD - Display all recipes that have the selected key word, showing image and introductory text only
-# =================
-# (For simplicity, I decided to keep the search_recipes functionality separate from the get_recipes functionality)
-
-@app.route('/search_recipes/<sel_keyword>/<sel_category>/<sel_origin>/<search-flag>/<page_nr>')
-def search_recipes(sel_keyword, sel_category, sel_origin, search_flag, page_nr):
+# =============================
+# GET LIST OF RECIPES BY KEYWORD - Showing image and introductory text only
+# =============================
+@app.route('/search_recipes/<page_nr>/<sel_keyword>')
+def search_recipes(page_nr, sel_keyword):
     
-# Set search_kw_flag = 'Y'. It lets recipes_list.html know whether a search by keyword is being done or not 
-# and it will show the relevant details accordingly
+# Initialise 'search_flag'. It lets recipes-list.html / pagination know it was called by the 
+# search functionality, and will display the appropriate information in the banner, and return to
+# the right place to pick up recipes per page
 
-    search_kw_flag = "Y"
-
+    search_flag = "K"
+    
+# Reset category and origin to 'All'
+    sel_category ='All' 
+    sel_origin = 'All Countries'
+    
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find().sort("country_name", 1)
     country_list = [country for country in temp_countries]
     
 # Get all key words to create search dropdown list, sort the key words
-
     search=mongo.db.key_words.find().sort("key_words",1)
     key_word_list = [word for word in search]
     
-# Search Keyword in All Countries, All Categories
-
-
 # For pagination - 
 # - Set the number of recipes to show per list page
-    nr_of_recipes_per_page = 6
-    
+    nr_of_recipes_per_page = 5
+            
 # - Store the page number passed in, as an integer
     this_page_nr = int(page_nr)
-    
+
+# Search for Keyword in All Countries, All Categories
+       
+# For pagination -        
 # - Get the total number of recipes for this keyword
     total_recipes_selected = mongo.db.recipes.count({"key_words":sel_keyword})
-            
+                    
 # - Get number of pages required for the number of recipes
     nr_of_pages = number_of_pages(total_recipes_selected, nr_of_recipes_per_page )
-            
+                
 # - Create an array of page numbers (page_list)
     page_list = create_page_list(nr_of_pages, total_recipes_selected, nr_of_recipes_per_page)
-    
-
-# Search for all recipes with the selected key words, for all countries and categories
+            
+        
+# Search for next set of recipes (depending on nr of recipes per page and page nr) with the selected key words, for all countries and categories
     try:
         sel_recipes=mongo.db.recipes.find({"key_words":sel_keyword}).skip((this_page_nr -1) * nr_of_recipes_per_page).limit(nr_of_recipes_per_page).sort( [ ("origin",1), ("category",1)] )
-       
+               
     except:
         print("Error acessing the Recipes Database")
     
-
     # Redirect to recipes template, return the recipes in the country indicated by 'origin'
-    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_kw_search=search_kw_flag, rec_keyword=sel_keyword.title(), rec_count=sel_recipes.count(), rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages, close_div_row='y')
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_search_flag=search_flag, rec_keyword=sel_keyword.title(), rec_count=sel_recipes.count(), rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages, close_div_row='y')
+
     
 
-
-# ==============
-# RECIPE DETAILS - Show Details of Selected Recipe - show introductory text, ingredients and method
-# ==============
+# ===================================
+# SHOW THE DETAILS OF A SINGLE RECIPE - Showing introductory text, ingredients and method
+# ===================================
 @app.route('/get_recipe_details/<sel_id>/<sel_category>/<sel_origin>/<sel_title>')
 def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
 
@@ -243,33 +242,16 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title):
     return render_template("recipes-details.html", recipes=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title)  
 
 
-# ===========
-# SEND RECIPE
-# ===========
-@app.route('/send_recipe')
-def send_recipe():
 
-# Create country list for countries dropdown    
-    temp_countries = mongo.db.countries.find().sort("country_name", 1)
-    country_list = [country for country in temp_countries]
-    
-# Create category list for categories dropdown    
-    temp_categories = mongo.db.categories.find()
-    category_list = [category for category in temp_categories]
-    
-    sel_category="All"
-    sel_origin="All Countries"
-
-
-# Redirect to send_recipe template
-    return render_template("send-recipe.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin)
-
-
-# ===========
-# MY RECIPES
-# ===========
+# =============================
+# DISPLAY 'MY RECIPES' SCREEN - Allowing user in input a new recipe, or view, edit, delete existing recipes
+# =============================
 @app.route('/my_recipes')
 def my_recipes():
+    
+#   Initialise category & origin & search flag
+    sel_category = "My Recipes"
+    sel_origin = "All Countries"
 
 # Create country list for countries dropdown    
     temp_countries = mongo.db.countries.find().sort("country_name", 1)
@@ -278,17 +260,142 @@ def my_recipes():
 # Create category list for categories dropdown    
     temp_categories = mongo.db.categories.find()
     category_list = [category for category in temp_categories]
-    
-    sel_category="All"
-    sel_origin="All Countries"
 
 
 # Redirect to send_recipe template
     return render_template("my-recipes.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin)
+    
+
+# =============================
+#GET LIST OF THE USER'S RECIPES - Showing image and introductory text only
+# =============================
+@app.route('/get_my_recipes', methods=['POST'])
+def get_my_recipes():
+    
+# Initialise 'search_flag' to "E". It lets recipes-list.html / pagination know it was called by the 
+# search by email functionality, and will return to the right place to pick up recipes per page
+
+    search_flag = "E"
+    
+# Reset category to 'My Recipes', and origin to 'All'
+    sel_category ='My Recipes' 
+    sel_origin = 'All Countries'
+    
+# Create country list for countries dropdown    
+    temp_countries = mongo.db.countries.find().sort("country_name", 1)
+    country_list = [country for country in temp_countries]
+    
+# Get all key words to create search dropdown list, sort the key words
+
+    search=mongo.db.key_words.find().sort("key_words",1)
+    key_word_list = [word for word in search]
+    
+# For pagination - 
+# - Set the number of recipes to show per list page
+    nr_of_recipes_per_page = 5
+            
+# - Store the page number passed in, as an integer
+    this_page_nr = 1
+
+# Check whether 'search_recipes' was called from the keyword search box, or from the 
+# 'my-recipes' email input box
+
+# Search for user's recipes using the email address entered
+    sel_email_addr = request.form['my_email'].lower()
+        
+# For pagination -        
+# - Get the total number of recipes for this keyword
+    total_recipes_selected = mongo.db.recipes.count({"owner":sel_email_addr})
+                
+# - Get number of pages required for the number of recipes
+    nr_of_pages = number_of_pages(total_recipes_selected, nr_of_recipes_per_page )
+                    
+# - Create an array of page numbers (page_list)
+    page_list = create_page_list(nr_of_pages, total_recipes_selected, nr_of_recipes_per_page)
+            
+        
+# Search for all recipes with the selected key words, for all countries and categories
+    try:
+        sel_recipes=mongo.db.recipes.find({"owner":sel_email_addr}).skip((this_page_nr -1) * nr_of_recipes_per_page).limit(nr_of_recipes_per_page).sort( [ ("origin",1), ("category",1)] )
+               
+    except:
+        print("Error acessing the Recipes Database")
+            
+
+    # Redirect to recipes template, return the recipes in the country indicated by 'origin'
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_search_flag=search_flag, rec_email_addr=sel_email_addr, rec_count=sel_recipes.count(), rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages, close_div_row='y')
+
+
+# =============================
+#GET LIST OF THE USER'S RECIPES - from page number 2+
+# =============================
+
+@app.route('/get_my_recipes_page/<page_nr>/<sel_email_addr>')
+def get_my_recipes_page(page_nr, sel_email_addr):
+    
+# Initialise 'search_flag' to "E". It lets recipes-list.html / pagination know it was called by the 
+# search by email functionality, and will return to the right place to pick up recipes per page
+
+    search_flag = "E"
+    
+# Reset category to 'My Recipes', and origin to 'All'
+    sel_category ='My Recipes' 
+    sel_origin = 'All Countries'
+    
+# Create country list for countries dropdown    
+    temp_countries = mongo.db.countries.find().sort("country_name", 1)
+    country_list = [country for country in temp_countries]
+    
+# Get all key words to create search dropdown list, sort the key words
+
+    search=mongo.db.key_words.find().sort("key_words",1)
+    key_word_list = [word for word in search]
+    
+# For pagination - 
+# - Set the number of recipes to show per list page
+    nr_of_recipes_per_page = 5
+            
+# - Store the page number passed in, as an integer
+    this_page_nr = int(page_nr)
+
+# Check whether 'search_recipes' was called from the keyword search box, or from the 
+# 'my-recipes' email input box
+
+# For pagination -        
+# - Get the total number of recipes for this keyword
+    total_recipes_selected = mongo.db.recipes.count({"owner":sel_email_addr})
+                
+# - Get number of pages required for the number of recipes
+    nr_of_pages = number_of_pages(total_recipes_selected, nr_of_recipes_per_page )
+                    
+# - Create an array of page numbers (page_list)
+    page_list = create_page_list(nr_of_pages, total_recipes_selected, nr_of_recipes_per_page)
+            
+        
+# Search for all recipes with the selected key words, for all countries and categories
+    try:
+        sel_recipes=mongo.db.recipes.find({"owner":sel_email_addr}).skip((this_page_nr -1) * nr_of_recipes_per_page).limit(nr_of_recipes_per_page).sort( [ ("origin",1), ("category",1)] )
+               
+    except:
+        print("Error acessing the Recipes Database")
+            
+
+    # Redirect to recipes template, return the recipes in the country indicated by 'origin'
+    return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_search_flag=search_flag, rec_email_addr=sel_email_addr, rec_count=sel_recipes.count(), rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages, close_div_row='y')
 
 
 
-# Insert the task the recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'
+
+
+
+
+
+
+
+
+# =====================
+# Insert the new recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'
+# =====================
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     

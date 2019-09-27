@@ -376,52 +376,12 @@ main {
 
 /* css used in my-recipes.html                                               */
 
-.my-rec-user-msg {
-    font-size: 20px;
-
-}
 
 .my-rec-form {
     padding-left: 100px;
 }
 
-.my-recipe-actions {
-    background-color: #3b3b3b;
-    border-color: #1a1a1a;
 
-    text-align: center;
-    font-family: "Courgette", sans-serif;
-    font-size: 16px;
-    padding: 10px;
-}
-
-.my-recipe-actions:hover {
-    text-decoration: none;
-    background-color: #76c180!important;
-    border-color: #76c180!important;
-    color: #fff;
-
-}
-
-.my-recipe-btns {
-    background-color: #3b3b3b;
-    border-color: #1a1a1a;
-    color: #fff;
-    box-sizing: border-box;
-
-}
-
-.my-recipe-btns:hover {
-    text-decoration: none;
-    background-color: #76c180!important;
-    border-color: #76c180!important;
-    color: #fff;
-
-
-}
-
-
-/*  css used in send-recipe.html                                                */
 
 .flashes {
     color: #76c180;
@@ -433,13 +393,25 @@ main {
     padding-top: 3px;
 }
 
+.email-form-style {
+    font-family: "Courgette", sans-serif;
+    font-size: 14px;
+    padding: 15px;
+    background-color: #edf7ef;
+    border-radius: 15px;
+
+}
+
+.usr-msg {
+    padding-left: 75px;
+}
+
 .form-style {
     font-family: "Nunito", sans-serif;
     font-size: 16px;
     padding: 10px;
     background-color: #b3b3b3;
     border-radius: 15px;
-
 }
 
 .form-center {
@@ -447,7 +419,6 @@ main {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 96%;
-
 }
 
 
@@ -488,4 +459,8 @@ main {
 
 .selected-green {
     color: #76c180!important;
+}
+
+.selected-page-green {
+    background-color: #76c180!important;
 }
