@@ -5,7 +5,7 @@ $("#home").addClass("home-icon-deselected");
 // Get the Category and Origin
 
 var category = document.getElementById('category').innerHTML;
-var origin = document.getElementById('origin').innerHTML;
+
 
 // Leave the country dropdown disabled if we're on the 'My Recipes' or on
 // 'Recipe Details' Page, or in Search Mode. 
@@ -16,6 +16,7 @@ if (category != "My Recipes" && category != "Recipe Details") {
     // If in search keyword mode, dont enable the countries dropdown
     if (category != "na") {
         // Enable Countries dropdown
+        var origin = document.getElementById('origin').innerHTML;
         $("#origindd").removeClass("disabled");
         $("#origindd").addClass("enabled");
         $("#origindd").text(origin);

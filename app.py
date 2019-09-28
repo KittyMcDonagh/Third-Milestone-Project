@@ -425,15 +425,16 @@ def insert_recipe():
 # DELETE RECIPE 
 # =============
 @app.route('/delete_recipe/<sel_id>')
-def delete_recipe(recipe_id):
+def delete_recipe(sel_id):
     
     # Access the recipes collection
-    mongo.db.kitty_recipes.remove({'_id': ObjectId(recipe_id)})
+    mongo.db.recipes.remove({'_id': ObjectId(sel_id)})
+    
+    # Send a message to the user thanking them for sending their recipe
+    
+    flash("Thank you. Recipe has been deleted.")
     
     return redirect(url_for('my_recipes'))
-    
-    
-    
     
 
 # =====================

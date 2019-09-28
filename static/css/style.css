@@ -375,7 +375,7 @@ main {
 
 /* css used in my-recipes.html                                               */
 
-.thanks-li {}
+
 
 
 .my-rec-form {
@@ -385,12 +385,10 @@ main {
 
 
 .flashes {
-    color: #76c180;
+    color: #3b3b3b;
     list-style-type: none;
     font-size: 18px;
-    color: #76c180;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    padding-top: 10px;
 }
 
 .input-field {

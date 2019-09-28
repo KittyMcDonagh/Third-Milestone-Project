@@ -2,11 +2,25 @@
 
 
 <!-- Banner for options  -->
-<div class="row m-0 p-2 mt-3 mb-2">
-    <div class="col-12 feature-style">
+<div class="row m-0 p-2 mt-3 mb-2 feature-style">
+    <div class="col-4 ">
         <h2 id="category" class="m-0">My Recipes</h2>
     </div>
+
+    <!-- Flash message to the user when recipe received / updated / deleted-->
+     {% with messages = get_flashed_messages() %} {% if messages %} {% endif %}
+    <div class="col-8">
+        <ul class="flashes">
+            {% for message in messages %}
+            <li><strong>{{ message }}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endwith %}
+    </div>
 </div>
+
+
+
 
 <!-- Enter Email Address -->
 <div class=class="row m-0 p-2 mt-3 mb-4">
@@ -34,20 +48,6 @@
     </div>
 </div>
 
-
-
-<!-- Flash a thank you message to the user when recipe received -->
-<div class="row">
-    <div class="col-12 mx-auto">
-        {% with messages = get_flashed_messages() %} {% if messages %} {% endif %}
-        <ul class="flashes">
-            {% for message in messages %}
-            <li><strong>{{ message }}</strong></li>
-            {% endfor %}
-        </ul>
-        {% endwith %}
-    </div>
-</div>
 
 
 <!-- Recipe input form  -->

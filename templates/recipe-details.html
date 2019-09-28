@@ -84,13 +84,15 @@
 
                 </div>
             </div>
+            
+            <!-- If the recipes are being searched by email address (my recipes) allow Edit and Delete -->
             {% if rec_search_flag == "E" %}
                 <div class="row no-gutters">
                     <div class="col-1">
                         <span><button class="edit-delete-btn btn send-btn" type="submit" name="action">Edit</button></span>
                     </div>
                     <div class="col-1">
-                        <span><a href="{{ url_for('delete_recipe', sel_id=recipe._id) }}" class="edit-delete-btn  btn send-btn">Delete</a></span>
+                        <span><a href="{{ url_for('delete_recipe', sel_id=recipe._id) }}" class="edit-delete-btn btn send-btn">Delete</a></span>
                     </div>
                 </div>
                 {% endif %}
