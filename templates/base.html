@@ -52,7 +52,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a id="my-recipes" class="nav-link" href="{{ url_for('my_recipes') }}">MY RECIPES</a>
+                        <a id="my-recipes" class="nav-link" href="{{ url_for('my_recipes', function_flag="insert") }}">MY RECIPES</a>
                     </li>
 
                     <!-- Dropdown menu for ORIGIN  -->
@@ -105,7 +105,7 @@
 
             <div class="col-sm-4 footer-pb">
                 <ul class="footer-ul-style">
-                    <li class="mb-1"><a id="ftr-myrecipes" class="footer-links " href="{{ url_for('my_recipes', sel_category='My Recipes', sel_origin='ALL Countries', page_nr='1', search_flag='M') }}">My Recipes</a></li>
+                    <li class="mb-1"><a id="ftr-myrecipes" class="footer-links " href="{{ url_for('my_recipes', function_flag="insert") }}">My Recipes</a></li>
                 </ul>
             </div>
         </div>

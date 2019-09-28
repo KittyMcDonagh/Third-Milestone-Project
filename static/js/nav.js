@@ -25,15 +25,14 @@ if (category != "My Recipes" && category != "Recipe Details") {
 }
 
 
-
 // For pagination
 
 // First check if there are multiple pages
 var mult_pages_ind = document.getElementById('pag_ind').innerHTML;
 
-if (mult_pages_ind != "[]" ) {
+if (mult_pages_ind != "[]") {
 
-// Get the current page number
+    // Get the current page number
 
     var this_page_nr = document.getElementById('pg-nr').innerHTML;
 
@@ -65,9 +64,9 @@ if (mult_pages_ind != "[]" ) {
 
     }
     // Find the appropriate page number in the list and highlight it in green
-    var selected_page = ".page_"+this_page_nr
+    var selected_page = ".page_" + this_page_nr
     $(selected_page).addClass("selected-page-green");
-    
+
 }
 
 
@@ -104,12 +103,3 @@ if (category === "My Recipes") {
 
     $("#my-recipes").addClass("selected-green");
 }
-
-
-
-
-
-
-
-
-

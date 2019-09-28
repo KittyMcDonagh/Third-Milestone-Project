@@ -6,10 +6,17 @@
     <div class="col-4 ">
         <h2 id="category" class="m-0">My Recipes</h2>
     </div>
+    
+    {% if rec_function_flag == "edit" %}
+    <div class="col-4">
+        <h2>Edit Recipe</h2>
+    </div>
+    {% endif %}
 
+    
+    {% with messages = get_flashed_messages() %} {% if messages %} {% endif %}
     <!-- Flash message to the user when recipe received / updated / deleted-->
-     {% with messages = get_flashed_messages() %} {% if messages %} {% endif %}
-    <div class="col-8">
+    <div class="col-4">
         <ul class="flashes">
             {% for message in messages %}
             <li><strong>{{ message }}</strong></li>
@@ -19,9 +26,9 @@
     </div>
 </div>
 
+<!-- Request email address only if in 'insert mode' (i.e. not in 'edit' mode -->
 
-
-
+{%if rec_function_flag == "insert"%}
 <!-- Enter Email Address -->
 <div class=class="row m-0 p-2 mt-3 mb-4">
     <div class="offset-2 col-8 email-form-style">
@@ -47,28 +54,73 @@
         </div>
     </div>
 </div>
+{% endif %}
 
 
 
-<!-- Recipe input form  -->
+<!-- Recipe input / edit form  -->
+
 
 <div class="row form-center">
-    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-12 form-style">
-
+    
+    {% if rec_function_flag == "insert" %}
+    <!-- If inserting a new recipe, we have no recipe id -->
+    
+    <form action="{{ url_for('insert_recipe', function_flag=rec_function_flag, sel_id="") }}" method="POST" class="col-12 form-style">
+        
+    {% else %}
+    <!-- If updating an exisiting recipe, we need to pass the recipe id -->
+    <form action="{{ url_for('update_recipe', sel_id=recipe._id) }}" method="POST" class="col-12 form-style">
+    
+    {% endif %}
         <!-- Input Owners' Email Address and Image Name -->
 
         <div class="row">
             <div class="input-field col-4">
+                
+            {% if rec_function_flag == "edit" %}
+            <!-- If in edit mode, display the details of the recipe to be edited -->
+                
+                <input id="owner" name="owner" type="email" class="form-control" value="{{ recipe.owner }}" required>
+                
+            {% else %}
+            
+            <!-- In insert mode, display blank form -->
                 <input id="owner" name="owner" type="email" class="form-control" placeholder="Your Email Address" required>
+               
+            {% endif %}
+                
             </div>
 
             <div class="input-field col-4">
-                <input maxlength="50" id="title" name="title" type="text" class="form-control" placeholder="Recipe Title" required></textarea>
+                <span class="d-none">{{ rec_function_flag }}</span>
+                
+                {% if rec_function_flag == "edit" %}
+                <!-- If in edit mode, display the details of the recipe to be edited -->
+                
+                <input id="title" name="title" type="text" class="form-control" value="{{ recipe.title }}" required>
+                
+                {% else %}
+                
+                <!-- In insert mode, display blank form -->
+                <input maxlength="50" id="title" name="title" type="text" class="form-control" placeholder="Recipe Title" required>
+                
+                {% endif %}
             </div>
 
             <div class="input-field col-4">
-                <!-- Use textarea, rather than <input type="text> for HTML5 -->
-                <input name="image-name" id="image-name" class="form-control" placeholder="Image Name (name.jpg / name.png) "></textarea>
+                
+                {% if rec_function_flag == "edit" %}
+                <!-- If in edit mode, display the details of the recipe to be edited -->
+                
+                <input name="image-name" id="image-name" class="form-control" value="{{ recipe.image }}">
+                
+                {% else %}
+                
+                <!-- In insert mode, display blank form -->
+                <input name="image-name" id="image-name" class="form-control" placeholder="Image Name (name.jpg / name.png) ">
+                
+                {% endif %}
             </div>
 
         </div>
@@ -81,8 +133,20 @@
                   
                     {% for country in countries %}
                     
+                    {% if rec_function_flag == "edit" %}
+                    
+                    <!-- The country on the Recipe will be selected -->
+                       {% if country.country_name.lower() == recipe.origin.lower() %} 
+                           <option value="{{ country.country_name }}" selected>{{ country.country_name }}</option>
+                       {% else %}
+                           <option value="{{ country.country_name }}">{{ country.country_name }}</option>
+                       {% endif %}
+                    
+                    {% else %}
+                    
                     <!-- The value in 'value' field is what will be submitted to the form -->
                       <option value="{{ country.country_name }}">{{ country.country_name }}</option>
+                    {% endif %}
                     
                     {% endfor %}
             
@@ -96,8 +160,18 @@
                     
                     {% for cat in categories %}
                     
+                    {% if rec_function_flag == "edit" %}
+                    <!-- The category on the Recipe will be selected -->
+                        {% if cat.category_name.lower() == recipe.category.lower() %} 
+                             <option value="{{ cat.category_name }}" selected>{{ cat.category_name }}</option>
+                        {% else %}
+                             <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
+                        {% endif %}
+                    
                     <!-- The value in 'value' field is what will be submitted to the form -->
                       <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
+                    
+                    {% endif %}
                     
                     {% endfor %}
                  
@@ -106,13 +180,34 @@
 
             <!-- Input Preparation time and how many it serves -->
             <div class="input-field col-2">
-                <!-- Use textarea, rather than <input type="text> for HTML5 -->
-                <input name="prep_time" id="prep_time" class="form-control" placeholder="Prep Time [hh:mm]"></textarea>
+                
+                 {% if rec_function_flag == "edit" %}
+                <!-- If in edit mode, display the details of the recipe to be edited -->
+                <input name="prep_time" id="prep_time" class="form-control" value="{{ recipe.prep_time }}">
+                
+                {% else %}
+                
+                <!-- In insert mode, display blank form -->
+                <input name="prep_time" id="prep_time" class="form-control" placeholder="Prep Time [hh:mm]">
+                
+                {% endif %}
             </div>
 
             <div class="input-field col-2">
-                <!-- Use textarea, rather than <input type=text> for HTML5 -->
-                <input type="number" min="1" max="999" name="serves" id="serves" class="form-control" placeholder="Serves? (1 - 999)"></textarea>
+                
+                {% if rec_function_flag == "edit" %}
+                <!-- If in edit mode, display the details of the recipe to be edited -->
+                <input type="number" min="1" max="999" name="serves" id="serves" class="form-control" value="{{ recipe.serves}}">
+                
+                <!-- Hiding these 2 fields here. They wont be edited by the user, but I want to make sure they are output to the record on update -->
+                <input type="hidden" name="key_words" id="key_words" class="form-control" value="{{ recipe.key_words }}">
+                <input type="hidden" name="home_feature" id="home_feature" class="form-control" value="{{ recipe.home_feature }}">
+                
+                {% else %}
+                <!-- In insert mode, display blank form -->
+                <input type="number" min="1" max="999" name="serves" id="serves" class="form-control" placeholder="Serves? (1 - 999)">
+                
+                {% endif %}
             </div>
 
         </div>
@@ -123,36 +218,73 @@
         <div class="row">
 
             <div class="input-field col-12">
-                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                {% if rec_function_flag == "edit" %}
+                <!-- If in edit mode, display the details of the recipe to be edited -->
+                <textarea rows="2" name="intro" id="intro" class="form-control" required>{{ recipe.intro }}</textarea>
+                
+                {% else %}
+                <!-- In insert mode, display blank form -->
                 <textarea rows="2" name="intro" id="intro" class="form-control" placeholder="Introduction" required></textarea>
+                {% endif %}
             </div>
         </div>
-
-
 
         <!-- Input Ingredients and Method -->
-
-
+        
         <div class="row">
             <div class="input-field col-6">
-                <!-- Use textarea, rather than <input type= text> for HTML5 -->
+                
+            {% if rec_function_flag == "edit" %}
+            <!-- If in edit mode, display the details of the recipe to be edited -->
+            
+            <textarea rows="20" name="ingredients" id="ingredients" class="form-control" required>
+                
+                {% for ingredient in recipe.ingredients %}
+                    {{ ingredient }}
+                {% endfor %}
+            </textarea>
+                
+            {% else %}
+                
+                <!-- In insert mode, display blank form -->
                 <textarea rows="20" name="ingredients" id="ingredients" class="form-control" placeholder="Ingredients" required></textarea>
+            {% endif%}
             </div>
 
             <div class="input-field col-6">
-                <!-- Use textarea, rather than <input type="text> for HTML5 -->
+                {% if rec_function_flag == "edit" %}
+                <!-- If in edit mode, display the details of the recipe to be edited -->
+                <textarea rows="20" name="method" id="method" class="form-control" required>
+                {% for step in recipe.method %}
+                {{ step }}
+                {% endfor %}</textarea>
+                
+                {% else %}
+                <!-- In insert mode, display blank form -->
                 <textarea rows="20" name="method" id="method" class="form-control" placeholder="Method" required></textarea>
+                {% endif %}
             </div>
         </div>
 
-        <!-- Submit the Recipe -->
+
+        {% if rec_function_flag == "edit" %}
+        <!-- If in edit mode, button will say 'Update Recipe -->
+                
+        <div class="row mt-3">
+            <button class="ml-3 btn send-btn" type="submit" name="action">Update Recipe</button>
+        </div>
+        
+        {% else %}
+        
+        <!-- Submit New Recipe -->
 
         <div class="row mt-3">
             <button class="ml-3 btn send-btn" type="submit" name="action">Send Recipe</button>
         </div>
+        {% endif %}
 
     </form>
-
+     
 </div>
 
 <div>

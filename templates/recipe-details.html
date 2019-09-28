@@ -6,7 +6,14 @@
 
 <div class="row m-0 p-2 mt-3 mb-2 feature-style">
     <div class="col-12">
+        
+        {% if rec_search_flag == "E" %}
+        <!-- Searching My Recipes -->
+        <h2 class="m-0"><span id="category">My Recipe Details</h2>
+        
+        {% else %}
         <h2 class="m-0"><span id="category">Recipe Details</h2>
+        {% endif %}
         <span id="origin" class="d-none">{{origin}}</span>
     </div>
 </div>
@@ -15,9 +22,9 @@
 <!-- Show all details for the selected recipe -->
 
 
-{% for recipe in recipes %}
 
-<!-- There's only one recipe in 'recipes' the one selected by the user -->
+
+<!-- There's only one recipe, the one selected by the user -->
 
 <div class="row no-gutters card-group card-details-padding">
 
@@ -89,7 +96,7 @@
             {% if rec_search_flag == "E" %}
                 <div class="row no-gutters">
                     <div class="col-1">
-                        <span><button class="edit-delete-btn btn send-btn" type="submit" name="action">Edit</button></span>
+                        <span><a href="{{ url_for('edit_recipe', sel_id=recipe._id) }}" class="edit-delete-btn btn send-btn" type="submit" name="action">Edit</a></span>
                     </div>
                     <div class="col-1">
                         <span><a href="{{ url_for('delete_recipe', sel_id=recipe._id) }}" class="edit-delete-btn btn send-btn">Delete</a></span>
@@ -111,8 +118,6 @@
 </div>
 
 
-
-{% endfor %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 

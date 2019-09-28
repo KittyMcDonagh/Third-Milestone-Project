@@ -231,23 +231,24 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title, search_flag)
     search=mongo.db.key_words.find().sort("key_words",1)
     key_word_list = [word for word in search]
     
-# Note: I was using "mongo.db.recipes.find_one" here, but it wasnt finding the recipe for me
+    
+# Get the recipe the user has selected
     
     try:
-        sel_recipe = mongo.db.recipes.find({"_id": ObjectId(sel_id)})
+        sel_recipe = mongo.db.recipes.find_one({"_id": ObjectId(sel_id)})
     except:
         print("Error getting recipe from the Recipes Database")
     
     # Redirect to recipes details template
-    return render_template("recipe-details.html", recipes=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title, rec_search_flag=search_flag)  
+    return render_template("recipe-details.html", recipe=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title, rec_search_flag=search_flag)  
 
 
 
 # =============================
 # DISPLAY 'MY RECIPES' SCREEN - Allowing user in input a new recipe, or view, edit, delete existing recipes
 # =============================
-@app.route('/my_recipes')
-def my_recipes():
+@app.route('/my_recipes/<function_flag>')
+def my_recipes(function_flag):
     
 #   Initialise category & origin & search flag
     sel_category = "My Recipes"
@@ -263,7 +264,7 @@ def my_recipes():
 
 
 # Redirect to send_recipe template
-    return render_template("my-recipes.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin)
+    return render_template("my-recipes.html", countries=country_list, categories=category_list, category=sel_category, origin=sel_origin, rec_function_flag=function_flag)
     
 
 # =============================
@@ -385,6 +386,39 @@ def get_my_recipes_page(page_nr, sel_email_addr):
 
 
 
+# =============
+# EDIT RECIPE 
+# =============
+# Edit the task that has been selected for editing from the tasks.html
+@app.route('/edit_recipe)/<sel_id>')
+def edit_recipe(sel_id):
+    
+#   Initialise the function flag for 'my-recipes.html'
+    function_flag="edit"
+    
+#   Initialise category & origin & search flag
+    sel_category = "My Recipes"
+    sel_origin = "All Countries"
+    
+
+# Create country list for countries dropdown    
+    temp_countries = mongo.db.countries.find().sort("country_name", 1)
+    country_list = [country for country in temp_countries]
+    
+# Create category list for categories dropdown    
+    temp_categories = mongo.db.categories.find()
+    category_list = [category for category in temp_categories]
+
+# Get the recipe that is to be edited
+    
+    sel_recipe = mongo.db.recipes.find_one({"_id": ObjectId(sel_id)})
+    
+   
+    # Redirect to send_recipe template
+    return render_template("my-recipes.html", recipe=sel_recipe, countries=country_list, categories=category_list, category=sel_category, origin=sel_origin, rec_function_flag=function_flag)
+    
+    
+
 # =====================
 # Insert the new recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'
 # =====================
@@ -397,6 +431,8 @@ def insert_recipe():
     ingredients_array = request.form['ingredients'].splitlines()
     method_array = request.form['method'].splitlines()
     
+    # Insert a new recipe
+        
     recipe = {"origin" : request.form['origin'].lower(), 
               "category" : request.form['category'].lower(),
               "title" : request.form['title'].lower(),
@@ -410,15 +446,54 @@ def insert_recipe():
               "key_words": "new",
               "home_feature" : "",
               "status": "new"
-    }
+        }
+        
     #Insert the new recipe into the database
     recipes.insert_one(recipe)
-    
+        
     # Send a message to the user thanking them for sending their recipe
-    
     flash("Thank You. We have received your recipe.")
+        
+    return redirect(url_for('my_recipes', function_flag="insert"))
+
+
+
+# =====================
+# Update an existing recipe when 'Update Recipe' button is clicked. Invoked by 'form action="{{ url_for('update_recipe') }}"'
+# =====================
+@app.route('/update_recipe/<sel_id>', methods=['POST'])
+def update_recipe(sel_id):
     
-    return redirect(url_for('my_recipes'))
+    # Access the recipes collection
+    recipes = mongo.db.recipes
+    
+    ingredients_array = request.form['ingredients'].splitlines()
+    method_array = request.form['method'].splitlines()
+    
+    # Updating an existing recipe 
+        
+    recipes.update({"_id": ObjectId(sel_id)},
+         {
+             "origin" : request.form['origin'].lower(), 
+              "category" : request.form['category'].lower(),
+              "title" : request.form['title'].lower(),
+              "intro" : request.form['intro'].lower(),
+              "owner" : request.form['owner'].lower(),
+              "prep_time" : request.form['prep_time'],
+              "serves" : request.form['serves'],
+              "image" : request.form['image-name'].lower(),
+              "ingredients" : ingredients_array,
+              "method" : method_array,
+              "key_words": request.form['key_words'],
+              "home_feature" : request.form['home_feature'],
+              "status": "updated"
+    })
+        
+    # Send a message to the user thanking them for sending their recipe
+    flash("Thank You. Your recipe has been updated.")
+        
+    return redirect(url_for('my_recipes', function_flag="insert"))
+
 
 
 # =============
@@ -430,11 +505,14 @@ def delete_recipe(sel_id):
     # Access the recipes collection
     mongo.db.recipes.remove({'_id': ObjectId(sel_id)})
     
+#   Initialise function flag for 'my-recipes.html'
+    function_flag = "insert"
+    
     # Send a message to the user thanking them for sending their recipe
     
     flash("Thank you. Recipe has been deleted.")
     
-    return redirect(url_for('my_recipes'))
+    return redirect(url_for('my_recipes', function_flag=function_flag))
     
 
 # =====================
