@@ -17,6 +17,8 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
+# The code in this app is based mainly on the 'tasks' mini project
+
 # =========
 # HOME PAGE - Display home page featured recipes with image and introductory text only
 # =========
@@ -34,7 +36,12 @@ def get_recipes_home():
     
     
 # Select only the recipes that are flagged to appear on the home page (one per country)
-    sel_recipes=mongo.db.recipes.find({"home_feature":'on'}).sort( [ ("origin",1), ("category",1)] )
+    try:
+        # Found the code below for sorting mongodb results (the code we were given on the course doesnt work with python/pymongo) on http://delphinus.qns.net/xwiki/bin/view/Blog/sort%20two%20fields%20in%20mongo
+        sel_recipes=mongo.db.recipes.find({"home_feature":'on'}).sort( [ ("origin",1), ("category",1)] )
+    except:
+        print("Error acessing the Recipes Database")
+                
     
     # Check that records were found
 

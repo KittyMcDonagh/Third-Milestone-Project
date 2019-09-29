@@ -4,7 +4,7 @@
 
 ## **1.1 PURPOSE**
 
-The purpose of [my website](https://global-irish-cafe.herokuapp.com/) is to host Irish recipes from all over the world, and allow people to
+The purpose of [The Global Irish Café](https://global-irish-cafe.herokuapp.com/) is to host Irish recipes from all over the world, and allow people to
 browse and compare how Irish recipes have been adapted by different countries to suit local produce and taste. Users can also add their 
 favorite Irish recipes to the site.
 
@@ -40,7 +40,7 @@ The website will:
 5. Allow users to link quickly to the website's social media accounts
 
 
-Future enhancements to the website:
+### **2.2.2 Future Enhancements**
 1. Allow users to comment on other users' recipes
 2. Allows users to make suggestions for improvements
 3. Allows users to request feedback on recipes they've entered
@@ -54,7 +54,7 @@ Future enhancements to the website:
 |----|----------------------------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 |1.  |A person looking for Irish Recipes                        |I want to make a traditional Irish meal from ingredients I can source locally.             |I enjoy traditional Irish meals. They bring back fond memories of my childhood home.                                  |
 |2.  |A person with an Irish Recipe to share                    |I have many good Irish recipes I would like to share with people who would appreciate them.|To allow people living in the same part of the world as myself to experience Irish cooking while using local produce. |                                                             |
-|----|----------------------------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+
 
 
 # **3. FEATURES**
@@ -85,21 +85,23 @@ Future enhancements to the website:
          Once the email address is entered, all recipes with that email address will be displayed on the Recipe List page. The user may view
          a recipe's details, and edit / delete their recipe 
    
-2. The country dropdown will be disabled on the Home and My Recipes pages, and when the user is searching for recipes either by keyword or,
+2. When a recipe is input, the status and keyword are set to 'new'. It is possible to search for new recipes only by selecting 'new' from
+   the 'Search By Keyword' box
+3. The country dropdown will be disabled on the Home and My Recipes pages, and when the user is searching for recipes either by keyword or,
    from the 'My Recipes', page by email address
 3. The nav link selected by the user will change color to green, so that the user remembers which selection they have made
 4. When the country dropdown is enabled, its selection will be changed to green, so that the user remembers which selection they have made
 5. The website displays 6 recipes per page and allows the user to paginate from one page to the next, and highlighting the page number it is 
    currently on
 6. The website uses Google fonts - Courgette and Nunito
-7. The website uses the following colors: #dcefde, #fff, #3b3b3b, #76c180, #8c8c8c, #d9d9d9, #1a1a1a, #edf7ef, #f2f2f2
 
 
 
 **NOTES**
-1. Bottom Nav bar not breaking on small devices!
+1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This also has an effect on the 
+   bottom navbar - it does not break on smaller devices
 
-2.  figma.com screens
+2.  
 
 
 ## **3.6 NAVIGATION AND RESPONSIVENESS**
@@ -125,17 +127,18 @@ Future enhancements to the website:
 |Jquery                       |[jQuery website](https://code.jquery.com/)                              |
 |Bootstrap                    |[Bootstrap website](https://getbootstrap.com/)                          |
 |Font Awesome                 |[Font Awesome website](https://fontawesome.com/)                        |
-|Google fonts                  |[Google fonts](https://fonts.google.com/)                              |
+|Google fonts                 |[Google fonts](https://fonts.google.com/)                               |
 |AutoPrefixer                 |[Autoprefixer website](https://autoprefixer.github.io/)                 |
 |Python                       |[Python docs](https://docs.python.org/3/library/stdtypes.html#range)    |
+|mongodb database             |[mongodb website](https://www.mongodb.com/)
 
 
-|Features         |Website                                                                                       |COMMENTS                                                                                  |
-|-----------------|----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| Colors          |[w3schools](https://www.w3schools.com/colors/colors_picker.asp)                               |I used this website for choosing different shades of the base colors for my website.      |
-| Grids           |[bootstrap](https://getbootstrap.com/)                                                        |I used bootstraps container, row and column classes to create my page grids               |         
-| Navigation bar  |[bootstrap](https://getbootstrap.com/)                                                        |I used bootstraps nav bar classes to create my navigation bars, and burger menu.          |         
-| Wireframes      |[Figma](https://www.figma.com/file/Q9lO2ZVjv6ovP9RsVDKji9ZY/MySouthAfricanTrip?node-id=0%3A1) |I used figma  when designing my website. See screen shots in figma directory on github    |
+|Features         |Website                                                                                       |COMMENTS                                                                                                                 |
+|-----------------|----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| Colors          |[w3schools](https://www.w3schools.com/colors/colors_picker.asp)                               |I used this website for choosing different shades of the base colors for my website.                                     |
+| Grids           |[bootstrap](https://getbootstrap.com/)                                                        |I used bootstraps container, row and column classes to create my page grids                                              |         
+| Navigation bar  |[bootstrap](https://getbootstrap.com/)                                                        |I used bootstraps nav bar classes to create my navigation bars, and burger menu.                                         |         
+| Wireframes      |[Figma]https://www.figma.com/file/IuXJRHaOUcsCy56calvjw1/GIC?node-id=0%3A1                    |I used figma  when designing my screen initially. This changed during development, as recipe cards are not responsive    |
 
 
 
@@ -145,84 +148,39 @@ Future enhancements to the website:
 
 ### **5.1.1. Navigation Test**
 
-1. Load the [**South African Trip** web page](https://milestone-project-2-kittyjo.c9users.io/index.html)
-2. Verify that the logo, home icon, all links, slidedown user message, and google map are appearing correctly on the page
+1. Launch the [**Global Irish Cafe** website](https://global-irish-cafe.herokuapp.com/)
+2. Verify that the logo, home icon, all links, are appearing correctly on the page
 3. In the top navigation bar, hover over each link and verify that the hover affects are working 
-   (i.e. the link is highlighted in a shade of yellow: #ffe047)
-5. In the bottom navigation link, hover over the link  and verify that the hover affects are working
-   (i.e. the link is highlighted in a shade of yellow: #ffe047)
-8. Do the following tests on the top navigation bar:
-    - Click on "Home" and on the logo image and verify that they reload the page
-    - Click on "Lodgings" and verify that the user message disappears, the Lodging Filter appears as a piechart, 
-      and 8 markers appear on the map. Click on Home again
-    - Click on "Safari" and verify that the user message disappears, the Safari Filter appears as a piechart,
-      and 8 markers appear on the map. Click on Home again
-    - Click on "Sight Seeing" and verify that the user message disappears the Sight Seeing Filter appears as a piechart,
-      and 8 markers appear on the map. Click on Home again
-    - Click on "Gallery" and verify that it jumps to the Gallery section of the page. 
-
-### 5.1.2 Features Test
-
-#### 5.1.2.1 LODGINGS
-
-1. Click on "Lodgings" and verify that the Filter Piechart showing different types of dwellings appears
-2. Check that there are 8 markers on the map and 8 photos in the Gallery
-3. Check that the letters on the map match the letter on the photo names
-4. Click on each marker and verify that the name is correct for that marker
-5. Hover on each slice of the Filter Piechart and verify how many lodgings of that type the slice covers
-6. Click on a slice of the Filter Piechart and verify that the same number of markers appear on the map
-7. Click on Gallery (or scroll down to Gallery) and verify that only the photos relevant to that slice of the piechart 
-   are showing
-8. Click on more pieces of the Filter Piechart to include or exclude the types for those slices. Verify that only those
-   markers and photos are shown,  that are relevant to the piece(s) of the piechart that is/are selected
-
-#### 5.1.2.2 SAFARI
-
-1. Click on "Safari" and verify that the Filter Piechart showing different types of Safari animals appears
-2. Check that there are 8 markers on the map and 8 photos in the Gallery
-3. Check that the letters on the map match the letter on the photo names
-4. Click on each marker and verify that the name is correct for that marker
-5. Hover on each slice of the Filter Piechart and verify how many animal of that type the slice covers
-6. Click on a slice of the Filter Piechart and verify that the same number of markers appear on the map
-7. Click on Gallery (or scroll down to Gallery) and verify that only the photos relevant to that slice of the piechart 
-   are showing
-8. Click on more pieces of the Filter Piechart to include or exclude the types for those slices. Verify that only those
-   markers and photos are shown,  that are relevant to the piece(s) of the piechart that is/are selected
-
-#### 5.1.2.3 SIGHT SEEING
-
-1. Click on "Sight Seeing" and verify that the Filter Piechart showing different types of sightseeing appears
-2. Check that there are 8 markers on the map and 8 photos in the Gallery
-3. Check that the letters on the map match the letter on the photo names
-4. Click on each marker and verify that the name is correct for that marker
-5. Hover on each slice of the Filter Piechart and verify how many sight seeing of that type the slice covers
-6. Click on a slice of the Filter Piechart and verify that the same number of markers appear on the map
-7. Click on Gallery (or scroll down to Gallery) and verify that only the photos relevant to that slice of the piechart 
-   are showing
-8. Click on more pieces of the Filter Piechart to include or exclude the types for those slices. Verify that only those
-   markers and photos are shown,  that are relevant to the piece(s) of the piechart that is/are selected
+   (i.e. the link background is changed to green, and the link color is changed to white)
+4. In the bottom navigation link, hover over the link  and verify that the hover affects are working
+    (i.e. the link background is changed to green)
+5. Do the following tests on the top and bottom navigation bars:
+    - Click on "Home" and on the logo image and verify that they load the home page and that the banner says "Featured Recipes"
+    - Click on "All Recipes" and verify that all the recipes are appearing and that the banner says "All Recipes from All Countries"
+    - Click on "Baking" and verify that only recipes with category = 'Baking' are appearing and that the banner says "Baking Recipes from All Countries"
+    - Click on "Starter" and verify that only recipes with category = 'Starter' are appearing and that the banner says "Starter Recipes from All Countries"
+    - Click on "Dinner" and verify that only recipes with category = 'Dinner' are appearing and that the banner says "Dinner Recipes from All Countries"
+    - Click on "Dessert" and verify that only recipes with category = 'Dessert' are appearing and that the banner says "Dessert Recipes from All Countries"
+    - Select All Recipes and a country from the dropdown and verify that only recipes for that counrty are showing and that the banner says "All Recipes from [Selected Country]"
+    - Select a combination of category and a country and verify that only recipes with that category and country are showing and that the banner says "[Selected Category] Recipes from [Selected Country]"
 
 
-#### 5.1.2.4 THE GALLERY
+### 5.1.2 Search By Keyword Test
 
-1. Click on each link under each photo and verify that the website for that link opens in a new tab
-
-## **5.2 JASMINE Testing**
-
-**NOTE**
-1. I am not sure if I have taken the right approach to Jasmine testing, but here's what I have done:
-   - I have taken the functions that deal with user interactions and created some jasmine tests
-   - I have removed any code that takes values from the DOM or adds information to the DOM
-   - The values being tested are passed in from calcSpec
-   - I have based the test around being able to return the correct Marker Labels and Location names only 
-   - I am testing only my own javascript code - I'm not testing dc/d3 or maps (I don't know how to do that)
+1. 
 
 
-    
-### 5.2.1 Navigation Test
+### 5.1.3 Pagination Test
 
-1. I tested that the Main Headings (Lodgings, Safari, and Sight Seeing) returned the correct marker labels and location names
-2. I tested that the Filter Piecharts returned the correct marker labels and location names depending on which 'slice' was selected
+1. Test the pagination page by page and verify that the same recipes are always appearing on the same page number
+2. Test the pagination next / previous page functionality and verify that the same recipes are always appearing on the same page number
+
+
+### 5.1.4 Recipe Details - More Icon Test
+
+1. Hver on the more icon in the recipe card header and verify that the color changes to green
+2. Click on the more icon in the recipe card header and verify that it displays the details of that recipe
+
 
 
 # 6. DEPLOYMENT
@@ -259,40 +217,20 @@ Future enhancements to the website:
 
 ### **7.2 PHOTOGRAPHS**
 
-1. The photos on [my website](https://milestone-project-2-kittyjo.c9users.io/index.html) were copied from:
-    - [Hotel Verde website](https://www.verdehotels.com/capetown/)
-    - [Quayside Hotel website](https://www.aha.co.za/quayside/)
-    - [Milkwood Manor website](http://www.milkwoodmanor.co.za/)
-    - [Protea Hotel website](https://www.marriott.com/hotels/travel/jnbro-protea-hotel-roodepoort)
-    - [Knysna Elephant Park website](https://knysnaelephantpark.co.za/)
-    - [Glen Afric website](https://www.glenafric.co.za/gallery.html)
-    - [Addo Elephant Park website](https://www.sanparks.org/gallery/parks/addo-elephant-national-park)
-    - [Lower Sabie Rest Camp website](http://www.krugerpark.co.za/Kruger_National_Park_Lodging_&_Camping_Guide-travel/lower-sabie-camp_accommodation.html)
-    - [Google Image - 1](https://www.google.ie/url?sa=i&source=images&cd=&ved=2ahUKEwjLzI6TkPjiAhVIZcAKHUQUBx4QjRx6BAgBEAU&url=https%3A%2F%2Ftraveltriangle.com%2Fblog%2Fkruger-national-park-south-africa%2F&psig=AOvVaw1ejAYpZxCnH7tcrV2cXzeA&ust=1561122358506228)
-    - [Lion and Safari website](http://www.lionandsafaripark.com/)
-    - [de Wildt Cheetah Sanctuary website](http://dewildt.co.za/)
-    - [Zulu Nyala website](http://zulunyalagroup.com/)
-    - [Google Maps Image](https://www.google.ie/maps/uv?hl=en&pb=!1s0x1ebe391bbc301847%3A0xb04e56d51d86baed!2m22!2m2!1i80!2i80!3m1!2i20!16m16!1b1!2m2!1m1!1e1!2m2!1m1!1e3!2m2!1m1!1e5!2m2!1m1!1e4!2m2!1m1!1e6!3m1!7e115!4shttps%3A%2F%2Fostrovok.ru%2Frooms%2Fukutula_lion_lodge%2F!5sukutula%20lodge%20and%20lion%20centre%20-%20Google%20Search!15sCAQ&imagekey=!1e1!2shttps%3A%2F%2Fbstatic.com%2Fxdata%2Fw%2Fhotel%2Fmax1500_watermarked_standard_bluecom%2FUl2O-ydSLLJd7DjiOt_wTTw5PQalexfVd5tMHgGKcyB1HUy2S0Oc0hSIf7IYn-Ul0VGqpLMkJifSViUKLIdB6Xv56US0Au4koTYMNzaDDE9nSApsIkFJNA4OZ5ERWWE.jpg&sa=X&ved=2ahUKEwj0q56xlPjiAhV0nVwKHcL1BnoQoiowFXoECA0QBg#)
-    - [Google Image - 2](https://www.google.ie/url?sa=i&source=images&cd=&ved=2ahUKEwjM3fjclfjiAhU0Q0EAHcVuDo8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.thesouthafrican.com%2Ftravel%2Fexploring-the-wonder-of-chapmans-peak-video%2F&psig=AOvVaw24AxQ72SgSHTbs-KCxhKn0&ust=1561123760736862)
-    - [Google Image - 3](https://www.google.ie/url?sa=i&source=images&cd=&ved=2ahUKEwjulvHtlvjiAhXMfMAKHSmOCg8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.privatetransportcapetown.com%2Ftour%2Fcape-of-good-hope-and-cape-point-sightseeing-private-cape-peninsula-day-tour%2F&psig=AOvVaw3-tM30-c1DkaN7q9Kai38B&ust=1561124099375976)
-    - [Stellenbosch website](https://www.stellenbosch.travel/attractions/heritage-architecture)
-    - [Stellenbosch website](https://www.stellenbosch.travel/)
-    - [Marianne Wine Estates website](http://www.mariannewines.com/our-winery/tasting-room)
-    - [Ocean Safari website](http://oceansafaris.co.za/gallery/)
-    - [Google Image - 4](https://www.google.ie/url?sa=i&source=images&cd=&ved=2ahUKEwiKo-TzmvjiAhVyQUEAHduwCj0QjRx6BAgBEAU&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNature%2527s_Valley&psig=AOvVaw0DkfC7Z1orAzHaluMjTDRD&ust=1561125251107402)
-    - [Google Image - 5](https://www.google.ie/url?sa=i&source=images&cd=&ved=2ahUKEwiA_pWqm_jiAhWLT8AKHWwmDSAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.thenational.ae%2Flifestyle%2Ftravel%2Fmy-kind-of-place-port-elizabeth-south-africa-1.165596&psig=AOvVaw0CtESsVnHBKH7nxDpZ7wdt&ust=1561125353100379)
-    - [Google Image - 6](https://www.google.ie/url?sa=i&source=images&cd=&ved=2ahUKEwi6r7Lcm_jiAhXMa8AKHcAsAYAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.lonelyplanet.com%2Fsouth-africa%2Fgauteng%2Fjohannesburg&psig=AOvVaw1dc6BmwwX0X4PTSd1NZdlO&ust=1561125454470675)
-2. The map is from [Google Maps API](https://maps.googleapis.com/maps/api/)
+
 
 
 ## **CODE SNIPPETS**
 
-1. I have used code from the mini project to add a map to Rosie's resume, to load my map.
-2. I used https://developers.google.com/maps/documentation/javascript/examples/place-details to add an infowindow for the location 
-   name to the markers.
-3. I have copied classes from my Milestone 1 project for the navigation bar, the links and hovering.
-4. Comments have been added in the files where copied code is used.
-5. With assistance from Slack I copied code from Stack Overflow to close the burger menu
+1. I copied css code from materializecss.com to create a sticky footer (ref. style.css)
+2. Social-links functionality copied from second milestone project
+3. Bootstrap classes used throughout for rows / columns / navbars / cards / pagination
+4. Code to flash message to the user copied from mini project (thorin & company) and adjusted
+5. The code we were given on the course to sort mongodb results did not work pymongo. Instead I found the needed code on 
+   http://delphinus.qns.net/xwiki/bin/view/Blog/sort%20two%20fields%20in%20mongo
+6. The code in the app is based mainly on the 'tasks' mini project
+7. The code for inserting, editing and updating a recipe is based mainly on the 'tasks' mini project
+
 
 
 ## **7.3 ACKNOWLEDGEMENTS**
