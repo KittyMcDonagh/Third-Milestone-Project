@@ -62,40 +62,56 @@ Future enhancements to the website:
 ## **3.1 THE GLOBAL IRISH CAFE**
 
 1. The website consists of 4 pages:
+
    [i]   It opens with a **Home** page which:
          - Gives an introduction to the site 
          - Gives user instructions on how to use the site
          - Displays one recipe from each country represented on the site, with quick links for the recipe's category and country 
+         - The home page design is fixed to displaying 5 recipes, therefore it does not require pagination
        
    [ii]  The Recipes List page:
-         - This page displays a card for each recipe in the country / category, sorted by country / category
+   
+         - Displays a card for each recipe in the country / category, sorted by country / category
          - The recipe card shows an image and a short introduction to the recipe
          - Each recipe has a more icon which will bring the user to the recipe details
          - Each recipe has a quick link to see all recipes in the country and category of the recipe
    
-   [iii] The Recipes Details page displays the selected recipe's details. If this page is called when the user is viewing their own recipes,
-         it allows them to edit or delete the recipe
+   [iii] The Recipes Details page:
+   
+         -  Displays the selected recipe's details. If this page is called when the user is viewing their own recipes,
+            it allows them to edit or delete the recipe
 
    [iv]  The 'My Recipes' page allows the user to enter a new recipe, of retrieve their existing recipes by entering their email address.
          Once the email address is entered, all recipes with that email address will be displayed on the Recipe List page. The user may view
          a recipe's details, and edit / delete their recipe 
    
-2. The website uses Google fonts - Courgette and Nunito
-3. The website uses the following colors: #dcefde, #fff, #3b3b3b, #76c180, #8c8c8c, #d9d9d9, #1a1a1a, #edf7ef, #f2f2f2
+2. The country dropdown will be disabled on the Home and My Recipes pages, and when the user is searching for recipes either by keyword or,
+   from the 'My Recipes', page by email address
+3. The nav link selected by the user will change color to green, so that the user remembers which selection they have made
+4. When the country dropdown is enabled, its selection will be changed to green, so that the user remembers which selection they have made
+5. The website displays 6 recipes per page and allows the user to paginate from one page to the next, and highlighting the page number it is 
+   currently on
+6. The website uses Google fonts - Courgette and Nunito
+7. The website uses the following colors: #dcefde, #fff, #3b3b3b, #76c180, #8c8c8c, #d9d9d9, #1a1a1a, #edf7ef, #f2f2f2
 
 
 
 **NOTES**
-1. 
+1. Bottom Nav bar not breaking on small devices!
 
-2.  
+2.  figma.com screens
 
 
 ## **3.6 NAVIGATION AND RESPONSIVENESS**
 
-1.  The top navigation bar is fixed, giving the user access to it at all times on all devices
-2.  The bottom navigation bar . . .  
-3.  Mobile, large screen displays . . .
+1. The top navigation bar is fixed, giving the user easy access to it at all times on all devices and allowing ease of navigation. The 
+   selections made from the top navigation bar are changed to green, so that users remembers the selections they have made   
+2. The bottom navigation bar also allows for ease of navigation. The Social Media icons (facebook, twitter, instagram, youtube) appear on
+   the bottom navigation bar, and they open in a new tab
+3. The top navigation menus are collapsed on smaller devices
+4. Bootstrap Recipe cards are not responsive, therefore I have limited them on the Recipe List page to two per row. These show okay on all 
+   devices. However this means that the bottom navigation bar does not break on smaller devices 
+5. Clicking on the site's logo takes the user back to the home page
 
 
 
@@ -109,19 +125,13 @@ Future enhancements to the website:
 |Jquery                       |[jQuery website](https://code.jquery.com/)                              |
 |Bootstrap                    |[Bootstrap website](https://getbootstrap.com/)                          |
 |Font Awesome                 |[Font Awesome website](https://fontawesome.com/)                        |
-|Google fots                  |[Google fonts](https://fonts.google.com/)
+|Google fonts                  |[Google fonts](https://fonts.google.com/)                              |
 |AutoPrefixer                 |[Autoprefixer website](https://autoprefixer.github.io/)                 |
-|dc                           |[dc website](https://cdnjs.cloudflare.com/ajax/libs/dc/3.0.12/)         |
-|d3                           |[d3 website](https://d3js.org/)                                         |
-|google maps api              |[Google Maps API website](https://maps.googleapis.com/maps/api/)        |
-|                             |[Google Maps API Developer website[(https://developers.google.com)      |
-|Jasmine Testing              |[jasmine website](https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.4.0) |
 |Python                       |[Python docs](https://docs.python.org/3/library/stdtypes.html#range)    |
 
 
 |Features         |Website                                                                                       |COMMENTS                                                                                  |
 |-----------------|----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| Color Scheme    |[google maps logo colors](https://www.schemecolor.com/google-maps-colors.php)                 |I used this website when choosing the base colors for my website.                         |                                                                    |  
 | Colors          |[w3schools](https://www.w3schools.com/colors/colors_picker.asp)                               |I used this website for choosing different shades of the base colors for my website.      |
 | Grids           |[bootstrap](https://getbootstrap.com/)                                                        |I used bootstraps container, row and column classes to create my page grids               |         
 | Navigation bar  |[bootstrap](https://getbootstrap.com/)                                                        |I used bootstraps nav bar classes to create my navigation bars, and burger menu.          |         

@@ -56,7 +56,7 @@ def get_recipes_list(sel_category, sel_origin, page_nr):
     
 # For pagination - 
 # - Set the number of recipes to show per list page
-    nr_of_recipes_per_page = 5
+    nr_of_recipes_per_page = 6
     
 # - Store the page number passed in, as an integer
     this_page_nr = int(page_nr)
@@ -186,7 +186,7 @@ def search_recipes(page_nr, sel_keyword):
     
 # For pagination - 
 # - Set the number of recipes to show per list page
-    nr_of_recipes_per_page = 5
+    nr_of_recipes_per_page = 6
             
 # - Store the page number passed in, as an integer
     this_page_nr = int(page_nr)
@@ -293,7 +293,7 @@ def get_my_recipes():
     
 # For pagination - 
 # - Set the number of recipes to show per list page
-    nr_of_recipes_per_page = 5
+    nr_of_recipes_per_page = 6
             
 # - Store the page number passed in, as an integer
     this_page_nr = 1
@@ -354,7 +354,7 @@ def get_my_recipes_page(page_nr, sel_email_addr):
     
 # For pagination - 
 # - Set the number of recipes to show per list page
-    nr_of_recipes_per_page = 5
+    nr_of_recipes_per_page = 6
             
 # - Store the page number passed in, as an integer
     this_page_nr = int(page_nr)
