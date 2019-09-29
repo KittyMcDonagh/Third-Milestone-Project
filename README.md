@@ -101,7 +101,7 @@ The website will:
 1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This also has an effect on the 
    bottom navbar - it does not break on smaller devices
 
-2.  
+2.  !!Do I need to deploy to github pages?
 
 
 ## **3.6 NAVIGATION AND RESPONSIVENESS**
@@ -167,7 +167,7 @@ The website will:
 
 ### 5.1.2 Search By Keyword Test
 
-1. 
+1. Select a keyword from the 'Search By Keyword' box and verify that only recipes with that keyword are displayed
 
 
 ### 5.1.3 Pagination Test
@@ -176,9 +176,9 @@ The website will:
 2. Test the pagination next / previous page functionality and verify that the same recipes are always appearing on the same page number
 
 
-### 5.1.4 Recipe Details - More Icon Test
+### 5.1.4 Recipe Details - 'More' Icon Test
 
-1. Hver on the more icon in the recipe card header and verify that the color changes to green
+1. Hover on the more icon in the recipe card header and verify that the color changes to green
 2. Click on the more icon in the recipe card header and verify that it displays the details of that recipe
 
 
@@ -200,14 +200,42 @@ The website will:
 
 ## 6.2 CLONING FROM GITHUB 
 
-1. Follow this link to my [Project Repository on Github](https://github.com/KittyMcDonagh/Second-Milestone-Project)
+1. Follow this link to my [Project Repository on Github](https://github.com/KittyMcDonagh/Third-Milestone-Project)
 2. On the repository page click "Clone or Download"
 3. In the Clone with HTTPs section, copy the clone URL for the repository.
 4. In your local IDE open Git Bash.
 5. Change the current working directory to the location where you want the cloned directory to be made.
 6. Type git clone, and then paste the URL you copied in Step 3 - 
-    "git clone https://kittymcdonagh.github.io/Second-Milestone-Project/"
+    "git clone https://kittymcdonagh.github.io/Third-Milestone-Project/"
 7. Press enter and your local clone will be created.
+8. 
+
+## 6.1 DEPLOYING TO HEROKU 
+
+1. Type 'heroku ps:scale web=1' into bash terminal
+2. Create 'requirements.txt' (sudo pip3 freeze --local > requirements.txt)
+3. Create a 'Procfile' (echo web: python run.py > Procfile)
+4. Log onto Heroku.com
+5. Click on Create New App
+6. Enter App Name (global-irish-cafe)
+7. Click on Create App
+8. Go to the CLI and type "sudo snap install --classic heroku"
+9. Type "Heroku login --interactive"
+10. Go to Deploy (under your app on heroku.com) and under Create New Repository copy the command:
+11  "heroku git:remote -a global-irish-café"
+12. Copy this into the bash terminal
+13. Go to heroku website dashboard for your app and click Settings
+14. Copy the heroku git url (https://git.heroku.com/global-irish-cafe.git)
+15. In the bash terminal type "git remote add https://git.heroku.com/global-irish-cafe.git"
+16. Type "git push -u heroku master"
+17. In the app dashboard, click Settings
+18. Click on Reveal Config Vars
+19. Enter "IP" in first key box. Enter "0.0.0.0" into corressponding value box. Click Add
+20. Enter "PORT" into 2nd key box, enter "5000" into corresponding value box. Click add.
+21. Enter "MONGO_URI" in key box, enter mongodb details in value box
+22. Enter "MONGO_URI" in key box, enter 
+   mongodb+srv://KittyOwner:password@kittysfirstcluster-f9urv.mongodb.net/global_irish_cafe?retryWrites=true&w=majority in value box
+22. Enter "SECRET" into the key box, enter the secret key into the value box.
 
 
 
