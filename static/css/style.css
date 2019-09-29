@@ -39,7 +39,9 @@ main {
 /*  The padding for the main container */
 
 .scrn-padding {
-    padding: 0 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
 
 }
 
@@ -196,8 +198,8 @@ main {
 .intro-par-style {
     font-size: 18px;
     font-family: "Courgette", sans-serif;
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 20px;
+    padding-right: 20px;
 
 }
 
@@ -366,6 +368,84 @@ main {
     text-decoration: none;
 }
 
+.footer-social-links {
+    padding-top: 16px;
+}
+
+/* ".social-links a i" - Social Media links copied from Rosie Resume Project and modified to use their own colors  */
+
+.footer-social-links a i {
+    width: 32px;
+    height: 32px;
+    padding: 12px 0;
+    font-size: 16px;
+    line-height: 7px;
+    text-align: center;
+    color: #fafafa;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+/*      Facebook color found on: https://encycolorpedia.com/3b5998            */
+.footer-social-fbk {
+    background-color: #3b5998;
+    border-radius: 50%;
+}
+
+.footer-social-fbk:hover {
+    background-color: #fafafa;
+    color: #3b5998;
+}
+
+
+/* Social Media icon colors found duiring  (Milestone Project 1) */
+/* Twitter color found on: https://www.sitepoint.com/fonts-colors-used-facebook-twitter-google/ */
+
+.footer-social-twt {
+    background-color: #38A1F3;
+    color:#fafafa;
+    border-radius: 50%;
+
+}
+
+.footer-social-twt:hover {
+    background-color: #fafafa;
+    color: #38A1F3;
+}
+
+/* Instagram color found on: https://www.designpieces.com/palette/instagram-new-logo-2016-color-palette/ */
+
+.footer-social-itg {
+    background-color: #bc2a8d;
+    border-radius: 50%;
+}
+
+.footer-social-itg:hover {
+    background-color: #fafafa;
+    color: #bc2a8d;
+}
+
+/*  Youtube color found on: https://www.designpieces.com/palette/youtube-hex-rgb/   */
+
+.footer-social-ytb {
+    background-color: #FF0000;
+    border-radius: 50%;
+}
+
+.footer-social-ytb:hover {
+    background-color: #fafafa;
+    color: #FF0000;
+}
+
+
+
+
+
+
+
+
 
 /* css used in recipes-details.html                                           */
 
@@ -381,7 +461,6 @@ main {
 .my-rec-form {
     padding-left: 100px;
 }
-
 
 
 .flashes {

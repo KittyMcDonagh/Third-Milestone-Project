@@ -1,12 +1,15 @@
 # The Global Irish Cafe
 
-![alt text](/static/images/irish_boxty.jpg "Irish Boxty")
+![alt text](/static/images/irish_kitchen.jpg "Irish Kitchen")
 
 ## **1.1 PURPOSE**
 
-The purpose of [my website](https://milestone-project-3) is to create a place where people from all over the world can add their favorite Irish Recipes.
+The purpose of [my website](https://global-irish-cafe.herokuapp.com/) is to host Irish recipes from all over the world, and allow people to
+browse and compare how Irish recipes have been adapted by different countries to suit local produce and taste. Users can also add their 
+favorite Irish recipes to the site.
 
-The primary target audience are people who love Irish cooking. Many of these may be expats for whom Irish food brings back fond memories of home.
+The primary target audience are people who love Irish cooking. Many of whom are expats for whom Irish food brings back fond memories 
+of their childhood home.
 
 
 
@@ -14,13 +17,13 @@ The primary target audience are people who love Irish cooking. Many of these may
 
 ## **2.1 BACKGROUND**
 
-There Irish people spread abroad all over the world, many of whom still have and use their favorite Irish recipes. There are others who are descendants of Irish people, who have had Irish recipes handed down to them. 
+There are Irish people spread abroad all over the world, many of whom still have and use their favorite Irish recipes. There are others who
+are descendants of Irish people, who have had Irish recipes handed down to them. 
 
 No doubt, many of these recipes have had a variety of ingredients added, depending on the produce availabe in the country of residence. 
 
-Here is a website that will bring all of these people together. They can add their favorite recipes. Explain how adding local ingredients can enhance the recipe.
-
-This is meant to be a fun website where people can share recipe ideas.
+Here is a website that will bring all of these people together. They can add their favorite recipes and show how local ingredients 
+enhance them.
 
 
 
@@ -30,35 +33,56 @@ This is meant to be a fun website where people can share recipe ideas.
 
 The website will:
 
-1. Display recipes entered by users from all over the world
-2. Allow users to add their own recipes
-3. Allow users to comment on other users' recipes
-4. Allows users to make suggestions for improvements
-5. Allows users to request feedback on recipes they've entered
+1. Display recipes entered by users from 5 countries around the world (America, Australia, Britain, Ireland, New Zealand)
+2. Recipes are divided into the following categories - Baking, Starter, Dinner, Dessert
+3. Allow users to browse the site and filter by category and country
+4. Allow users to add, edit, and delete their own recipes
+5. Allow users to link quickly to the website's social media accounts
+
+
+Future enhancements to the website:
+1. Allow users to comment on other users' recipes
+2. Allows users to make suggestions for improvements
+3. Allows users to request feedback on recipes they've entered
+4. Allow users to like / dislike recipes
+5. Allow for more countries and categories to be added
 
 
 ## **2.2.2 USER STORIES** ##
 
-|No. |Who I am                                                  |What I want to do                                                           | Why I want to do it
-|----|----------------------------------------------------------|----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-|1.  |A person looking for Irish Recipes                        |I want to see what my friends / family member will be doing in South Africa |I am excited for them and I would like to see what they're going to experience. I might go myself one day.              |
-|2.  |A person with an Irish Recipe to share                    |I want to see what kind of places they'll be staying                        |I want to see what levels of comfort they're going to have.                                                             |
-|3.  |A person who wants to give feedback on a recipe           |I want to see what kind of things they'll be doing                          |I want to get a feel for what they're going to experience in South Africa                                               |
-|4.  |A person who wants feedback on a recipe they have entered |I want to see photos of where they're staying and what they're doing        |It will help me visualize where they are and what the're doing while on holiday                                         |
-
+|No. |Who I am                                                  |What I want to do                                                                          | Why I want to do it
+|----|----------------------------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+|1.  |A person looking for Irish Recipes                        |I want to make a traditional Irish meal from ingredients I can source locally.             |I enjoy traditional Irish meals. They bring back fond memories of my childhood home.                                  |
+|2.  |A person with an Irish Recipe to share                    |I have many good Irish recipes I would like to share with people who would appreciate them.|To allow people living in the same part of the world as myself to experience Irish cooking while using local produce. |                                                             |
+|----|----------------------------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 
 
 # **3. FEATURES**
 
 ## **3.1 THE GLOBAL IRISH CAFE**
 
-1. The website consists of one x number of pages
-2. It opens with a page showing all the recipes on site, and user instructions on how to use the site
-3. The user may browse through all the recipes, or filter them by country of origin
-4. Recipes can be filtered by meat, fish, vegetarian, mains and deserts
-5. When the user selects a particular country, a new tab will open with this country's recipes only
-6. I have used Google fonts - Courgette and Nunito - on my website
-7. Colours . . .
+1. The website consists of 4 pages:
+   [i]   It opens with a **Home** page which:
+         - Gives an introduction to the site 
+         - Gives user instructions on how to use the site
+         - Displays one recipe from each country represented on the site, with quick links for the recipe's category and country 
+       
+   [ii]  The Recipes List page:
+         - This page displays a card for each recipe in the country / category, sorted by country / category
+         - The recipe card shows an image and a short introduction to the recipe
+         - Each recipe has a more icon which will bring the user to the recipe details
+         - Each recipe has a quick link to see all recipes in the country and category of the recipe
+   
+   [iii] The Recipes Details page displays the selected recipe's details. If this page is called when the user is viewing their own recipes,
+         it allows them to edit or delete the recipe
+
+   [iv]  The 'My Recipes' page allows the user to enter a new recipe, of retrieve their existing recipes by entering their email address.
+         Once the email address is entered, all recipes with that email address will be displayed on the Recipe List page. The user may view
+         a recipe's details, and edit / delete their recipe 
+   
+2. The website uses Google fonts - Courgette and Nunito
+3. The website uses the following colors: #dcefde, #fff, #3b3b3b, #76c180, #8c8c8c, #d9d9d9, #1a1a1a, #edf7ef, #f2f2f2
+
 
 
 **NOTES**
