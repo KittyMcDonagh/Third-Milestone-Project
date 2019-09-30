@@ -30,8 +30,10 @@ enhance them.
 1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This makes the text quite small
    on mobile devices. This also has an effect on the bottom navbar - it does not break on smaller devices
 2. I noticed too late that the text method text is overflowing its box on smaller devices, and although I spent some time trying to fix
-   it, I couldn't. I have missed my project deadline already and I don't want to delay any further.
-
+   it. I have made some changes, and the new recipes I have entered seem to be ok, but I will need to go over the existing recipes and
+   delete and re-input them. Asi I have missed my project deadline already and I don't want to delay any further, I am going to submit
+   the project and then work on tidying up the recipes.
+3. When entering recipes on the database, please use "test.jpg" as the image. This is stored in my environment and should be picked up ok.
 
 
 ## **2.2 WEBSITE REQUIREMENTS**
