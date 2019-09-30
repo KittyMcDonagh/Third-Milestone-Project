@@ -101,7 +101,7 @@ The website will:
 1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This also has an effect on the 
    bottom navbar - it does not break on smaller devices
 
-2. 
+2. images addresses??
 
 
 ## **3.6 NAVIGATION AND RESPONSIVENESS**
@@ -114,6 +114,23 @@ The website will:
 4. Bootstrap Recipe cards are not responsive, therefore I have limited them on the Recipe List page to two per row. These show okay on all 
    devices. However this means that the bottom navigation bar does not break on smaller devices 
 5. Clicking on the site's logo takes the user back to the home page
+
+
+## **3.7 OVERVIEW OF DATABASES **
+
+
+|Database Name |Function                                                                                               |
+|--------------|-------------------------------------------------------------------------------------------------------|
+|countries     |Holds a list of the countries that can be used on the website, and to which the recipes are linked.    |
+|              |Used to create countries dropdown.                                                                     |
+|categories    |Holds a list of the categories that can be used on the website, and to which the recipes are linked.   |
+|              |Used to create categories dropdown.                                                                    |
+|key_words     |Holds a list of the keywords to which the recipes are linkded.                                         |
+|              |Used to create keywods dropdown.                                                                       |
+|recipes       |Holds the recipes' details                                                                             |
+
+
+
 
 
 
