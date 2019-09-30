@@ -302,6 +302,15 @@ The website will:
 
 ### **7.2 PHOTOGRAPHS**
 
+The photos and recipes have been copied from the following websites:
+https://www.christinascucina.com
+https://cooking.nytimes.com
+http://www.donalskehan.com
+http://allrecipes.co.uk/
+
+
+
+
 
 
 
