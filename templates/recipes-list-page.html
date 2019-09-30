@@ -5,11 +5,13 @@
 <div class="row m-0 p-2 mt-3 mb-2">
 
     {% if rec_search_flag == "E" %}
-    <div class="col-12 feature-style">
+        <!-- If listing 'My Recipes', the search box wont be displayed -->
+        <div class="col-12 feature-style">
     {% else %}
-    <div class="col-9 feature-style">
+        <div class="col-9 feature-style">
+    {% endif %} 
         
-        {% endif %} {% if rec_search_flag == 'K' %}
+    {% if rec_search_flag == 'K' %}
         <!-- If this template is called through keyword search, show the keyword, e.g. bread, cake, etc -->
 
         <h2 class="m-0">
@@ -19,18 +21,31 @@
             <!-- Category is not applicable when in keyword search - don't highlight category in navbar -->
             <span id="category" class="d-none">na</span>
             <span id="origin" class="d-none">{{origin}}</span> 
-            {% else %} 
             
-            {% if rec_search_flag == 'E' %}
-            <!-- If this template is called through keyword search, show the keyword, e.g. bread, cake, etc -->
-
-            <h2 class="m-0">
-                <span id="category">{{category}}</span>
+            <!-- If no recipes were found for this keyword, display a user message -->
+            {% if rec_count == 0 %}
+            <span>- None Found</span> 
+            {% endif %}
+            
+    {% else %} 
+            
+    {% if rec_search_flag == 'E' %}
+        <!-- If this template is called through 'My Recipes' email search, show 'My Recipes' (category set to 'My Recipes in app.py-->
+        <h2 class="m-0">
+            <span id="category">{{category}}</span>
+                
+            <!-- Include Origin, but don't display it. It needs to be picked up by nav.js -->
+            <span id="origin" class="d-none">{{origin}}</span>
+            
+            <!-- Were recipes found for this email address? --->
+            {% if rec_count == 0 %}
+                <span>- None Found</span> 
+            {% else %}
+            <!-- Otherwise display this message -->
                 <span> - Select Recipe Details (<i class="fas fa-ellipsis-v"></i>) to Edit / Delete Recipe</span>
-                <!-- Include Origin, but don't display it. It needs to be picked up by nav.js -->
-                <span id="origin" class="d-none">{{origin}}</span>
-
-        {% else %}
+            {% endif %}
+            
+    {% else %}
         <!-- Template called on search by category and/or origin -->
 
         <h2 class="m-0">
@@ -38,13 +53,14 @@
             <span id="category">{{category}}</span>
             <span>Recipes from</span>
             <span id="origin">{{origin}}</span>
-            {% endif %} 
-            {% endif %}
-
             <!-- If no recipes were found for this category / origin, display a user message -->
 
             {% if rec_count == 0 %}
-            <span>- None Found</span> {% endif %}
+            <span>- None Found</span> 
+            {% endif %}
+            
+    {% endif %} 
+    {% endif %}
 
         </h2>
     </div>

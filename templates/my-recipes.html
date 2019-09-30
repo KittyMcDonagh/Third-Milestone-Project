@@ -167,6 +167,8 @@
                         {% else %}
                              <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
                         {% endif %}
+                        
+                    {% else %}
                     
                     <!-- The value in 'value' field is what will be submitted to the form -->
                       <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
@@ -188,7 +190,7 @@
                 {% else %}
                 
                 <!-- In insert mode, display blank form -->
-                <input name="prep_time" id="prep_time" class="form-control" placeholder="Prep Time [hh:mm]">
+                <input name="prep_time" id="prep_time" class="form-control" placeholder="Prep Time">
                 
                 {% endif %}
             </div>

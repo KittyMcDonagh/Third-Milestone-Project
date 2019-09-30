@@ -12,7 +12,7 @@ var category = document.getElementById('category').innerHTML;
 
 var category = document.getElementById('category').innerHTML;
 
-if (category != "My Recipes" && category != "Recipe Details") {
+if (category != "My Recipes" && category != "Recipe Details" && category != "My Recipe Details") {
     // If in search keyword mode, dont enable the countries dropdown
     if (category != "na") {
         // Enable Countries dropdown

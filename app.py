@@ -459,7 +459,7 @@ def insert_recipe():
     recipes.insert_one(recipe)
         
     # Send a message to the user thanking them for sending their recipe
-    flash("Thank You. We have received your recipe.")
+    flash("Thank you. We have received your recipe.")
         
     return redirect(url_for('my_recipes', function_flag="insert"))
 
@@ -497,7 +497,7 @@ def update_recipe(sel_id):
     })
         
     # Send a message to the user thanking them for sending their recipe
-    flash("Thank You. Your recipe has been updated.")
+    flash("Thank you. Your recipe has been updated.")
         
     return redirect(url_for('my_recipes', function_flag="insert"))
 
@@ -517,7 +517,7 @@ def delete_recipe(sel_id):
     
     # Send a message to the user thanking them for sending their recipe
     
-    flash("Thank you. Recipe has been deleted.")
+    flash("Thank you. Your recipe has been deleted.")
     
     return redirect(url_for('my_recipes', function_flag=function_flag))
     
