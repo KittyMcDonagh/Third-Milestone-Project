@@ -239,12 +239,9 @@
             {% if rec_function_flag == "edit" %}
             <!-- If in edit mode, display the details of the recipe to be edited -->
             
-            <textarea rows="20" name="ingredients" id="ingredients" class="form-control" required>
-                
-                {% for ingredient in recipe.ingredients %}
-                    {{ ingredient }}
-                {% endfor %}
-            </textarea>
+            
+            <textarea rows="20" name="ingredients" id="ingredients" class="form-control" required>{% for ingredient in recipe.ingredients%}{{ ingredient }}{% endfor %}</textarea>
+            
                 
             {% else %}
                 
@@ -256,10 +253,7 @@
             <div class="input-field col-6">
                 {% if rec_function_flag == "edit" %}
                 <!-- If in edit mode, display the details of the recipe to be edited -->
-                <textarea rows="20" name="method" id="method" class="form-control" required>
-                {% for step in recipe.method %}
-                {{ step }}
-                {% endfor %}</textarea>
+                <textarea rows="20" name="method" id="method" class="form-control" required>{% for step in recipe.method %}{{ step }}{%endfor %}</textarea>
                 
                 {% else %}
                 <!-- In insert mode, display blank form -->

@@ -392,6 +392,45 @@ def get_my_recipes_page(page_nr, sel_email_addr):
     return render_template("recipes-list-page.html", recipes=sel_recipes, search_words=key_word_list, category=sel_category, countries=country_list, origin=sel_origin, rec_search_flag=search_flag, rec_email_addr=sel_email_addr, rec_count=sel_recipes.count(), rec_pages=page_list, page_nr=this_page_nr, total_pages=nr_of_pages, close_div_row='y')
 
 
+# =====================
+# Insert the new recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'
+# =====================
+@app.route('/insert_recipe', methods=['POST'])
+def insert_recipe():
+    
+    # Access the recipes collection
+    recipes = mongo.db.recipes
+    
+#    ingredients_array = request.form['ingredients'].splitlines()
+#    method_array = request.form['method'].splitlines()
+    
+    flatForm = request.form.to_dict(flat=False);
+    
+    # Insert a new recipe
+        
+    recipe = {"origin" : request.form['origin'].lower(), 
+              "category" : request.form['category'].lower(),
+              "title" : request.form['title'].lower(),
+              "intro" : request.form['intro'],
+              "owner" : request.form['owner'].lower(),
+              "prep_time" : request.form['prep_time'],
+              "serves" : request.form['serves'],
+              "image" : request.form['image-name'].lower(),
+              "ingredients" : flatForm['ingredients'],
+              "method" : flatForm['method'],
+              "key_words": "new",
+              "home_feature" : "",
+              "status": "new"
+        }
+        
+    #Insert the new recipe into the database
+    recipes.insert_one(recipe)
+        
+    # Send a message to the user thanking them for sending their recipe
+    flash("Thank you. We have received your recipe.")
+        
+    return redirect(url_for('my_recipes', function_flag="insert"))
+
 
 # =============
 # EDIT RECIPE 
@@ -426,59 +465,24 @@ def edit_recipe(sel_id):
     
     
 
-# =====================
-# Insert the new recipe when 'Send Recipe' button is clicked. Invoked by 'form action="{{ url_for('insert_recipe') }}"'
-# =====================
-@app.route('/insert_recipe', methods=['POST'])
-def insert_recipe():
-    
-    # Access the recipes collection
-    recipes = mongo.db.recipes
-    
-    ingredients_array = request.form['ingredients'].splitlines()
-    method_array = request.form['method'].splitlines()
-    
-    # Insert a new recipe
-        
-    recipe = {"origin" : request.form['origin'].lower(), 
-              "category" : request.form['category'].lower(),
-              "title" : request.form['title'].lower(),
-              "intro" : request.form['intro'],
-              "owner" : request.form['owner'].lower(),
-              "prep_time" : request.form['prep_time'],
-              "serves" : request.form['serves'],
-              "image" : request.form['image-name'].lower(),
-              "ingredients" : ingredients_array,
-              "method" : method_array,
-              "key_words": "new",
-              "home_feature" : "",
-              "status": "new"
-        }
-        
-    #Insert the new recipe into the database
-    recipes.insert_one(recipe)
-        
-    # Send a message to the user thanking them for sending their recipe
-    flash("Thank you. We have received your recipe.")
-        
-    return redirect(url_for('my_recipes', function_flag="insert"))
 
 
 
-# =====================
-# Update an existing recipe when 'Update Recipe' button is clicked. Invoked by 'form action="{{ url_for('update_recipe') }}"'
-# =====================
+# =========================
+# UPDATE AN EXISTING RECIPE when 'Update Recipe' button is clicked. Invoked by 'form action="{{ url_for('update_recipe') }}"'
+# =========================
 @app.route('/update_recipe/<sel_id>', methods=['POST'])
 def update_recipe(sel_id):
     
     # Access the recipes collection
     recipes = mongo.db.recipes
     
-    ingredients_array = request.form['ingredients'].splitlines()
-    method_array = request.form['method'].splitlines()
+#    ingredients_array = request.form['ingredients'].splitlines()
+#    method_array = request.form['method'].splitlines()
     
     # Updating an existing recipe 
-        
+    flatForm = request.form.to_dict(flat=False);
+
     recipes.update({"_id": ObjectId(sel_id)},
          {
              "origin" : request.form['origin'].lower(), 
@@ -489,8 +493,8 @@ def update_recipe(sel_id):
               "prep_time" : request.form['prep_time'],
               "serves" : request.form['serves'],
               "image" : request.form['image-name'].lower(),
-              "ingredients" : ingredients_array,
-              "method" : method_array,
+              "ingredients" : flatForm['ingredients'],
+              "method" : flatForm['method'],
               "key_words": request.form['key_words'],
               "home_feature" : request.form['home_feature'],
               "status": "updated"

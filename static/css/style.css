@@ -449,7 +449,11 @@ main {
 
 /* css used in my-recipes.html                                               */
 
-
+.textbox {
+    background-color: inherit;
+    border: none;
+    width: 590px;
+}
 
 
 .my-rec-form {

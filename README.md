@@ -101,7 +101,7 @@ The website will:
 1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This also has an effect on the 
    bottom navbar - it does not break on smaller devices
 
-2.  !!Do I need to deploy to github pages?
+2. 
 
 
 ## **3.6 NAVIGATION AND RESPONSIVENESS**

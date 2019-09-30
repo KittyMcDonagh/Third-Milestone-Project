@@ -74,20 +74,17 @@
         <div class="card-footer">
             <!-- Show ingredients -->
 
+            <!-- Ingredients are stored as a list, but not as an array. The only way I could get it to display line by line was by using textarea (disabled) -->
             <div class="row no-gutters">
                 <div class="col-6  recipe-border ">
                     <h5 class="p-2 text-center"><strong>Ingredients</strong></h5>
-
-                    {% for ingredient in recipe.ingredients %}
-                    <p class="pl-3">{{ ingredient }}</p>
-                    {% endfor %}
-
+                   <textarea class="textbox" rows="20" name="ingredients" id="ingredients" class="form-control" disabled>{% for ingredient in recipe.ingredients%}{{ ingredient }}{% endfor %}</textarea>
                 </div>
+                
+                <!-- Method steps are stored as a list, but not as an array. The only way I could get it to display line by line was by using textarea (disabled) -->
                 <div class="col-6 recipe-border">
                     <h5 class="p-2 text-center"><strong>Method</strong></h5>
-                    {% for method in recipe.method %}
-                    <p class="pl-3">{{ method }}</p>
-                    {% endfor %}
+                    <textarea class="textbox" rows="20" name="ingredients" id="ingredients" class="form-control" disabled>{% for method in recipe.method %}{{ method }}{% endfor %}</textarea>
 
                 </div>
             </div>
