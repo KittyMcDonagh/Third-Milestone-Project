@@ -122,15 +122,15 @@ The website will:
 |Database Name |Function                                                                                               |
 |--------------|-------------------------------------------------------------------------------------------------------|
 |countries     |Holds a list of the countries that can be used on the website, and to which the recipes are linked.    |
-|              |Used to create countries dropdown.                                                                     |
+|               Used to create countries dropdown.                                                                     |
 |categories    |Holds a list of the categories that can be used on the website, and to which the recipes are linked.   |
 |              |Used to create categories dropdown.                                                                    |
 |key_words     |Holds a list of the keywords to which the recipes are linkded.                                         |
-|              |Used to create keywods dropdown.                                                                       |
+|              |Used to create keywords dropdown.                                                                      |
 |recipes       |Holds the recipes' details                                                                             |
 
 
-
+## **3.7.1 RECIPES DATABASE **
 
 
 
