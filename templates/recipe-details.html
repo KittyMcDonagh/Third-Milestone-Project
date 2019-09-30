@@ -76,13 +76,13 @@
 
             <!-- Ingredients are stored as a list, but not as an array. The only way I could get it to display line by line was by using textarea (disabled) -->
             <div class="row no-gutters">
-                <div class="col-6  recipe-border ">
+                <div class="col-6  recipe-border text-ovflow">
                     <h5 class="p-2 text-center"><strong>Ingredients</strong></h5>
                    <textarea class="textbox" rows="20" name="ingredients" id="ingredients" class="form-control" disabled>{% for ingredient in recipe.ingredients%}{{ ingredient }}{% endfor %}</textarea>
                 </div>
                 
                 <!-- Method steps are stored as a list, but not as an array. The only way I could get it to display line by line was by using textarea (disabled) -->
-                <div class="col-6 recipe-border">
+                <div class="col-6 recipe-border text-ovflow">
                     <h5 class="p-2 text-center"><strong>Method</strong></h5>
                     <textarea class="textbox" rows="20" name="ingredients" id="ingredients" class="form-control" disabled>{% for method in recipe.method %}{{ method }}{% endfor %}</textarea>
 

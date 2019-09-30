@@ -234,7 +234,7 @@
         <!-- Input Ingredients and Method -->
         
         <div class="row">
-            <div class="input-field col-6">
+            <div class="input-field col-6 text-ovflow ">
                 
             {% if rec_function_flag == "edit" %}
             <!-- If in edit mode, display the details of the recipe to be edited -->
@@ -250,7 +250,7 @@
             {% endif%}
             </div>
 
-            <div class="input-field col-6">
+            <div class="input-field col-6 text-ovflow ">
                 {% if rec_function_flag == "edit" %}
                 <!-- If in edit mode, display the details of the recipe to be edited -->
                 <textarea rows="20" name="method" id="method" class="form-control" required>{% for step in recipe.method %}{{ step }}{%endfor %}</textarea>
