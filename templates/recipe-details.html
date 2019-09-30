@@ -14,14 +14,12 @@
         {% else %}
         <h2 class="m-0"><span id="category">Recipe Details</h2>
         {% endif %}
-        <span id="origin" class="d-none">{{origin}}</span>
+        <span id="origin" class="d-none">{{rec_det_origin}}</span>
     </div>
 </div>
 
 
 <!-- Show all details for the selected recipe -->
-
-
 
 
 <!-- There's only one recipe, the one selected by the user -->
@@ -74,17 +72,17 @@
         <div class="card-footer">
             <!-- Show ingredients -->
 
-            <!-- Ingredients are stored as a list, but not as an array. The only way I could get it to display line by line was by using textarea (disabled) -->
+            <!-- Ingredients are stored as a list, but not as an array. The only way I could get it to display line by line was by using textarea (disabled) However this is causing an issue on smaller devices (see Readme -->
             <div class="row no-gutters">
                 <div class="col-6  recipe-border">
                     <h5 class="p-2 text-center"><strong>Ingredients</strong></h5>
-                   <textarea class="textbox"  cols="70" wrap="hard" rows="20" name="ingredients" id="ingredients" class="form-control" disabled>{% for ingredient in recipe.ingredients%}{{ ingredient }}{% endfor %}</textarea>
+                   <textarea class="textbox"  cols="50" wrap="hard" rows="20" name="ingredients" id="ingredients" class="form-control" disabled>{% for ingredient in recipe.ingredients%}{{ ingredient }}{% endfor %}</textarea>
                 </div>
                 
-                <!-- Method steps are stored as a list, but not as an array. The only way I could get it to display line by line was by using textarea (disabled) -->
+                <!-- Method steps are stored as a list, but not as an array. The only way I could get it to display line by line was by using textarea (disabled). However this is causing an issue on smaller devices (see Readme -->
                 <div class="col-6 recipe-border">
                     <h5 class="p-2 text-center"><strong>Method</strong></h5>
-                    <textarea class="textbox" cols="70" wrap="hard" rows="20" name="ingredients" id="ingredients" class="form-control" disabled>{% for method in recipe.method %}{{ method }}{% endfor %}</textarea>
+                    <textarea class="textbox" cols="50" wrap="hard" rows="20" name="method" id="method" class="form-control" disabled>{% for method in recipe.method %}{{ method }}{% endfor %}</textarea>
 
                 </div>
             </div>
@@ -117,8 +115,6 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- <script href="{{ url_for('static', filename='js/nav.js' ) }}"></script> - not working -->
 
 <script src="/static/js/nav.js "></script>
 

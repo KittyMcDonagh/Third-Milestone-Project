@@ -238,6 +238,9 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title, search_flag)
     search=mongo.db.key_words.find().sort("key_words",1)
     key_word_list = [word for word in search]
     
+    # Save origin to display on the recipe details & reset 'origin' to All Countries
+    sel_det_origin = sel_origin
+    sel_origin = "All Countries"
     
 # Get the recipe the user has selected
     
@@ -247,7 +250,7 @@ def get_recipe_details(sel_id, sel_category, sel_origin, sel_title, search_flag)
         print("Error getting recipe from the Recipes Database")
     
     # Redirect to recipes details template
-    return render_template("recipe-details.html", recipe=sel_recipe, search_words=key_word_list, category=sel_category, origin=sel_origin, countries=country_list, rec_title=sel_title, rec_search_flag=search_flag)  
+    return render_template("recipe-details.html", recipe=sel_recipe, search_words=key_word_list, category=sel_category, rec_det_origin=sel_det_origin, origin=sel_origin, countries=country_list, rec_title=sel_title, rec_search_flag=search_flag)  
 
 
 

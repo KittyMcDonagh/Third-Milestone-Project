@@ -222,11 +222,11 @@
             <div class="input-field col-12">
                 {% if rec_function_flag == "edit" %}
                 <!-- If in edit mode, display the details of the recipe to be edited -->
-                <textarea cols="70" wrap="hard" rows="2" name="intro" id="intro" class="form-control" required>{{ recipe.intro }}</textarea>
+                <textarea rows="2" name="intro" id="intro" class="form-control" required>{{ recipe.intro }}</textarea>
                 
                 {% else %}
                 <!-- In insert mode, display blank form -->
-                <textarea  cols="70" wrap="hard" rows="2" name="intro" id="intro" class="form-control" placeholder="Introduction" required></textarea>
+                <textarea  rows="3" name="intro" id="intro" class="form-control" placeholder="Introduction" required></textarea>
                 {% endif %}
             </div>
         </div>
@@ -240,24 +240,24 @@
             <!-- If in edit mode, display the details of the recipe to be edited -->
             
             
-            <textarea rows="20" name="ingredients" id="ingredients" class="form-control" required>{% for ingredient in recipe.ingredients%}{{ ingredient }}{% endfor %}</textarea>
+            <textarea cols="50" wrap="hard" rows="20" name="ingredients" id="ingredients" class="form-control" required>{% for ingredient in recipe.ingredients%}{{ ingredient }}{% endfor %}</textarea>
             
                 
             {% else %}
                 
                 <!-- In insert mode, display blank form -->
-                <textarea rows="20" name="ingredients" id="ingredients" class="form-control" placeholder="Ingredients" required></textarea>
+                <textarea cols="50" wrap="hard" rows="20" name="ingredients" id="ingredients" class="form-control" placeholder="Ingredients" required></textarea>
             {% endif%}
             </div>
 
             <div class="input-field col-6 text-ovflow ">
                 {% if rec_function_flag == "edit" %}
                 <!-- If in edit mode, display the details of the recipe to be edited -->
-                <textarea rows="20" name="method" id="method" class="form-control" required>{% for step in recipe.method %}{{ step }}{%endfor %}</textarea>
+                <textarea cols="50" wrap="hard" rows="20" name="method" id="method" class="form-control" required>{% for step in recipe.method %}{{ step }}{%endfor %}</textarea>
                 
                 {% else %}
                 <!-- In insert mode, display blank form -->
-                <textarea rows="20" name="method" id="method" class="form-control" placeholder="Method" required></textarea>
+                <textarea cols="50" wrap="hard" rows="20" name="method" id="method" class="form-control" placeholder="Method" required></textarea>
                 {% endif %}
             </div>
         </div>
@@ -292,8 +292,6 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<!-- <script href="{{ url_for('static', filename='js/nav.js' ) }}"></script> - not working -->
 
 <script src="/static/js/nav.js "></script>
 

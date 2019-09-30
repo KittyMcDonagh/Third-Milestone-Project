@@ -26,6 +26,13 @@ Here is a website that will bring all of these people together. They can add the
 enhance them.
 
 
+**ISSUES**
+1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This makes the text quite small
+   on mobile devices. This also has an effect on the bottom navbar - it does not break on smaller devices
+2. I noticed too late that the text method text is overflowing its box on smaller devices, and although I spent some time trying to fix
+   it, I couldn't. I have missed my project deadline already and I don't want to delay any further.
+
+
 
 ## **2.2 WEBSITE REQUIREMENTS**
 
@@ -35,9 +42,10 @@ The website will:
 
 1. Display recipes entered by users from 5 countries around the world (America, Australia, Britain, Ireland, New Zealand)
 2. Recipes are divided into the following categories - Baking, Starter, Dinner, Dessert
-3. Allow users to browse the site and filter by category and country
-4. Allow users to add, edit, and delete their own recipes
-5. Allow users to link quickly to the website's social media accounts
+3. Display the recipe list in country / category order
+4. Allow users to browse the site and filter by category and country
+5. Allow users to add, edit, and delete their own recipes
+6. Allow users to link quickly to the website's social media accounts
 
 
 ### **2.2.2 Future Enhancements**
@@ -47,6 +55,7 @@ The website will:
 4. Allow users to like / dislike recipes
 5. Allow for more countries and categories to be added
 6. Include food allergens
+7. Make changes so that the website renders properly on smaller devices
 
 
 ## **2.2.2 USER STORIES** ##
@@ -96,10 +105,6 @@ The website will:
 6. When a recipe is input, the status and keyword are set to 'new'. It is possible to search for new recipes only by selecting 'new' from
    the 'Search By Keyword' box
 7. The website uses Google fonts - Courgette and Nunito
-
-**NOTES**
-1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This makes the text quite small
-   on mobile devices. This also has an effect on the bottom navbar - it does not break on smaller devices
 
 
 
@@ -349,11 +354,9 @@ https://www.bordbia.ie
 http://ukcdn.ar-cdn.com
 https://www.bbcgoodfood.com
 https://www.irishamericanmom.com
-
-
-
-
-
+http://aucdn.ar-cdn.com
+https://www.foodtolove.co.nz
+https://www.rosss.com/lot-details/gerald-walby
 
 
 ## **CODE SNIPPETS**
@@ -374,15 +377,4 @@ https://www.irishamericanmom.com
 |The Code Institute            |I learnt everything I needed to know to build this website from the Code Institute.           |
 |Fellow students on Slack      |I received a lot of assistance and feedback from students on Slack which improved my project. |
 |My mentor Seun Owonikoko      |I received assistance, feedback and encouragement from Seun.                                  |
-
-
-
-
-
-
-
-
-
-
-
-
+|My niece and sister-in-law    |They gave me the inspiration for the website and a lot of feedback                            |
