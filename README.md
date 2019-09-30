@@ -101,7 +101,6 @@ The website will:
 1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This also has an effect on the 
    bottom navbar - it does not break on smaller devices
 
-2. images addresses??
 
 
 ## **3.6 NAVIGATION AND RESPONSIVENESS**
@@ -122,15 +121,37 @@ The website will:
 |Database Name |Function                                                                                               |
 |--------------|-------------------------------------------------------------------------------------------------------|
 |countries     |Holds a list of the countries that can be used on the website, and to which the recipes are linked.    |
-|               Used to create countries dropdown.                                                                     |
+|              |Used to create countries dropdown.                                                                     |
 |categories    |Holds a list of the categories that can be used on the website, and to which the recipes are linked.   |
 |              |Used to create categories dropdown.                                                                    |
-|key_words     |Holds a list of the keywords to which the recipes are linkded.                                         |
+|key_words     |Holds a list of the keywords to which the recipes are linked.                                          |
+|              |I have included "test" as a keyword to show what happens when no recipes for a keyword are found.      |
 |              |Used to create keywords dropdown.                                                                      |
 |recipes       |Holds the recipes' details                                                                             |
 
 
 ## **3.7.1 RECIPES DATABASE **
+
+|Field Name    |Description                                                                               |Linked to    |
+|--------------|--------------------------------------------------------------------------------------------------------|
+|origin        |Allows filtering by country                                                               |countries db |
+|category      |Allows filtering by category.                                                             |categories db|
+|title         |Recipe title displayed on recipe list & details                                           |             |
+|intro         |Short introduction to the recipe. Displayed on recipe list & details                      |             |
+|owner         |User's email address. Used to find user's recipes                                         |             |
+|prep-time     |Preparation time. Displayed on recipe details                                             |             |
+|serves        |Number of portions. Displayed on recipe details                                           |             |
+|image         |Image file name. Prefixed with /static/images to display on recipe list & details.        |             |
+|              |I have included an image called "test.jpg" which can be used when testing the website.    |             |
+|ingredients   |Displayed on recipe details                                                               |             |
+|method        |Displayed on recipe details                                                               |             |
+|key_words     |Used for filtering by keywords. Initially set to "new" when a recipe is inserted.         |key_words db |
+|home_feature  |Set to "on" for a recipe to appear on the home page.                                      |             |
+|status        |Set to "new" when a recipe is inserted, and to "updated" when a recipe is updated.        |             |
+|              |I set the status to "OK" once I have assigned a keyword to the recipe.                    |             |
+|              |I don't use 'status' in the code, but I envisage that on a live site, I would check the   |             |
+|              |recipes before I publish them onsite, and I would only display those with a status of "OK"|             |
+
 
 
 
@@ -317,13 +338,17 @@ The website will:
 
 ## **7.1 CONTENT**
 
-### **7.2 PHOTOGRAPHS**
+### **7.2 RECIPES & PHOTOGRAPHS**
 
 The photos and recipes have been copied from the following websites:
 https://www.christinascucina.com
 https://cooking.nytimes.com
 http://www.donalskehan.com
-http://allrecipes.co.uk/
+http://allrecipes.co.uk
+https://www.bordbia.ie
+http://ukcdn.ar-cdn.com
+https://www.bbcgoodfood.com
+https://www.irishamericanmom.com
 
 
 
