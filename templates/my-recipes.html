@@ -222,11 +222,11 @@
             <div class="input-field col-12">
                 {% if rec_function_flag == "edit" %}
                 <!-- If in edit mode, display the details of the recipe to be edited -->
-                <textarea rows="2" name="intro" id="intro" class="form-control" required>{{ recipe.intro }}</textarea>
+                <textarea cols="70" wrap="hard" rows="2" name="intro" id="intro" class="form-control" required>{{ recipe.intro }}</textarea>
                 
                 {% else %}
                 <!-- In insert mode, display blank form -->
-                <textarea rows="2" name="intro" id="intro" class="form-control" placeholder="Introduction" required></textarea>
+                <textarea  cols="70" wrap="hard" rows="2" name="intro" id="intro" class="form-control" placeholder="Introduction" required></textarea>
                 {% endif %}
             </div>
         </div>
