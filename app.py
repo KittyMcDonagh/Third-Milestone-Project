@@ -443,7 +443,7 @@ def insert_recipe():
     recipe = {"origin" : request.form['origin'].lower(), 
               "category" : request.form['category'].lower(),
               "title" : request.form['title'].lower(),
-              "intro" : request.form['intro'].lower(),
+              "intro" : request.form['intro'],
               "owner" : request.form['owner'].lower(),
               "prep_time" : request.form['prep_time'],
               "serves" : request.form['serves'],
