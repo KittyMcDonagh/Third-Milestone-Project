@@ -597,5 +597,5 @@ def check_odd_nr_rec_display(total_recipes_selected, this_page_nr, nr_of_recipes
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),
-    debug=True)
+    debug=False)
    

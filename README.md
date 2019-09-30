@@ -340,6 +340,10 @@ The website will:
 22. Enter "SECRET" into the key box, enter the secret key into the value box.
 
 
+## **5.1 Automated Testing**
+
+Due to time constraints, I didn't get time any automated testing.
+
 
 # **7. CREDITS**
 
