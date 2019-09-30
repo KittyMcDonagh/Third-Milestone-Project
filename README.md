@@ -140,7 +140,7 @@ The website will:
 ## **3.7.1 RECIPES DATABASE **
 
 |Field Name    |Description                                                                               |Linked to    |
-|--------------|--------------------------------------------------------------------------------------------------------|
+|--------------|------------------------------------------------------------------------------------------|-------------|
 |origin        |Allows filtering by country                                                               |countries db |
 |category      |Allows filtering by category.                                                             |categories db|
 |title         |Recipe title displayed on recipe list & details                                           |             |
