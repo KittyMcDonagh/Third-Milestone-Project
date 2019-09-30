@@ -7,7 +7,8 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-app.secret_key = "kitty1914"
+# Get secret key
+app.secret_key = os.getenv('SECRET', "randomstring123")
 
 # Mongo Database for The Global Irish Cafe
 MONGODB_URI = os.getenv("MONGO_URI")
