@@ -98,8 +98,8 @@ The website will:
 7. The website uses Google fonts - Courgette and Nunito
 
 **NOTES**
-1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This also has an effect on the 
-   bottom navbar - it does not break on smaller devices
+1. Bootstrap Cards are not responsive, therefore I have kept the recipe list page to 2 recipes per row. This makes the text quite small
+   on mobile devices. This also has an effect on the bottom navbar - it does not break on smaller devices
 
 
 
@@ -110,8 +110,8 @@ The website will:
 2. The selections made from the top navigation menu are changed to green, so that users remembers the selections they have made   
 3. The bottom navigation bar also allows for ease of navigation. The Social Media icons (facebook, twitter, instagram, youtube) appear on
    the bottom navigation bar, and they open in a new tab
-4. Bootstrap Recipe cards are not responsive, therefore I have limited them on the Recipe List page to two per row. These show okay on all 
-   devices. However this means that the bottom navigation bar does not break on smaller devices 
+4. Bootstrap Recipe cards are not responsive, therefore I have limited them on the Recipe List page to two per row.  
+   However, he text is quite small on mobile devices, and the bottom navigation bar does not break on smaller devices 
 5. Clicking on the site's logo takes the user back to the home page
 
 

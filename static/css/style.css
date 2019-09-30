@@ -523,6 +523,7 @@ main {
 
 .form-control {
     border: 1px solid #edf7ef;
+    overflow: auto;
 }
 
 .text-array {
